@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "S",
+    "S"
+  ],
+  "key": {
+    "D": {
+      "item": "tuom:dark_opal"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tuom:dopal_shovel",
+    "count": 1
+  }
+}

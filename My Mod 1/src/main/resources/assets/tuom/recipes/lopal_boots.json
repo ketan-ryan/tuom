@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L L",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "tuom:light_opal"
+    }
+  },
+  "result": {
+    "item": "tuom:lopal_boots",
+    "count": 1
+  }
+}

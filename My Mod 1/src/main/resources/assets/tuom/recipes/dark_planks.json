@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+        {
+            "item": "tuom:dark_log"
+        }
+    ],
+    "result": {
+        "item": "tuom:dark_planks",
+    	"count": 4
+    	}
+    }
+  }
+}

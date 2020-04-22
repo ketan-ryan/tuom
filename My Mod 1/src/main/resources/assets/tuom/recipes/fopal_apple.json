@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FAF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "tuom:fire_opal"
+    },
+    "A": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "tuom:fopal_apple",
+    "count": 1
+  }
+}

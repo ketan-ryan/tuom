@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+        {
+            "item": "tuom:fopal_shard"
+        },
+        {
+            "item": "minecraft:wheat_seeds"
+        }
+    ],
+    "result": {
+        "item": "tuom:fopal_seeds",
+    	"count": 2
+    	}
+    }
+  }
+}

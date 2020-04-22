@@ -1,0 +1,49 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Into the Darkness",
+            "color": "dark_purple"
+        },
+        "description": {
+            "text": "Pick up a Dark Opal"
+        },
+        "icon": {
+            "item": "tuom:dopal_ore"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "dopal": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tuom:dark_opal"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tuom:dopal_sword",
+            "tuom:dopal_pickaxe",
+            "tuom:dopal_axe",
+            "tuom:dopal_hoe",
+            "tuom:dopal_shovel",
+            "tuom:dopal_helmet",
+            "tuom:dopal_chestplate",
+            "tuom:dopal_leggings",
+            "tuom:dopal_boots",
+            "tuom:dopal_apple",
+            "tuom:dopal_shard",
+            "tuom:dark_opal",
+            "tuom:dopal_seeds"
+        ]
+    },
+    "parent": "tuom:root"
+}

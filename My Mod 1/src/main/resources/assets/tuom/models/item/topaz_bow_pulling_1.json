@@ -1,0 +1,6 @@
+{
+    "parent": "item/bow",
+    "textures": {
+        "layer0": "tuom:items/topaz_bow/topaz_bow_pulling_1"
+    }
+}

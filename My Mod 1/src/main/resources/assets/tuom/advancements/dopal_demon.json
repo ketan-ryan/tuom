@@ -1,0 +1,33 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Defeat the Darkness",
+            "color": "dark_purple",
+            "bold": true,
+            "italic": true,
+            "underlined": true
+        },
+        "description": {
+            "text": "Kill the Dark Opal Demon"
+        },
+        "icon": {
+            "item": "tuom:dark_staff"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "dark_demon": {
+            "trigger": "minecraft:player_killed_entity",
+            "conditions": {
+                "entity": {
+                    "type": "tuom:dark_demon"
+                }
+            }
+        }
+    },
+    "parent": "tuom:dopal"
+}

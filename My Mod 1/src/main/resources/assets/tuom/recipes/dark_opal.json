@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": {
+      "item": "tuom:dopal_shard"
+    }
+  },
+  "result": {
+    "item": "tuom:dark_opal",
+    "count": 1
+  }
+}

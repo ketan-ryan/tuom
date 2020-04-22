@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "L L",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "tuom:light_opal"
+    }
+  },
+  "result": {
+    "item": "tuom:lopal_leggings",
+    "count": 1
+  }
+}

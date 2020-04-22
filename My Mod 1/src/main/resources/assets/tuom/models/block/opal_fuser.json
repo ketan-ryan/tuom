@@ -1,0 +1,12 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+      "particle": "tuom:blocks/dark_furnace/dark_furnace_back",
+      "down": "tuom:blocks/dark_furnace/dark_furnace_bottom",
+      "up": "tuom:blocks/dark_furnace/dark_furnace_top",
+      "east": "tuom:blocks/dark_furnace/dark_furnace_left",
+      "west": "tuom:blocks/dark_furnace/dark_furnace_right",
+      "north": "tuom:blocks/dark_furnace/dark_furnace_front_on",
+      "south": "tuom:blocks/dark_furnace/dark_furnace_back"
+    }
+}

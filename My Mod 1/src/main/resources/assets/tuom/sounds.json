@@ -1,0 +1,137 @@
+{
+  "darkdemon-death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-death",
+        "stream": false
+      }
+    ]
+  },
+  "darkdemon-hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-hurt",
+        "stream": false
+      }
+    ]
+  },
+  "darkdemon-say": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-say",
+        "stream": false
+      }
+    ]
+  },
+  "darkdemon-spawn": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-spawn",
+        "stream": false
+      }
+    ]
+  },
+  "darkdemon-takeoff": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-takeoff",
+        "stream": false
+      }
+    ]
+  },
+    "darkdemon-landing": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-landing",
+        "stream": false
+      }
+    ]
+  },
+  "darkdemon-flutter": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-flutter",
+        "stream": false
+      }
+    ]
+  },
+  "darkdemon-flap": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-flap",
+        "stream": false
+      }
+    ]
+  },  
+  "darkdemon-whoosh": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-whoosh",
+        "stream": false
+      }
+    ]
+  },   
+  "darkdemon-bomb": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-bomb",
+        "stream": false
+      }
+    ]
+  },   
+  "darkdemon-bomb-launch": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:darkdemon-bomb-launch",
+        "stream": false
+      }
+    ]
+  },   
+  "satan-idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:satan-idle",
+        "stream": false
+      }
+    ]
+  },
+  "satan-spawn": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:satan-spawn",
+        "stream": false
+      }
+    ]
+  },
+  "satan-hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:satan-hurt",
+        "stream": false
+      }
+    ]
+  },
+  "satan-death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "tuom:satan-death",
+        "stream": false
+      }
+    ]
+  }
+}

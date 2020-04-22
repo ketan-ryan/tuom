@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+        {
+            "item": "tuom:light_opal"
+        }
+    ],
+    "result": {
+        "item": "tuom:lopal_shard",
+    	"count": 4
+    }
+  }
+}

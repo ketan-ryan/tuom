@@ -1,0 +1,49 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Into the Flames",
+            "color": "red"
+        },
+        "description": {
+            "text": "Pick up a Fire Opal"
+        },
+        "icon": {
+            "item": "tuom:fopal_ore"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "fire_opal": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tuom:fire_opal"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tuom:fopal_sword",
+            "tuom:fopal_pickaxe",
+            "tuom:fopal_axe",
+            "tuom:fopal_shovel",
+            "tuom:fopal_hoe",
+            "tuom:fopal_helmet",
+            "tuom:fopal_chestplate",
+            "tuom:fopal_leggings",
+            "tuom:fopal_boots",
+            "tuom:fopal_apple",
+            "tuom:fopal_shard",
+            "tuom:fire_opal",
+            "tuom:fopal_seeds"
+        ]
+    },
+    "parent": "tuom:root"
+}

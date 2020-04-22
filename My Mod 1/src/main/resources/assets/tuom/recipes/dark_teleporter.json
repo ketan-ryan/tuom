@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  O",
+    " S ",
+    "S  "
+  ],
+  "key": {
+    "O": {
+      "item": "tuom:dark_orb"
+    },
+    "S": {
+      "item": "tuom:obsidian_stick"
+    }
+  },
+  "result": {
+    "item": "tuom:dark_teleporter",
+    "count": 1
+  }
+}

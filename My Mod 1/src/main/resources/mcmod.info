@@ -1,0 +1,17 @@
+[
+{
+  "name": "The Ultimate Ore Mod",
+  "authorList": ["TheMCOverlordYT"],
+  "description": "The Ultimate Ore Mod is back with loads of new content!",
+  "version": "0.2.0",
+  
+  "credits": "TheMCO, Umbrella_Ghast for helping",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [],
+  "modid": "tuom"
+}
+]
