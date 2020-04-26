@@ -44,6 +44,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.chunk.BlockStatePaletteRegistry;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -244,9 +245,6 @@ public class TUOMBlocks
 		event.getRegistry().register(new LibItemBlock(dark_leaves));
 		event.getRegistry().register(new LibItemBlock(dark_sapling));
 		
-/*		registerRender(dark_log, 0, "dark_log");
-		registerRender(dark_leaves, 0, "dark_leaves");
-		registerRender(dark_sapling, 0, "dark_sapling");*/
 	}
 	
 
@@ -264,12 +262,15 @@ public class TUOMBlocks
 	}
 	
 	@SubscribeEvent
-	public static void registerRenders(RegistryEvent.Register<Block> event)
+	public static void registerRenders(ModelRegistryEvent event)
 	{
-/*		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
+		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
 		{
 			registerRender(dark_planks, i, "planks_" + DarkPlanks.EnumType.values()[i].getName());
-		}*/
+		}
+		registerRender(dark_log, 0, "dark_log");
+		registerRender(dark_leaves, 0, "dark_leaves");
+		registerRender(dark_sapling, 0, "dark_sapling");
 	}
 	
 	public static void registerBlockWithVariants(Block block, ItemBlock itemBlock)
