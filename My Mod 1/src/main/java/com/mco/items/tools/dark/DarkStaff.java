@@ -24,12 +24,10 @@ import net.minecraft.world.World;
 
 public class DarkStaff extends Item
 {
-	private World worldObj;
 	
-	public DarkStaff(String registryName, ToolMaterial material, World world) 
+	public DarkStaff(String registryName, ToolMaterial material) 
 	{
 		super();
-		this.worldObj = world;
 		this.setCreativeTab(TUOM.tuom_tab);
 		this.setRegistryName("dark_staff");
 		this.setUnlocalizedName("dark_staff");

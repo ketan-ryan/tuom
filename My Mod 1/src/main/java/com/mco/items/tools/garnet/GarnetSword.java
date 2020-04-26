@@ -27,10 +27,9 @@ public class GarnetSword extends LibItemSword
 {
 	World worldObj;
 
-	public GarnetSword(String registryName, ToolMaterial material, World world) 
+	public GarnetSword(String registryName, ToolMaterial material) 
 	{
 		super(registryName, material);
-		worldObj = world;
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 	

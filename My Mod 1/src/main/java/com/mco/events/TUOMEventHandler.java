@@ -11,6 +11,8 @@ import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.items.armor.DopalArmor;
 import com.mco.main.TUOMDamageSources;
 import com.mco.main.TUOMItems;
+import com.mco.proxies.ClientProxy;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -33,12 +35,13 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author TheMCOverlordYT
  */
-
-@Mod.EventBusSubscriber(modid = TUOM.MODID)
+@Mod.EventBusSubscriber(value = Side.CLIENT, modid = TUOM.MODID)
 public class TUOMEventHandler 
 {
 	private static Minecraft mc = Minecraft.getMinecraft();
@@ -109,7 +112,7 @@ public class TUOMEventHandler
 	@SubscribeEvent
 	public static void onRenderOverlay(RenderGameOverlayEvent.Post event)
 	{
-		EntityPlayer player = mc.player;
+		EntityPlayer player = ClientProxy.getClientPlayer();
 		
 		List<EntityDarkOpalDemon> list = player.world.<EntityDarkOpalDemon>getEntitiesWithinAABB(EntityDarkOpalDemon.class, 
         		player.getEntityBoundingBox().grow(20));
@@ -139,12 +142,14 @@ public class TUOMEventHandler
 		{
 			if(e.getEntityLiving().getActivePotionEffect(TUOM.darkPotion).getDuration() == 0 )
 			{
+				System.out.println("remove");
 				e.getEntityLiving().removeActivePotionEffect(TUOM.darkPotion);
 				return;
 			}
 			else 
 			{	
 				e.getEntityLiving().attackEntityFrom(TUOMDamageSources.darkDamage, .3F);
+				System.out.println("hurt");
 				e.getEntityLiving().hurtResistantTime = 7;
 			}
 		}
@@ -154,12 +159,11 @@ public class TUOMEventHandler
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public static void onEvent(EntityViewRenderEvent.FogDensity event)
 	{
-		if(true)
+		if(((EntityLivingBase) event.getEntity()).isPotionActive(TUOM.darkPotion))
 		{
-			if(((EntityLivingBase) event.getEntity()).isPotionActive(TUOM.darkPotion)){
-				event.setDensity(1F);
-				event.setCanceled(true);
-			}
+			System.out.println("density");
+			event.setDensity(1F);
+			event.setCanceled(true);
 		}
 	}
 

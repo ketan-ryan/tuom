@@ -24,12 +24,10 @@ import net.minecraft.world.World;
 
 public class LopalSword extends LibItemSword
 {
-	World worldObj;
 
-	public LopalSword(String registryName, ToolMaterial material, World world) 
+	public LopalSword(String registryName, ToolMaterial material) 
 	{
 		super(registryName, material);
-		worldObj = world;
 		this.setCreativeTab(TUOM.tuom_tab);
 		this.setScale(1.5F);
 	}

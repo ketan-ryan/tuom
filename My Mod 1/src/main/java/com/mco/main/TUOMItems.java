@@ -30,6 +30,8 @@ import com.mco.items.tools.topaz.TopazAxe;
 import com.mco.items.tools.topaz.TopazHoe;
 import library.LibRegistry;
 import library.items.LibItemSimple;
+
+import com.mco.TUOM;
 import com.mco.items.archery.TopazArrow;
 import com.mco.items.armor.GarnetArmor;
 import com.mco.items.armor.LopalArmor;
@@ -68,11 +70,14 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.fml.relauncher.Side;
 
 /**
  * DECLARE ITEMS =================================================
  */
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = TUOM.MODID)
+@ObjectHolder(TUOM.MODID)
 public class TUOMItems {
 
 	//Items
@@ -194,12 +199,8 @@ public class TUOMItems {
 	public static Item obsidian_stick;
 	public static Item dark_teleporter;
 	
-	/**
-	 * REGISTER ITEMS =================================================
-	 */
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-
+	public static void preInit() 
+	{
 		//Tool Material Registry
 		topaz_TM = LibRegistry.registerToolMaterial("Topaz", 3, 1600, 10F, 6F, 10);
 		fopal_TM = LibRegistry.registerToolMaterial("Fire Opal", 3, 1700, 11.0F, 8.0F, 10);
@@ -217,159 +218,77 @@ public class TUOMItems {
 	    lopal_AM = LibRegistry.registerArmorMaterial("Light Opal", 73, new int[]{7, 11, 10, 7}, 33, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2F);   
 	    garnet_AM = LibRegistry.registerArmorMaterial("Garnet", 20, new int[]{3, 7, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2F);   
 	    satanic_AM = LibRegistry.registerArmorMaterial("Satan", 666, new int[]{8, 13, 11, 8}, 20, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2F);
-	    
-		//Item Registry
+		
+	    //Item Registry
 	    item_garnet = new ItemGarnet("item_garnet");
-		event.getRegistry().register(item_garnet);
-		
 		item_topaz = new ItemTopaz("item_topaz");
-		event.getRegistry().register(item_topaz);
-		
 		fire_opal = new ItemFopal("fire_opal");
-		event.getRegistry().register(fire_opal);
-		
 		dark_opal = new ItemDopal("dark_opal");
-		event.getRegistry().register(dark_opal);
-		
 		light_opal = new ItemLopal("light_opal");
-		event.getRegistry().register(light_opal);
-		
 		topaz_shard = new TopazShard("topaz_shard");
-		event.getRegistry().register(topaz_shard);
-		
 		lopal_shard = new LopalShard("lopal_shard");
-		event.getRegistry().register(lopal_shard);
-		
 		dopal_shard = new DopalShard("dopal_shard");
-		event.getRegistry().register(dopal_shard);
-		
 		fopal_shard = new FopalShard("fopal_shard");
-		event.getRegistry().register(fopal_shard);
-		
 		item_satanic = new ItemSatanic("item_satanic");
-		event.getRegistry().register(item_satanic);
 		
 		//Food Registry
 		topaz_apple = new TopazApple("topaz_apple", 3, 5, false);
-		event.getRegistry().register(topaz_apple);
-
 		dopal_apple = new DopalApple("dopal_apple", 3, 5, false);
-		event.getRegistry().register(dopal_apple);
-		
 		fopal_apple = new FopalApple("fopal_apple", 3, 5, false);
-		event.getRegistry().register(fopal_apple);
-		
 		lopal_apple = new LopalApple("lopal_apple", 3, 5, false);
-		event.getRegistry().register(lopal_apple);
 		
 		//Staff Registry
-		dark_staff = new DarkStaff("dark_staff", dopal_staff_TM, Minecraft.getMinecraft().world);
-		event.getRegistry().register(dark_staff);
+		dark_staff = new DarkStaff("dark_staff", dopal_staff_TM);
 		
 		//Sword Registry
-		garnet_sword = new GarnetSword("garnet_sword", garnet_TM, Minecraft.getMinecraft().world);
-		event.getRegistry().register(garnet_sword);	
-		
-		topaz_sword = new TopazSword("topaz_sword", topaz_TM, Minecraft.getMinecraft().world);
-		event.getRegistry().register(topaz_sword);	
-		
-		fopal_sword = new FopalSword("fopal_sword", fopal_TM, Minecraft.getMinecraft().world);
-		event.getRegistry().register(fopal_sword);	
-		
-		dopal_sword = new DopalSword("dopal_sword", dopal_TM, Minecraft.getMinecraft().world);
-		event.getRegistry().register(dopal_sword);	
-		
-		lopal_sword = new LopalSword("lopal_sword", lopal_TM, Minecraft.getMinecraft().world);
-		event.getRegistry().register(lopal_sword);	
+		garnet_sword = new GarnetSword("garnet_sword", garnet_TM);
+		topaz_sword = new TopazSword("topaz_sword", topaz_TM);
+		fopal_sword = new FopalSword("fopal_sword", fopal_TM);
+		dopal_sword = new DopalSword("dopal_sword", dopal_TM);
+		lopal_sword = new LopalSword("lopal_sword", lopal_TM);
 		
 		//Pickaxe Registry
 		garnet_pickaxe = new GarnetPickaxe("garnet_pickaxe", 1, -2.8F, garnet_TM);
-		event.getRegistry().register(garnet_pickaxe);
-		
 		topaz_pickaxe = new TopazPickaxe("topaz_pickaxe", 1, -2.8F, topaz_TM);
-		event.getRegistry().register(topaz_pickaxe);
-		
 		fopal_pickaxe = new FopalPickaxe("fopal_pickaxe", 1, -2.8F, fopal_TM);
-		event.getRegistry().register(fopal_pickaxe);
-		
 		dopal_pickaxe = new DopalPickaxe("dopal_pickaxe", 1, -2.8F, dopal_TM);
-		event.getRegistry().register(dopal_pickaxe);
-		
 		lopal_pickaxe = new LopalPickaxe("lopal_pickaxe", 1, -2.8F, lopal_TM);
-		event.getRegistry().register(lopal_pickaxe);
 		
 		//Axe Registry
 		garnet_axe = new GarnetAxe("garnet_axe", 2, -3, garnet_TM);
-		event.getRegistry().register(garnet_axe);
-		
 		topaz_axe = new TopazAxe("topaz_axe", 2, -3, topaz_TM);
-		event.getRegistry().register(topaz_axe);
-		
 		fopal_axe = new FopalAxe("fopal_axe", 2, -3, fopal_TM);
-		event.getRegistry().register(fopal_axe);
-		
 		dopal_axe = new DopalAxe("dopal_axe", 2, -3, dopal_TM);
-		event.getRegistry().register(dopal_axe);
-		
 		lopal_axe = new LopalAxe("lopal_axe", 2, -3, lopal_TM);
-		event.getRegistry().register(lopal_axe);
 		
 		//Hoe Registry
 		garnet_hoe = new GarnetHoe("garnet_hoe", -1, 0, garnet_TM);
-		event.getRegistry().register(garnet_hoe);
-		
 		topaz_hoe = new TopazHoe("topaz_hoe", -1, 0, topaz_TM);
-		event.getRegistry().register(topaz_hoe);
-		
 		fopal_hoe = new FopalHoe("fopal_hoe", -1, 0, fopal_TM);
-		event.getRegistry().register(fopal_hoe);
-		
 		dopal_hoe = new DopalHoe("dopal_hoe", -1, 0, dopal_TM);
-		event.getRegistry().register(dopal_hoe);
-		
 		lopal_hoe = new LopalHoe("lopal_hoe", -1, 0, lopal_TM);
-		event.getRegistry().register(lopal_hoe);
 		
 		//Shovel Registry
 		garnet_shovel = new GarnetShovel("garnet_shovel", 0, -3, garnet_TM);
-		event.getRegistry().register(garnet_shovel);
-		
 		topaz_shovel = new TopazShovel("topaz_shovel", 0, -3, topaz_TM);
-		event.getRegistry().register(topaz_shovel);
-
 		fopal_shovel = new FopalShovel("fopal_shovel", 0, -3, fopal_TM);
-		event.getRegistry().register(fopal_shovel);
-		
 		dopal_shovel = new DopalShovel("dopal_shovel", 0, -3, dopal_TM);
-		event.getRegistry().register(dopal_shovel);
-		
-		lopal_shovel = new LopalShovel("lopal_shovel", 0, -3, lopal_TM);
-		event.getRegistry().register(lopal_shovel);
+		lopal_shovel = new LopalShovel("lopal_shovel", 0, -3, lopal_TM);		
 		
 		//Arrow Registry
-		topaz_arrow = new TopazArrow("topaz_arrow");
-		event.getRegistry().register(topaz_arrow);
+		topaz_arrow = new TopazArrow("topaz_arrow");		
 		
 		//Projectile Registry
 		projectile_grenade = new ProjectileGrenade("projectile_grenade");
-		event.getRegistry().register(projectile_grenade);
 		
 		//Bow Registry 
 		topaz_bow = new Topaz_Bow("topaz_bow");
-		event.getRegistry().register(topaz_bow);
 		
 		//Seeds
 		topaz_seeds = new TopazSeeds("topaz_seeds", TUOMBlocks.topaz_crop);
-		event.getRegistry().register(topaz_seeds);
-		
 		fopal_seeds = new FopalSeeds("fopal_seeds", TUOMBlocks.fopal_crop);
-		event.getRegistry().register(fopal_seeds);
-		
 		lopal_seeds = new LopalSeeds("lopal_seeds", TUOMBlocks.lopal_crop);
-		event.getRegistry().register(lopal_seeds);
-		
 		dopal_seeds = new DopalSeeds("dopal_seeds", TUOMBlocks.dopal_crop);
-		event.getRegistry().register(dopal_seeds);
 		
 		//Armor Registry
 		topaz_boots = new TopazArmor("topaz_boots", topaz_AM, EntityEquipmentSlot.FEET);
@@ -377,66 +296,133 @@ public class TUOMItems {
 		topaz_chestplate = new TopazArmor("topaz_chestplate", topaz_AM, EntityEquipmentSlot.CHEST);
 		topaz_helmet = new TopazArmor("topaz_helmet", topaz_AM, EntityEquipmentSlot.HEAD);
 		
-		event.getRegistry().register(topaz_boots);
-		event.getRegistry().register(topaz_leggings);
-		event.getRegistry().register(topaz_chestplate);
-		event.getRegistry().register(topaz_helmet);
-	
 		dopal_boots = new DopalArmor("dopal_boots", dopal_AM, EntityEquipmentSlot.FEET);
 		dopal_leggings = new DopalArmor("dopal_leggings", dopal_AM, EntityEquipmentSlot.LEGS);
 		dopal_chestplate = new DopalArmor("dopal_chestplate", dopal_AM, EntityEquipmentSlot.CHEST);
 		dopal_helmet = new DopalArmor("dopal_helmet", dopal_AM, EntityEquipmentSlot.HEAD);
-		
-		event.getRegistry().register(dopal_boots);
-		event.getRegistry().register(dopal_leggings);
-		event.getRegistry().register(dopal_chestplate);
-		event.getRegistry().register(dopal_helmet);
 		
 		fopal_boots = new FopalArmor("fopal_boots", fopal_AM, EntityEquipmentSlot.FEET);
 		fopal_leggings = new FopalArmor("fopal_leggings", fopal_AM, EntityEquipmentSlot.LEGS);
 		fopal_chestplate = new FopalArmor("fopal_chestplate", fopal_AM, EntityEquipmentSlot.CHEST);
 		fopal_helmet = new FopalArmor("fopal_helmet", fopal_AM, EntityEquipmentSlot.HEAD);
 		
-		event.getRegistry().register(fopal_boots);
-		event.getRegistry().register(fopal_leggings);
-		event.getRegistry().register(fopal_chestplate);
-		event.getRegistry().register(fopal_helmet);
-		
 		lopal_boots = new LopalArmor("lopal_boots", lopal_AM, EntityEquipmentSlot.FEET);
 		lopal_leggings = new LopalArmor("lopal_leggings", lopal_AM, EntityEquipmentSlot.LEGS);
 		lopal_chestplate = new LopalArmor("lopal_chestplate", lopal_AM, EntityEquipmentSlot.CHEST);
 		lopal_helmet = new LopalArmor("lopal_helmet", lopal_AM, EntityEquipmentSlot.HEAD);
-		
-		event.getRegistry().register(lopal_boots);
-		event.getRegistry().register(lopal_leggings);
-		event.getRegistry().register(lopal_chestplate);
-		event.getRegistry().register(lopal_helmet);
 		
 		garnet_boots = new GarnetArmor("garnet_boots", garnet_AM, EntityEquipmentSlot.FEET);
 		garnet_leggings = new GarnetArmor("garnet_leggings", garnet_AM, EntityEquipmentSlot.LEGS);
 		garnet_chestplate = new GarnetArmor("garnet_chestplate", garnet_AM, EntityEquipmentSlot.CHEST);
 		garnet_helmet = new GarnetArmor("garnet_helmet", garnet_AM, EntityEquipmentSlot.HEAD);
 		
-		event.getRegistry().register(garnet_boots);
-		event.getRegistry().register(garnet_leggings);
-		event.getRegistry().register(garnet_chestplate);
-		event.getRegistry().register(garnet_helmet);
-		
 		satanic_boots = new SatanicArmor("satanic_boots", satanic_AM, EntityEquipmentSlot.FEET);
 		satanic_leggings = new SatanicArmor("satanic_leggings", satanic_AM, EntityEquipmentSlot.LEGS);
 		satanic_chestplate = new SatanicArmor("satanic_chestplate", satanic_AM, EntityEquipmentSlot.CHEST);
 		satanic_helmet = new SatanicArmor("satanic_helmet", satanic_AM, EntityEquipmentSlot.HEAD);
 		
-		event.getRegistry().register(satanic_boots);
-		event.getRegistry().register(satanic_leggings);
-		event.getRegistry().register(satanic_chestplate);
-		event.getRegistry().register(satanic_helmet);
-	
 		//Dimension Registry
 		dark_orb = new LibItemSimple("dark_orb");
 		obsidian_stick = new LibItemSimple("obsidian_stick");
 		dark_teleporter = new DarkOpalTeleporterStaff("dark_teleporter");
 		
+	}
+	
+	/**
+	 * REGISTER ITEMS =================================================
+	 */
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event) 
+	{
+		event.getRegistry().register(item_garnet);
+		event.getRegistry().register(item_topaz);		
+		event.getRegistry().register(fire_opal);		
+		event.getRegistry().register(dark_opal);		
+		event.getRegistry().register(light_opal);		
+		event.getRegistry().register(topaz_shard);		
+		event.getRegistry().register(lopal_shard);
+		event.getRegistry().register(dopal_shard);
+		event.getRegistry().register(fopal_shard);		
+		event.getRegistry().register(item_satanic);
+		
+		event.getRegistry().register(topaz_apple);
+		event.getRegistry().register(dopal_apple);		
+		event.getRegistry().register(fopal_apple);		
+		event.getRegistry().register(lopal_apple);
+		
+		event.getRegistry().register(dark_staff);
+
+		event.getRegistry().register(garnet_sword);			
+		event.getRegistry().register(topaz_sword);			
+		event.getRegistry().register(fopal_sword);			
+		event.getRegistry().register(dopal_sword);			
+		event.getRegistry().register(lopal_sword);	
+
+		event.getRegistry().register(garnet_pickaxe);		
+		event.getRegistry().register(topaz_pickaxe);
+		event.getRegistry().register(fopal_pickaxe);
+		event.getRegistry().register(dopal_pickaxe);
+		event.getRegistry().register(lopal_pickaxe);
+
+		event.getRegistry().register(garnet_axe);		
+		event.getRegistry().register(topaz_axe);		
+		event.getRegistry().register(fopal_axe);		
+		event.getRegistry().register(dopal_axe);
+		event.getRegistry().register(lopal_axe);
+
+		event.getRegistry().register(garnet_hoe);	
+		event.getRegistry().register(topaz_hoe);		
+		event.getRegistry().register(fopal_hoe);		
+		event.getRegistry().register(dopal_hoe);		
+		event.getRegistry().register(lopal_hoe);
+
+		event.getRegistry().register(garnet_shovel);	
+		event.getRegistry().register(topaz_shovel);
+		event.getRegistry().register(fopal_shovel);		
+		event.getRegistry().register(dopal_shovel);		
+		event.getRegistry().register(lopal_shovel);
+
+		event.getRegistry().register(topaz_arrow);
+
+		event.getRegistry().register(projectile_grenade);
+
+		event.getRegistry().register(topaz_bow);
+
+		event.getRegistry().register(topaz_seeds);		
+		event.getRegistry().register(fopal_seeds);		
+		event.getRegistry().register(lopal_seeds);		
+		event.getRegistry().register(dopal_seeds);
+
+		event.getRegistry().register(topaz_boots);
+		event.getRegistry().register(topaz_leggings);
+		event.getRegistry().register(topaz_chestplate);
+		event.getRegistry().register(topaz_helmet);
+		
+		event.getRegistry().register(dopal_boots);
+		event.getRegistry().register(dopal_leggings);
+		event.getRegistry().register(dopal_chestplate);
+		event.getRegistry().register(dopal_helmet);
+		
+		event.getRegistry().register(fopal_boots);
+		event.getRegistry().register(fopal_leggings);
+		event.getRegistry().register(fopal_chestplate);
+		event.getRegistry().register(fopal_helmet);
+
+		event.getRegistry().register(lopal_boots);
+		event.getRegistry().register(lopal_leggings);
+		event.getRegistry().register(lopal_chestplate);
+		event.getRegistry().register(lopal_helmet);
+		
+		event.getRegistry().register(garnet_boots);
+		event.getRegistry().register(garnet_leggings);
+		event.getRegistry().register(garnet_chestplate);
+		event.getRegistry().register(garnet_helmet);
+
+		event.getRegistry().register(satanic_boots);
+		event.getRegistry().register(satanic_leggings);
+		event.getRegistry().register(satanic_chestplate);
+		event.getRegistry().register(satanic_helmet);
+
 		event.getRegistry().register(dark_orb);
 		event.getRegistry().register(obsidian_stick);
 		event.getRegistry().register(dark_teleporter); 

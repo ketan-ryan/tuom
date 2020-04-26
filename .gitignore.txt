@@ -11,6 +11,7 @@
 /libs/
 /classes/
 /.settings/
+/templates/
 
 # File Extensions
 *.psd
@@ -20,3 +21,4 @@
 *.classpath
 *.project
 *.launch
+*.cmd

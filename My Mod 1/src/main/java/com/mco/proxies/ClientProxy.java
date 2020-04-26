@@ -6,7 +6,10 @@ import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
 import com.mco.entities.projectiles.RenderCustomFallingBlock;
+import com.mco.events.TUOMEventHandler;
 import com.mco.main.TUOMEntities;
+import com.mco.potions.TUOMPotions;
+
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
 
@@ -26,17 +29,21 @@ import com.mco.entities.projectiles.RenderCustomFallingBlock;
 import com.mco.main.TUOMEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ClientProxy extends CommonProxy 
 {
+	private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
+	
     public static int sphereIdOutside;
     public static int sphereIdInside;
     
@@ -59,6 +66,11 @@ public class ClientProxy extends CommonProxy
     @Override
     public void init(FMLInitializationEvent event)
     {
+        MinecraftForge.EVENT_BUS.register(new TUOMEventHandler());
+    }
+    
+    public static EntityPlayer getClientPlayer() {
+    	return MINECRAFT.player;
     }
     
     //GuiBossOverlay

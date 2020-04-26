@@ -21,12 +21,10 @@ import net.minecraft.world.World;
 
 public class TopazSword extends LibItemSword
 {
-	World worldObj;
 
-	public TopazSword(String registryName, ToolMaterial material, World world) 
+	public TopazSword(String registryName, ToolMaterial material) 
 	{
 		super(registryName, material);
-		worldObj = world;
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 

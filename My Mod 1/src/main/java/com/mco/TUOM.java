@@ -5,8 +5,10 @@ import org.apache.logging.log4j.Logger;
 import com.mco.generation.TUOMWorldGenerator;
 import com.mco.main.TUOMBiomes;
 import com.mco.main.TUOMBlocks;
+import com.mco.main.TUOMEntities;
 import com.mco.main.TUOMItems;
 import com.mco.potions.DarkPotion;
+import com.mco.potions.TUOMPotions;
 import com.mco.proxies.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,6 +17,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -67,7 +70,9 @@ public class TUOM {
 				return new ItemStack(TUOMItems.item_topaz);
 			}
 		};
-
+        TUOMEntities.preInit();
+        TUOMEntities.registerEntitySpawns();
+        TUOMItems.preInit();
 		GameRegistry.registerWorldGenerator(new TUOMWorldGenerator(), 0);	
 		DimensionManager.registerDimension(TUOMWorldGenerator.OPAL_DIM_ID, TUOMWorldGenerator.OPAL_DIMENSION_TYPE);
 	}
@@ -94,11 +99,10 @@ public class TUOM {
 		proxy.init(event);
 		
 		TUOMBlocks.init(event);
-		TUOMBlocks.registerRenders();
 		TUOMBiomes.init(event);
-    	darkPotion = new DarkPotion(true, 0x00000).setIconIndex(0, 0).setPotionName("potion.darkEffect").registerPotionAttributeModifier(
-    			SharedMonsterAttributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", -0.40000000298023224D, 2);
-    	
+		
+        MinecraftForge.EVENT_BUS.register(new TUOMPotions());
+
     	DARK_CHEST_DEMON = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_demon"));
     	DARK_CHEST_LAVA = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_lava"));
     	DARK_CHEST_TOP = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_top"));

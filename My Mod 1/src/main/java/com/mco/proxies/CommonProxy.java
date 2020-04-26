@@ -11,6 +11,8 @@ import com.mco.energy.UltimateEnergy;
 import com.mco.energy.UltimateEnergyStorage;
 import com.mco.events.TUOMEventHandler;
 import com.mco.main.TUOMEntities;
+import com.mco.potions.TUOMPotions;
+
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,15 +29,12 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) 
     {
         LibRegistry.initialize(TUOM.MODID, TUOM.instance());
-        TUOMEntities.preInit();
-        TUOMEntities.registerEntitySpawns();
         LibRegistry.preInit();
     }
 
     public void init(FMLInitializationEvent event) 
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(TUOM.instance(), new LibGUIHandler());
-        MinecraftForge.EVENT_BUS.register(new TUOMEventHandler());
         CapabilityManager.INSTANCE.register(IUltimateEnergy.class, new UltimateEnergyStorage(), UltimateEnergy::new);
     }
 

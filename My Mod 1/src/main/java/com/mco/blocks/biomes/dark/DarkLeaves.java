@@ -18,6 +18,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DarkLeaves extends BlockLeaves
 {
@@ -54,18 +56,21 @@ public class DarkLeaves extends BlockLeaves
 		return 10;
 	}
 	
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) 
-	{
-		return false;
-	}
-	
-	@Override
-	public BlockRenderLayer getBlockLayer() 
-	{
-		return BlockRenderLayer.TRANSLUCENT;
-	}
+	/**
+     * Pass true to draw this block using fancy graphics, or false for fast graphics.
+     */
+    @SideOnly(Side.CLIENT)
+    public void setGraphicsLevel(boolean fancy)
+    {
+        this.leavesFancy = fancy;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return this.leavesFancy ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.SOLID;
+    }
+
 	
 	/**
      * Convert the given metadata into a BlockState for this Block.
@@ -77,7 +82,7 @@ public class DarkLeaves extends BlockLeaves
     public IBlockState getStateFromMeta(int meta)
     {
         return getDefaultState().withProperty(DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
-    }
+    } 
 
     /**
      * Convert the BlockState into the correct metadata value.

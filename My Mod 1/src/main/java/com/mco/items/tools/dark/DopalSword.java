@@ -24,12 +24,10 @@ import net.minecraft.world.World;
 
 public class DopalSword extends LibItemSword
 {
-	World worldObj;
 
-	public DopalSword(String registryName, ToolMaterial material, World world) 
+	public DopalSword(String registryName, ToolMaterial material) 
 	{
 		super(registryName, material);
-		worldObj = world;
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 

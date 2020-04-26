@@ -23,12 +23,10 @@ import net.minecraft.world.World;
 
 public class FopalSword extends LibItemSword
 {
-	World worldObj;
 
-	public FopalSword(String registryName, ToolMaterial material, World world) 
+	public FopalSword(String registryName, ToolMaterial material) 
 	{
 		super(registryName, material);
-		worldObj = world;
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 

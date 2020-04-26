@@ -43,17 +43,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.chunk.BlockStatePaletteRegistry;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 /**
  * DECLARE BLOCKS =================================================
  */
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = TUOM.MODID)
+@ObjectHolder(TUOM.MODID)
 public class TUOMBlocks 
 {
 	//Ores
@@ -172,8 +176,8 @@ public class TUOMBlocks
 		//Furnaces
 		dark_furnace = new DarkFurnace("dark_furnace", DarkFurnaceTileEntity.class);
 		event.getRegistry().register(dark_furnace);
-	//	GameRegistry.registerTileEntity(DarkFurnaceTileEntity.class, new ResourceLocation("mymod:mymod_my_tile_entity_0"));
-		LibRegistry.registerGUI(DarkFurnaceTileEntity.class, DarkFurnaceContainer.class, "blocks/dark_furnace/dark_furnace_gui.png");
+		GameRegistry.registerTileEntity(DarkFurnaceTileEntity.class, new ResourceLocation("tuom:blocks/dark_furnace/dark_furnace_gui.png"));
+	//	LibRegistry.registerGUI(DarkFurnaceTileEntity.class, DarkFurnaceContainer.class, "blocks/dark_furnace/dark_furnace_gui.png");
 		
 		//Biome
 		dark_stone = new LibBlockSimple("dark_stone").setHardness(1.5F).setResistance(10);
@@ -240,9 +244,9 @@ public class TUOMBlocks
 		event.getRegistry().register(new LibItemBlock(dark_leaves));
 		event.getRegistry().register(new LibItemBlock(dark_sapling));
 		
-		registerRender(dark_log, 0, "dark_log");
+/*		registerRender(dark_log, 0, "dark_log");
 		registerRender(dark_leaves, 0, "dark_leaves");
-		registerRender(dark_sapling, 0, "dark_sapling");
+		registerRender(dark_sapling, 0, "dark_sapling");*/
 	}
 	
 
@@ -259,12 +263,13 @@ public class TUOMBlocks
 		LibRegistry.registerOreGen(lopal_ore.getDefaultState(), 2, 0, 15, 2, 1);
 	}
 	
-	public static void registerRenders()
+	@SubscribeEvent
+	public static void registerRenders(RegistryEvent.Register<Block> event)
 	{
-		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
+/*		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
 		{
 			registerRender(dark_planks, i, "planks_" + DarkPlanks.EnumType.values()[i].getName());
-		}
+		}*/
 	}
 	
 	public static void registerBlockWithVariants(Block block, ItemBlock itemBlock)
