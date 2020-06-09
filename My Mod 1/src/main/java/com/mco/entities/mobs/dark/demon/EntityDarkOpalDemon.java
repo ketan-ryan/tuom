@@ -569,7 +569,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         if(Conditions.secondsGoneBy(world, 1)) 
         {
         	//Time updating
-        	if(world.getWorldTime() < 23000)
+        	if(world.getWorldTime() < 23000 && TUOMConfig.darkDay)
         	{
         		long discrepancy = 23000 - world.getWorldTime();
         		world.provider.setWorldTime(world.getWorldTime() + discrepancy / 5);

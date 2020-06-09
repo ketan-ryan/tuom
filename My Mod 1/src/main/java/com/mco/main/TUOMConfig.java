@@ -12,11 +12,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class TUOMConfig 
 {
 	@Config.Comment("How much HP the Dark Opal Demon will start with")
+	@Config.Name("Dark Health")
+	@Config.RequiresWorldRestart
 	public static float darkHealth = 2000F;
 	
-	@Config.Comment("Damage modifier for the Dark Opal Demon's attacks (max of 1)")
+	@Config.Comment("Damage modifier for the Dark Opal Demon's attacks")
+	@Config.Name("Dark Opal Demon Damage Modifier")
 	public static float darkDamage = 1.0F;
-
+	
+	@Config.Comment("Can Dark Opal Demon adjust the time of day")
+	@Config.Name("Can Adjust Day")
+	public static boolean darkDay = true;
+	
 	@Mod.EventBusSubscriber(modid=TUOM.MODID)
 	private static class EventHandler
 	{
