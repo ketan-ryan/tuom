@@ -25,11 +25,13 @@ import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
 import com.mco.entities.mobs.dark.demon.bomb.RenderDarkBomb;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 import com.mco.entities.projectiles.EntityCustomFallingBlock;
 import com.mco.entities.projectiles.RenderCustomFallingBlock;
 import com.mco.main.TUOMEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderVex;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
@@ -60,9 +62,9 @@ public class ClientProxy extends CommonProxy
       
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, RenderDarkLightning.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityCustomFallingBlock.class, RenderCustomFallingBlock.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkOpalDemon.class, RenderDarkOpalDemon.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkBomb.class, RenderDarkBomb.FACTORY);
-    }
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkOpalDemon.class, RenderDarkOpalDemon::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityDarkBomb.class, RenderDarkBomb::new);
+     }
     
     @Override
     public void init(FMLInitializationEvent event)

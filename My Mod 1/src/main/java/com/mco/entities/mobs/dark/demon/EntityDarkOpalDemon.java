@@ -48,6 +48,7 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -201,30 +202,24 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         	{
         		case 0:
         			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_JUMP);
-        			System.out.println("JUMP");
         			break;
         		case 1:
         			if(getAttackTarget() != null && this.getDistance(getAttackTarget()) > 16)
         			{
 	        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_SKULL);
-	        			System.out.println("SKULL");
         			}
         			break;
         		case 2:
         			AnimationHandler.INSTANCE.sendAnimationMessage(this,  ANIMATION_PUNCH);
-        			System.out.println("PUNCH");
         			break;
         		case 3:
         			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_LIFEDRAIN);
-        			System.out.println("LIFEDRAIN");
         			break;
         		case 4:
         			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_BOMBS);
-        			System.out.println("BOMBS");
         			break;
         		case 5: 
         			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_MINION);
-        			System.out.println("MINIONS");
         			break;
         		default: 
         			break;
@@ -415,6 +410,22 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TUOMItems.dark_staff));
 		EntityPlayer player = Actions.getClosestPlayer(this);
 		Actions.chatAtPlayer(player, TextFormatting.DARK_PURPLE + "You've made a grave mistake...");
+	}
+	
+	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount) 
+	{
+		if(isArmored()) {
+			Entity entity = source.getImmediateSource();
+
+            if (entity instanceof EntityArrow)
+            {
+                return false;
+            }
+		}
+		if(source.equals(DamageSource.WITHER))
+			return false;
+		return super.attackEntityFrom(source, amount);
 	}
 	
 	@Override
