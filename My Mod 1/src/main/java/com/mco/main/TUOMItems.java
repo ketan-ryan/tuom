@@ -322,9 +322,9 @@ public class TUOMItems {
 		satanic_helmet = new SatanicArmor("satanic_helmet", satanic_AM, EntityEquipmentSlot.HEAD);
 		
 		//Dimension Registry
-		dark_orb = new LibItemSimple("dark_orb");
-		obsidian_stick = new LibItemSimple("obsidian_stick");
-		dark_teleporter = new DarkOpalTeleporterStaff("dark_teleporter");
+		dark_orb = new LibItemSimple("dark_orb").setCreativeTab(TUOM.dim_tab);
+		obsidian_stick = new LibItemSimple("obsidian_stick").setCreativeTab(TUOM.dim_tab);
+		dark_teleporter = new DarkOpalTeleporterStaff("dark_teleporter").setCreativeTab(TUOM.dim_tab);
 		
 	}
 	

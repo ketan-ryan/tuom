@@ -1,5 +1,6 @@
 package com.mco.items.food;
 
+import com.mco.TUOM;
 import com.mco.main.TUOMItems;
 import library.LibRegistry;
 import library.items.LibItemFood;

@@ -22,7 +22,6 @@ public abstract class LibBlockCrops extends BlockCrops implements IRegistryObjec
         super();
         setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
         setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
         Registry.register(this);
     }
 

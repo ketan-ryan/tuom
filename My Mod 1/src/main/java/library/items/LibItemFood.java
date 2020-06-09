@@ -16,6 +16,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
+import com.mco.TUOM;
+
 public class LibItemFood extends ItemFood implements IRegistryObject, IJavaDocs {
 
     @Nullable
@@ -27,7 +29,7 @@ public class LibItemFood extends ItemFood implements IRegistryObject, IJavaDocs 
         super(amount, saturation, isWolfFood);
         setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
         setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
+		this.setCreativeTab(TUOM.tuom_tab);
         Registry.register(this);
         setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), false);
 

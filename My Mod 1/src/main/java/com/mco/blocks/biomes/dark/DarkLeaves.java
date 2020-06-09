@@ -55,20 +55,11 @@ public class DarkLeaves extends BlockLeaves
 	{
 		return 10;
 	}
-	
-	/**
-     * Pass true to draw this block using fancy graphics, or false for fast graphics.
-     */
-    @SideOnly(Side.CLIENT)
-    public void setGraphicsLevel(boolean fancy)
-    {
-        this.leavesFancy = fancy;
-    }
 
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()
     {
-        return this.leavesFancy ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.SOLID;
+        return this.leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.CUTOUT_MIPPED;
     }
 
 	
