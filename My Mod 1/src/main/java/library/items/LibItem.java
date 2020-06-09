@@ -15,6 +15,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
+import com.mco.TUOM;
+
 public class LibItem extends Item implements IRegistryObject, IJavaDocs {
 
     @Nullable
@@ -30,7 +32,7 @@ public class LibItem extends Item implements IRegistryObject, IJavaDocs {
     public LibItem(String registryName) {
         setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
         setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
+		this.setCreativeTab(TUOM.tuom_tab);
         Registry.register(this);
     }
 

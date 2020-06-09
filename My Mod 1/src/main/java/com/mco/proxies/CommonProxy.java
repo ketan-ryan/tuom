@@ -2,6 +2,7 @@ package com.mco.proxies;
 
 import com.mco.energy.UltimateEnergy;
 import library.LibRegistry;
+import library.common.BakedModelLoader;
 import library.common.IRegistryObject;
 import library.common.Registry;
 import library.gui.LibGUIHandler;
@@ -15,6 +16,7 @@ import com.mco.potions.TUOMPotions;
 
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
@@ -27,9 +29,9 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) 
-    {
-        LibRegistry.initialize(TUOM.MODID, TUOM.instance());
-        LibRegistry.preInit();
+    {        
+    	LibRegistry.initialize(TUOM.MODID, TUOM.instance());
+        LibRegistry.preInit();        
     }
 
     public void init(FMLInitializationEvent event) 
@@ -40,7 +42,6 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event) 
     {
-        // Initialize all recipes
         Registry.getRegisteredObjects().forEach(IRegistryObject::initRecipe);
     }
 

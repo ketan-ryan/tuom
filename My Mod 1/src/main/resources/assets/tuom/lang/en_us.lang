@@ -142,6 +142,7 @@ entity.dark_bomb.name=Dark Bomb
 
 // CREATIVE TABS
 itemGroup.tuom_tab=The Ultimate Ore Tab
+itemGroup.dim_tab=TUOM Dimensions
 
 // DEATH MESSAGES
 death.attack.darkPunch=%1$s's soul was knocked out of them

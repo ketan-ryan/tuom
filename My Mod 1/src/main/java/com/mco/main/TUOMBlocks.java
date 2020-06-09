@@ -125,40 +125,40 @@ public class TUOMBlocks
 		lopal_ore = new LopalOre("lopal_ore", "pickaxe", 3);
 		event.getRegistry().register(lopal_ore);
 		
-		dark_coal = new TUOMOre("dark_coal", 0, 2, 0.1F, 3, 15, false, Items.COAL, 1, 2, 2);
+		dark_coal = new TUOMOre("dark_coal", 0, 2, 0.1F, 3, 15, false, Items.COAL, 1, 2, 2).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_coal);
 		
-		dark_iron = new TUOMOre("dark_iron", 1, 0, 0.7F, 3, 15, true, Items.IRON_INGOT, 1, 0, 0);
+		dark_iron = new TUOMOre("dark_iron", 1, 0, 0.7F, 3, 15, true, Items.IRON_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_iron);
 		
-		dark_gold = new TUOMOre("dark_gold", 2, 0, 1.0F, 3, 15, true, Items.GOLD_INGOT, 1, 0, 0);
+		dark_gold = new TUOMOre("dark_gold", 2, 0, 1.0F, 3, 15, true, Items.GOLD_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_gold);
 		
-		dark_redstone = new TUOMOre("dark_redstone", 2, 5, .7F, 3, 15, false, Items.REDSTONE, 4, 8, 4);
+		dark_redstone = new TUOMOre("dark_redstone", 2, 5, .7F, 3, 15, false, Items.REDSTONE, 4, 8, 4).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_redstone);
 		
-		dark_lapis = new TUOMOre("dark_lapis", 1, 5, 0.2F, 3, 15, false, new ItemStack(Items.DYE, 1, 4).getItem(), 4, 5, 32);
+		dark_lapis = new TUOMOre("dark_lapis", 1, 5, 0.2F, 3, 15, false, new ItemStack(Items.DYE, 1, 4).getItem(), 4, 5, 32).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_lapis);
 		
-		dark_diamond = new TUOMOre("dark_diamond", 2, 7, 1.0F, 3, 15, false, Items.DIAMOND, 1, 4, 1);
+		dark_diamond = new TUOMOre("dark_diamond", 2, 7, 1.0F, 3, 15, false, Items.DIAMOND, 1, 4, 1).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_diamond);
 		
-		dark_emerald = new TUOMOre("dark_emerald", 2, 7, 1.0F, 3, 15, false, Items.EMERALD, 1, 4, 1);
+		dark_emerald = new TUOMOre("dark_emerald", 2, 7, 1.0F, 3, 15, false, Items.EMERALD, 1, 4, 1).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_emerald);
 		
-		dark_garnet = new GarnetOre("dark_garnet", "pickaxe", 1);
+		dark_garnet = new GarnetOre("dark_garnet", "pickaxe", 1).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_garnet);
 		
-		dark_topaz = new TopazOre("dark_topaz", "pickaxe", 2);
+		dark_topaz = new TopazOre("dark_topaz", "pickaxe", 2).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_topaz);
 		
-		dark_fopal = new FopalOre("dark_fopal", "pickaxe", 3);
+		dark_fopal = new FopalOre("dark_fopal", "pickaxe", 3).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_fopal);
 		
-		dark_dopal = new DopalOre("dark_dopal", "pickaxe", 3);
+		dark_dopal = new DopalOre("dark_dopal", "pickaxe", 3).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_dopal);
 		
-		dark_lopal = new LopalOre("dark_lopal", "pickaxe", 3);
+		dark_lopal = new LopalOre("dark_lopal", "pickaxe", 3).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_lopal);
 		
 		//Crops
@@ -181,22 +181,22 @@ public class TUOMBlocks
 	//	LibRegistry.registerGUI(DarkFurnaceTileEntity.class, DarkFurnaceContainer.class, "blocks/dark_furnace/dark_furnace_gui.png");
 		
 		//Biome
-		dark_stone = new LibBlockSimple("dark_stone").setHardness(1.5F).setResistance(10);
+		dark_stone = new LibBlockSimple("dark_stone").setHardness(1.5F).setResistance(10).setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_stone);
 		
-		dark_obsidian = new DarkObsidian("dark_obsidian");
+		dark_obsidian = new DarkObsidian("dark_obsidian").setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_obsidian);       
 		
-		dark_log = new DarkLog().setRegistryName("dark_log").setUnlocalizedName("dark_log");
+		dark_log = new DarkLog().setRegistryName("dark_log").setUnlocalizedName("dark_log").setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_log);
 		
-		dark_planks = new LibBlockSimple("dark_planks");
+		dark_planks = new LibBlockSimple("dark_planks").setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_planks);
 		
-		dark_leaves = new DarkLeaves("dark_leaves");
+		dark_leaves = new DarkLeaves("dark_leaves").setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_leaves);
 		
-		dark_sapling = new DarkSapling("dark_sapling");
+		dark_sapling = new DarkSapling("dark_sapling").setCreativeTab(TUOM.dim_tab);
 		event.getRegistry().register(dark_sapling);
 	}
 	

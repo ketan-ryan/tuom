@@ -2,6 +2,8 @@ package com.mco.items.food;
 
 import library.LibRegistry;
 import library.items.LibItemFood;
+
+import com.mco.TUOM;
 import com.mco.main.TUOMItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
