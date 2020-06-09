@@ -10,7 +10,7 @@ public class FopalAxe extends LibItemAxe {
 
 	public FopalAxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
+		super(registryName, attackDamage + 2, attackSpeed, toolMaterial);
 		this.setCreativeTab(TUOM.tuom_tab);
 		this.setScale(1.25F);
 	}

@@ -202,6 +202,7 @@ public class TUOMItems {
 	public static void preInit() 
 	{
 		//Tool Material Registry
+		//name harvestLevel maxUses efficiency damage enchantability 
 		topaz_TM = LibRegistry.registerToolMaterial("Topaz", 3, 1600, 10F, 6F, 10);
 		fopal_TM = LibRegistry.registerToolMaterial("Fire Opal", 3, 1700, 11.0F, 8.0F, 10);
 	    dopal_TM = LibRegistry.registerToolMaterial("Dark Opal", 3, 1800, 12.0F, 10.0F, 10);

@@ -27,6 +27,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+
+import com.mco.TUOM;
+
 import java.lang.reflect.Constructor;
 
 public class LibBlockSimple extends Block implements IRegistryObject, ITileEntityProvider {
@@ -54,7 +57,7 @@ public class LibBlockSimple extends Block implements IRegistryObject, ITileEntit
         this.tileEntityClass = tileEntityClass;
         setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
         setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
+        setCreativeTab(TUOM.tuom_tab);
         Registry.register(this);
     }
 

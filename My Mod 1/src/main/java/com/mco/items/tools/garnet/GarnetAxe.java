@@ -12,7 +12,7 @@ public class GarnetAxe extends LibItemAxe {
 
 	public GarnetAxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
+		super(registryName, 6F, attackSpeed, toolMaterial);
 		this.setCreativeTab(TUOM.tuom_tab);
 		this.setScale(1.25F);
 	}
