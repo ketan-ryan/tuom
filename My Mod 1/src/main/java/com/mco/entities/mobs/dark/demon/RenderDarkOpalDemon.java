@@ -21,10 +21,8 @@ public class RenderDarkOpalDemon extends RenderLiving<EntityDarkOpalDemon>
 {
     private static final ResourceLocation DEMON_TEXTURES = new ResourceLocation("tuom:textures/entities/mobs/dark_demon.png");
 	private static final ResourceLocation DEMON_EXPLODING_TEXTURES = new ResourceLocation("tuom:textures/entities/mobs/dark_demon_explode.png");
-	
-    public static final Factory FACTORY = new Factory();
-	
-   public ModelDarkOpalDemon demonModel = new ModelDarkOpalDemon();
+		
+    public ModelDarkOpalDemon demonModel = new ModelDarkOpalDemon();
     
 	public RenderDarkOpalDemon(RenderManager managerIn) 
 	{
@@ -58,15 +56,4 @@ public class RenderDarkOpalDemon extends RenderLiving<EntityDarkOpalDemon>
     {
         super.doRender(demon, x, y, z, entityYaw, partialTicks);
     }
-    
-    public static class Factory implements IRenderFactory<EntityDarkOpalDemon>
-    {
-        @Override
-        public Render<? super EntityDarkOpalDemon> createRenderFor(RenderManager manager)
-        {
-            return new RenderDarkOpalDemon(manager);
-        }
-
-    }
-
 }

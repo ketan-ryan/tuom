@@ -9,8 +9,6 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderDarkBomb extends RenderLiving<EntityDarkBomb>
 {
-    public static final Factory FACTORY = new Factory();
-
 	public static final ResourceLocation TEXTURE = new ResourceLocation("tuom:textures/entities/blank.png");
 	
 	public RenderDarkBomb(RenderManager managerIn) 
@@ -24,13 +22,4 @@ public class RenderDarkBomb extends RenderLiving<EntityDarkBomb>
 	{
 		return TEXTURE;
 	}
-
-	public static class Factory implements IRenderFactory<EntityDarkBomb>
-    {
-        @Override
-        public Render<? super EntityDarkBomb> createRenderFor(RenderManager manager)
-        {
-            return new RenderDarkBomb(manager);
-        }
-    }
 }
