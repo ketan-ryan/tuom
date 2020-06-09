@@ -3,6 +3,7 @@ package com.mco.blocks.biomes.dark;
 import java.util.List;
 import java.util.Random;
 
+import com.mco.TUOM;
 import com.mco.main.TUOMBlocks;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -26,12 +27,13 @@ public class DarkLeaves extends BlockLeaves
 
 	public DarkLeaves(String name) 
 	{
+		TUOM.proxy.setGraphicsLevel(this,  true);
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		setSoundType(SoundType.PLANT);
         setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
 	}
-
+	
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) 
 	{
@@ -56,13 +58,6 @@ public class DarkLeaves extends BlockLeaves
 		return 10;
 	}
 
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return this.leavesFancy ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.CUTOUT_MIPPED;
-    }
-
-	
 	/**
      * Convert the given metadata into a BlockState for this Block.
      *

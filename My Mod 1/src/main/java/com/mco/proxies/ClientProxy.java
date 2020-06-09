@@ -1,6 +1,7 @@
 package com.mco.proxies;
 
 import com.mco.TUOM;
+import com.mco.blocks.biomes.dark.DarkLeaves;
 import com.mco.entities.lightning.dark.RenderDarkLightning;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
@@ -71,6 +72,11 @@ public class ClientProxy extends CommonProxy
     
     public static EntityPlayer getClientPlayer() {
     	return MINECRAFT.player;
+    }
+    
+    @Override
+    public void setGraphicsLevel(DarkLeaves leaves, boolean isFancyEnabled) {
+    	leaves.setGraphicsLevel(isFancyEnabled);   
     }
     
     //GuiBossOverlay

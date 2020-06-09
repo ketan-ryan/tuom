@@ -7,6 +7,7 @@ import library.common.IRegistryObject;
 import library.common.Registry;
 import library.gui.LibGUIHandler;
 import com.mco.TUOM;
+import com.mco.blocks.biomes.dark.DarkLeaves;
 import com.mco.energy.IUltimateEnergy;
 import com.mco.energy.UltimateEnergy;
 import com.mco.energy.UltimateEnergyStorage;
@@ -47,6 +48,9 @@ public class CommonProxy {
 
     public void registerGUI(Class<? extends TileEntity> tile, Class<? extends Container> container, String textureGUI) {
         LibGUIHandler.registerGUI(tile, container, textureGUI);
+    }
+    
+    public void setGraphicsLevel(DarkLeaves leaves, boolean isFancyEnabled) {
     }
 
 }
