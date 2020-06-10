@@ -1,6 +1,7 @@
 package com.mco.main;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,11 +44,10 @@ public class JSONGenerator {
 		}
 	}
 	
-	private static void createFile(Item item)
+	private static void createFile(Item item) throws FileNotFoundException
 	{
 		try {
 			newJson = new FileWriter("C:/Users//kyure/git/tuom/My Mod 1/src/main/resources/assets/tuom/models/item/" + item.getUnlocalizedName().substring(5) + ".json");			
-			
 			newJson.write("{\n");
 			newJson.write("	\"parent\": \"item/generated\",\n");
 			newJson.write("	\"textures\": {\n");
