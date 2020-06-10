@@ -16,26 +16,9 @@ import net.minecraft.world.World;
 
 public class GarnetPickaxe extends LibItemPickaxe 
 {
-
-	public GarnetPickaxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public GarnetPickaxe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage, attackSpeed, toolMaterial);
 		this.setScale(1.25F);
 	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"ggg",
-				" s ",
-				" s ",
-				
-				'g', TUOMItems.item_garnet,
-				's', Items.STICK			
-				
-		);
-	}
-
 }

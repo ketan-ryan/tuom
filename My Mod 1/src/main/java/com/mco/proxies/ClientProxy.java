@@ -42,19 +42,17 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class ClientProxy extends CommonProxy 
+public class ClientProxy implements IProxy
 {
 	private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
 	
     public static int sphereIdOutside;
     public static int sphereIdInside;
     
-    @Override
     public void preInit(FMLPreInitializationEvent event) 
-    {
-        super.preInit(event);
-
+    {        
         OBJLoader.INSTANCE.addDomain(TUOM.MODID);
         ModelLoaderRegistry.registerLoader(new BakedModelLoader());
         TUOMEntities.registerEntityModels();
@@ -66,7 +64,6 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkBomb.class, RenderDarkBomb::new);
      }
     
-    @Override
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new TUOMEventHandler());
@@ -84,10 +81,9 @@ public class ClientProxy extends CommonProxy
     //GuiBossOverlay
     //GuiIngameForge.renderBossHealth
     
-    @Override
     public void registerGUI(Class<? extends TileEntity> tile, Class<? extends Container> container, String textureGUI) 
     {
-        super.registerGUI(tile, container, textureGUI);
+        LibGUIHandler.registerGUI(tile, container, textureGUI);
         LibGUIHandler.lookupTileToGUI.put(tile, LibFurnaceGUI.class);
     }
     
@@ -124,4 +120,9 @@ public class ClientProxy extends CommonProxy
         sphere.draw(0.5F, 48, 48);
         GlStateManager.glEndList();
     }
+
+	@Override
+	public Side getPhysicalSide() {
+		return Side.CLIENT;
+	}
 }

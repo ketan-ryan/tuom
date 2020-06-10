@@ -21,13 +21,13 @@ public class LopalCrop extends LibBlockCrops
 	@Override
 	protected Item getSeed() 
 	{
-		return TUOMItems.lopal_seeds;
+		return TUOMItems.LOPAL_SEEDS;
 	}
 
 	@Override
 	protected Item getCrop() 
 	{
-		return TUOMItems.lopal_shard;
+		return TUOMItems.LOPAL_SHARD;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.mco;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mco.generation.TUOMWorldGenerator;
@@ -9,7 +10,8 @@ import com.mco.main.TUOMEntities;
 import com.mco.main.TUOMItems;
 import com.mco.potions.DarkPotion;
 import com.mco.potions.TUOMPotions;
-import com.mco.proxies.CommonProxy;
+import com.mco.proxies.IProxy;
+import com.mco.proxies.ServerProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
@@ -31,8 +33,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * MOD INFO =================================================
  */
 @Mod(modid = "tuom", name = "The Ultimate Ore Mod", version = "0.2.0")
-@Mod.EventBusSubscriber
-
 
 /**
  * DECLARE =================================================
@@ -51,7 +51,9 @@ public class TUOM {
 	
 	public static ResourceLocation DARK_CHEST_DEMON, DARK_CHEST_LAVA, DARK_CHEST_TOP;
 	
-	private static Logger logger;
+	public static final Logger TUOM_LOG = LogManager.getLogger(MODID);
+	
+	private static Logger LOGGER = LogManager.getLogger();
 
 	/**
 	 * PROXIES =================================================
@@ -64,16 +66,24 @@ public class TUOM {
 		return instance;
 	}
 	
-	@SidedProxy(clientSide = "com.mco.proxies.ClientProxy", serverSide = "com.mco.proxies.CommonProxy")
-	public static CommonProxy proxy;
+	@SidedProxy(clientSide = "com.mco.proxies.ClientProxy", serverSide = "com.mco.proxies.ServerProxy")
+	public static IProxy proxy;
 
 	/**
 	 * REGISTER =================================================
 	 */
+	
+	/**
+	 * Run before anything else. <s>Read your config, create blocks, items, etc, and register them with the GameRegistry</s>
+	 *
+	 * @param event the event
+	 * @see ForgeModContainer#preInit(FMLPreInitializationEvent)
+	 */
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) 
+	public void preInit(final FMLPreInitializationEvent event) 
 	{
-		proxy.preInit(event);
+		LOGGER.debug("preInit");
+		proxy.logPhysicalSide(TUOM_LOG);
 		
 		// Creative Tabs
 		tuom_tab = new CreativeTabs("tuom_tab") 
@@ -81,20 +91,21 @@ public class TUOM {
 			@Override
 			public ItemStack getTabIconItem() 
 			{
-				return new ItemStack(TUOMItems.item_topaz);
+				return new ItemStack(TUOMItems.ITEM_TOPAZ);
 			}
 		};
+		
 		dim_tab = new CreativeTabs("dim_tab") 
 		{
 			@Override
 			public ItemStack getTabIconItem()
 			{
-				return new ItemStack(TUOMItems.dark_teleporter);
+				return new ItemStack(TUOMItems.DARK_TELEPORTER);
 			}
 		};
-        TUOMEntities.preInit();
-        TUOMEntities.registerEntitySpawns();
-        TUOMItems.preInit();
+        
+	//	TUOMEntities.preInit();
+      //  TUOMEntities.registerEntitySpawns();
 		GameRegistry.registerWorldGenerator(new TUOMWorldGenerator(), 0);	
 		DimensionManager.registerDimension(TUOMWorldGenerator.OPAL_DIM_ID, TUOMWorldGenerator.OPAL_DIMENSION_TYPE);
 	}
@@ -102,8 +113,6 @@ public class TUOM {
 	@EventHandler
 	public void init(FMLInitializationEvent event) 
 	{
-		proxy.init(event);
-		
 		TUOMBlocks.init(event);
 		TUOMBiomes.init(event);
 		
@@ -117,7 +126,6 @@ public class TUOM {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) 
 	{
-		proxy.postInit(event);
 	}
 
 }

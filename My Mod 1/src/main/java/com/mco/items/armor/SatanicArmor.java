@@ -16,87 +16,43 @@ import net.minecraft.world.World;
 
 public class SatanicArmor extends LibItemArmor
 {
-	public SatanicArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
+	public SatanicArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
-		super(registryName, materialIn, equipmentSlotIn);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(materialIn, equipmentSlotIn);
 	}
 
 	@Override
-	protected String getArmorWrapTexture() 
-	{
+	protected String getArmorWrapTexture() {
 		return "satanic_armor";
 	}
 	
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(TUOMItems.satanic_helmet, 1, 
-				
-				"ttt",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.item_satanic
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.satanic_chestplate, 1, 
-				
-				"t t",
-				"ttt",
-				"ttt",
-				
-				't', TUOMItems.item_satanic
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.satanic_leggings, 1, 
-				
-				"ttt",
-				"t t",
-				"t t",
-				
-				't', TUOMItems.item_satanic
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.satanic_boots, 1, 
-				
-				"t t",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.item_satanic
-				
-		);
-	}
-
 	public static boolean isWearingFullSet(EntityPlayer player, Item helmet, Item chestplate, Item leggings, Item boots) 
 	{
 		return player.inventory.armorItemInSlot(3) != null && player.inventory.armorItemInSlot(3).getItem() == helmet
 				&& player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == chestplate
 				&& player.inventory.armorItemInSlot(1) != null && player.inventory.armorItemInSlot(1).getItem() == leggings
-				&& player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == boots
-				&& player.getHeldItemOffhand().getItem() == TUOMItems.dark_staff;
+				&& player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == boots;
 	}
 	
 	 public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
 	 {
-	  if (itemStack.getItem() == TUOMItems.satanic_chestplate) 
+	  if (itemStack.getItem() == TUOMItems.SATANIC_CHESTPLATE) 
 	  {
 			Actions.addPotionEffect(player, MobEffects.RESISTANCE, 200, 2, false);
 	  }
-	  if (itemStack.getItem() == TUOMItems.satanic_leggings)
+	  if (itemStack.getItem() == TUOMItems.SATANIC_LEGGINGS)
 	  {
 			Actions.addPotionEffect(player, MobEffects.JUMP_BOOST, 200, 2, false);
 	  }
-	  if (itemStack.getItem() == TUOMItems.satanic_boots) 
+	  if (itemStack.getItem() == TUOMItems.SATANIC_BOOTS) 
 	  {
 			Actions.addPotionEffect(player, MobEffects.SPEED, 200, 2, false);
 	  }
 
-	if (this.isWearingFullSet(player, TUOMItems.satanic_helmet, TUOMItems.satanic_chestplate, TUOMItems.satanic_leggings, 
-			TUOMItems.satanic_boots)) {
+	if (this.isWearingFullSet(player, TUOMItems.SATANIC_HELMET, TUOMItems.SATANIC_CHESTPLATE, TUOMItems.SATANIC_LEGGINGS, 
+			TUOMItems.SATANIC_BOOTS)) {
 		Actions.addPotionEffect(player, MobEffects.WEAKNESS, 200, 2, false);
 	  }
 	}
+
 }

@@ -28,13 +28,8 @@ public abstract class LibItemArmor extends ItemArmor implements IRegistryObject,
     private float scale = 1.0f;
 
 
-    public LibItemArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) {
+    public LibItemArmor( ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, 0, equipmentSlotIn);
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
-        Registry.register(this);
-		setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), false);
     }
 
     /**

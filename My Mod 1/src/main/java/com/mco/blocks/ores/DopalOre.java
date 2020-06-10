@@ -19,6 +19,6 @@ public class DopalOre extends LibBlockOre
 	@Override
 	public void initRecipe() 
 	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.dark_opal, 1, 10, this);
+		LibRegistry.addSmeltingRecipe(TUOMItems.DARK_OPAL, 1, 10, this);
 	}	
 }

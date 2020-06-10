@@ -11,57 +11,15 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 
 public class GarnetArmor extends LibItemArmor
 {
-	public GarnetArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
+	public GarnetArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
-		super(registryName, materialIn, equipmentSlotIn);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(materialIn, equipmentSlotIn);
 	}
 
 	@Override
 	protected String getArmorWrapTexture() 
 	{
 		return "garnet_armor";
-	}
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(TUOMItems.garnet_helmet, 1,
-				
-				"ttt",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.item_garnet
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.garnet_chestplate, 1, 
-				
-				"t t",
-				"ttt",
-				"ttt",
-				
-				't', TUOMItems.item_garnet
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.garnet_leggings, 1, 
-				
-				"ttt",
-				"t t",
-				"t t",
-				
-				't', TUOMItems.item_garnet
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.garnet_boots, 1, 
-				
-				"t t",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.item_garnet
-				
-		);
 	}
 	
 }

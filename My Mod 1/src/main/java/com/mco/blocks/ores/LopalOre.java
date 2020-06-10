@@ -20,7 +20,7 @@ public class LopalOre extends LibBlockOre
 	@Override
 	public void initRecipe() 
 	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.light_opal, 1, 10, this);
+		LibRegistry.addSmeltingRecipe(TUOMItems.LIGHT_OPAL, 1, 10, this);
 	}
 
 	

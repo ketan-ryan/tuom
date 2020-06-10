@@ -407,7 +407,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		super.onFirstSpawn();
 
 		Actions.playSound(this, spawnSound, 5F, 1F);		
-		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TUOMItems.dark_staff));
+		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TUOMItems.DARK_STAFF));
 		EntityPlayer player = Actions.getClosestPlayer(this);
 		Actions.chatAtPlayer(player, TextFormatting.DARK_PURPLE + "You've made a grave mistake...");
 	}
@@ -434,7 +434,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		super.onDeath(cause);
 		
 		if(!world.isRemote)
-			dropItem(TUOMItems.dark_staff, 1);		
+			dropItem(TUOMItems.DARK_STAFF, 1);		
 	}
 
 	@Override

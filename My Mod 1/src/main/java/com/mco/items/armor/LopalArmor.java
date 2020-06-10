@@ -17,9 +17,9 @@ import net.minecraft.world.World;
 
 public class LopalArmor extends LibItemArmor
 {
-	public LopalArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
+	public LopalArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
-		super(registryName, materialIn, equipmentSlotIn);
+		super(materialIn, equipmentSlotIn);
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 
@@ -29,47 +29,6 @@ public class LopalArmor extends LibItemArmor
 		return "lopal_armor";
 	}
 	
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(TUOMItems.lopal_helmet, 1,
-				
-				"ttt",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.light_opal
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.lopal_chestplate, 1, 
-				
-				"t t",
-				"ttt",
-				"ttt",
-				
-				't', TUOMItems.light_opal
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.lopal_leggings, 1, 
-				
-				"ttt",
-				"t t",
-				"t t",
-				
-				't', TUOMItems.light_opal
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.lopal_boots, 1, 
-				
-				"t t",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.light_opal
-				
-		);
-	}
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
 	{

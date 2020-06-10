@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 
 public class FopalArmor extends LibItemArmor
 {
-	public FopalArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
+	public FopalArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
-		super(registryName, materialIn, equipmentSlotIn);
+		super(materialIn, equipmentSlotIn);
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 
@@ -26,60 +26,18 @@ public class FopalArmor extends LibItemArmor
 	{
 		return "fopal_armor";
 	}
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(TUOMItems.fopal_helmet, 1, 
-				
-				"ttt",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.fire_opal
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.fopal_chestplate, 1, 
-				
-				"t t",
-				"ttt",
-				"ttt",
-				
-				't', TUOMItems.fire_opal
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.fopal_leggings, 1, 
-				
-				"ttt",
-				"t t",
-				"t t",
-				
-				't', TUOMItems.fire_opal
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.fopal_boots, 1, 
-				
-				"t t",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.fire_opal
-				
-		);
-	}
 
 	public static boolean isWearingFullSet(EntityPlayer player, Item helmet, Item chestplate, Item leggings, Item boots) 
 	{
 		return player.inventory.armorItemInSlot(3) != null && player.inventory.armorItemInSlot(3).getItem() == helmet
 				&& player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == chestplate
 				&& player.inventory.armorItemInSlot(1) != null && player.inventory.armorItemInSlot(1).getItem() == leggings
-				&& player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == boots
-				&& player.getHeldItemOffhand().getItem() == TUOMItems.dark_staff;
+				&& player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == boots;
 	}
 	
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{ 
-		if(this.isWearingFullSet(player, TUOMItems.fopal_helmet, TUOMItems.fopal_chestplate, TUOMItems.fopal_leggings, TUOMItems.fopal_boots) == true) 
+		if(this.isWearingFullSet(player, TUOMItems.FOPAL_HELMET, TUOMItems.FOPAL_CHESTPLATE, TUOMItems.FOPAL_LEGGINGS, TUOMItems.FOPAL_BOOTS) == true) 
 		{
 			Actions.addPotionEffect(player, MobEffects.FIRE_RESISTANCE, 200, 2, false);
 		}

@@ -25,12 +25,9 @@ import net.minecraft.world.World;
 public class DarkStaff extends Item
 {
 	
-	public DarkStaff(String registryName, ToolMaterial material) 
+	public DarkStaff() 
 	{
 		super();
-		this.setCreativeTab(TUOM.tuom_tab);
-		this.setRegistryName("dark_staff");
-		this.setUnlocalizedName("dark_staff");
 		setMaxStackSize(1);
 	}
 

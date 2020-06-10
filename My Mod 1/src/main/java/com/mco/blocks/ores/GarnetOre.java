@@ -36,7 +36,7 @@ public class GarnetOre extends LibBlockOre
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return TUOMItems.item_garnet;		
+		return TUOMItems.ITEM_GARNET;		
 	}
 	
 }

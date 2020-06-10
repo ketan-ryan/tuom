@@ -7,18 +7,17 @@ import com.mco.TUOM;
 import com.mco.generation.TUOMWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-public class DarkOpalTeleporterStaff extends LibItemSimple
+public class DarkOpalTeleporterStaff extends Item
 {
-
-	public DarkOpalTeleporterStaff(String registryName) 
+	public DarkOpalTeleporterStaff() 
 	{
-		super(registryName);
-		setCreativeTab(TUOM.tuom_tab);
+		super();
 		this.setMaxDamage(50);
 		this.setMaxStackSize(1);
 	}

@@ -27,13 +27,10 @@ public class LibItemTool extends ItemTool implements IRegistryObject, IJavaDocs 
     private boolean handheld = false;
     private float scale = 1.0f;
 
-    public LibItemTool(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial, Set<Block> effectiveBlocksIn) {
+    public LibItemTool(float attackDamage, float attackSpeed, ToolMaterial toolMaterial, Set<Block> effectiveBlocksIn) {
         super(attackDamage, attackSpeed, toolMaterial, effectiveBlocksIn);
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
         setCreativeTab(CreativeTabs.MISC);
         Registry.register(this);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), true);
         if (this instanceof LibItemPickaxe)
         {
             toolClass = "pickaxe";
@@ -64,8 +61,8 @@ public class LibItemTool extends ItemTool implements IRegistryObject, IJavaDocs 
         }
     }
 
-    public LibItemTool(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) {
-        this(registryName, attackDamage, attackSpeed, toolMaterial, Collections.emptySet());
+    public LibItemTool(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) {
+        this(attackDamage, attackSpeed, toolMaterial, Collections.emptySet());
     }
 
     @Override

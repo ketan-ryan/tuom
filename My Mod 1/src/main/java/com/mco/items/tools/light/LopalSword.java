@@ -25,10 +25,9 @@ import net.minecraft.world.World;
 public class LopalSword extends LibItemSword
 {
 
-	public LopalSword(String registryName, ToolMaterial material) 
+	public LopalSword(ToolMaterial material) 
 	{
-		super(registryName, material);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(material);
 		this.setScale(1.5F);
 	}
 
@@ -37,22 +36,7 @@ public class LopalSword extends LibItemSword
 	{
 		tooltip.add(TextFormatting.YELLOW + "Right click to summon a lightning bolt wherever you're looking!");
 	}
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"l",
-				"l",
-				"s",
-				
-				'l', TUOMItems.light_opal,
-				's', Items.STICK			
-				
-		);
-	}
-		
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{

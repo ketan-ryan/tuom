@@ -19,59 +19,15 @@ import net.minecraft.world.World;
 
 public class TopazArmor extends LibItemArmor {
 
-	public TopazArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
+	public TopazArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
-		super(registryName, materialIn, equipmentSlotIn);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(materialIn, equipmentSlotIn);
 	}
 
 	@Override
 	protected String getArmorWrapTexture() 
 	{
 		return "topaz_armor";
-	}
-	
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(TUOMItems.topaz_helmet, 1,
-				
-				"ttt",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.item_topaz
-				//'r', new ItemStack(Blocks.WOOL, 1, EnumDyeColor.RED.getMetadata())
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.topaz_chestplate, 1, 
-				
-				"t t",
-				"ttt",
-				"ttt",
-				
-				't', TUOMItems.item_topaz
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.topaz_leggings, 1, 
-				
-				"ttt",
-				"t t",
-				"t t",
-				
-				't', TUOMItems.item_topaz
-				
-		);
-		LibRegistry.addShapedRecipe(TUOMItems.topaz_boots, 1, 
-				
-				"t t",
-				"t t",
-				"   ",
-				
-				't', TUOMItems.item_topaz
-				
-		);
 	}
 	
 	@Override

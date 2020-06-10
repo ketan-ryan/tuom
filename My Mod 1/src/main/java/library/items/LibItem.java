@@ -24,16 +24,11 @@ public class LibItem extends Item implements IRegistryObject, IJavaDocs {
     private boolean handheld = false;
     private float scale = 1.0f;
 
-    public LibItem(String registryName, boolean handheld) {
-        this(registryName);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), handheld);
+    public LibItem(boolean handheld) {
     }
 
-    public LibItem(String registryName) {
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
+    public LibItem() {
 		this.setCreativeTab(TUOM.tuom_tab);
-        Registry.register(this);
     }
 
     /**

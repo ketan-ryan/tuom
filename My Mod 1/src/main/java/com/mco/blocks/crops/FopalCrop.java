@@ -52,12 +52,12 @@ public class FopalCrop extends LibBlockCrops
 	@Override
 	protected Item getSeed() 
 	{
-		return TUOMItems.fopal_seeds;
+		return TUOMItems.FOPAL_SEEDS;
 	}
 
 	@Override
 	protected Item getCrop() 
 	{
-		return TUOMItems.fopal_shard;
+		return TUOMItems.FOPAL_SHARD;
 	}	
 }

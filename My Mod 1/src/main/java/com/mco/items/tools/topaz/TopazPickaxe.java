@@ -8,26 +8,9 @@ import net.minecraft.init.Items;
 
 public class TopazPickaxe extends LibItemPickaxe 
 {
-
-	public TopazPickaxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public TopazPickaxe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage, attackSpeed, toolMaterial);
 		this.setScale(1.25F);
 	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"ttt",
-				" s ",
-				" s ",
-				
-				't', TUOMItems.item_topaz,
-				's', Items.STICK			
-				
-		);
-	}
-
 }

@@ -11,22 +11,9 @@ import net.minecraft.item.crafting.Ingredient;
 
 public class TopazSeeds extends LibItemSeeds 
 {
-	public TopazSeeds(String registryName, Block crops) 
+	public TopazSeeds(Block crops) 
 	{
-		super(registryName, crops);
+		super(crops);
 		this.setCreativeTab(TUOM.tuom_tab);
-	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"s",
-				"t",
-				
-				't', TUOMItems.item_topaz,
-				's', Items.WHEAT_SEEDS
-				
-		);
 	}
 }

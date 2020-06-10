@@ -53,13 +53,13 @@ public class TUOMEventHandler
 	 * Nullifies fall damage if wearing full dark opal set and has dark staff equipped in offhand
 	 */
 	@SubscribeEvent
-	public static void cancelFallDamage(LivingFallEvent event) 
+	public void cancelFallDamage(LivingFallEvent event) 
 	{
 		if(event.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)event.getEntity();
-			if(DopalArmor.isWearingFullSet(player, TUOMItems.dopal_helmet, TUOMItems.dopal_chestplate, TUOMItems.dopal_leggings,
-					TUOMItems.dopal_boots) && player.getHeldItemOffhand().getItem() == TUOMItems.dark_staff)
+			if(DopalArmor.isWearingFullSet(player, TUOMItems.DOPAL_HELMET, TUOMItems.DOPAL_CHESTPLATE, TUOMItems.DOPAL_LEGGINGS,
+					TUOMItems.DOPAL_BOOTS) && player.getHeldItemOffhand().getItem() == TUOMItems.DARK_STAFF)
 				event.setCanceled(true);
 		}
 	}
@@ -69,14 +69,14 @@ public class TUOMEventHandler
 	 * Damages pickaxe by an extra 4 uses
 	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEvent(BlockEvent.BreakEvent event)
+	public void onEvent(BlockEvent.BreakEvent event)
 	{
 		if(!event.getWorld().isRemote)
 		{
 			if(event.getPlayer() != null)
 			{
 				ItemStack itemHeld = event.getPlayer().getHeldItemMainhand();
-				if(itemHeld != null && itemHeld.getItem().equals(TUOMItems.fopal_pickaxe) && itemHeld.canHarvestBlock(event.getState()))
+				if(itemHeld != null && itemHeld.getItem().equals(TUOMItems.FOPAL_PICKAXE) && itemHeld.canHarvestBlock(event.getState()))
 				{
 					if(FurnaceRecipes.instance().getSmeltingResult(event.getPlayer().world.getBlockState(event.getPos()).getBlock().getItem(event.getWorld(), event.getPos(), event.getState())) != null)
 					{
@@ -110,7 +110,7 @@ public class TUOMEventHandler
 	 * Handles death overlay for Dark Opal Demon - finds one nearby then applies the overlay if it's in the death anim 
 	 */
 	@SubscribeEvent
-	public static void onRenderOverlay(RenderGameOverlayEvent.Post event)
+	public void onRenderOverlay(RenderGameOverlayEvent.Post event)
 	{
 		EntityPlayer player = ClientProxy.getClientPlayer();
 		
@@ -136,7 +136,7 @@ public class TUOMEventHandler
 	 * Potions
 	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEntityUpdate(LivingUpdateEvent e)
+	public void onEntityUpdate(LivingUpdateEvent e)
 	{
 		if(e.getEntityLiving().isPotionActive(TUOM.darkPotion))
 		{
@@ -157,7 +157,7 @@ public class TUOMEventHandler
 	}
 
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEvent(EntityViewRenderEvent.FogDensity event)
+	public void onEvent(EntityViewRenderEvent.FogDensity event)
 	{
 		if(((EntityLivingBase) event.getEntity()).isPotionActive(TUOM.darkPotion))
 		{
@@ -169,7 +169,7 @@ public class TUOMEventHandler
 
 
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEvent(EntityViewRenderEvent.FogColors event)
+	public void onEvent(EntityViewRenderEvent.FogColors event)
 	{
 		if(((EntityLivingBase) event.getEntity()).isPotionActive(TUOM.darkPotion))
 		{
@@ -180,7 +180,7 @@ public class TUOMEventHandler
 	}
 	
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onDarkShield(LivingDamageEvent event)
+	public void onDarkShield(LivingDamageEvent event)
 	{
 		if(event.getEntity() instanceof EntityDarkOpalDemon)
 		{

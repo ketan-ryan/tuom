@@ -8,7 +8,6 @@ import com.mco.main.TUOMItems;
 
 public class TopazOre extends LibBlockOre 
 {
-
 	public TopazOre(String registryName, String harvestTool, int harvestLevel) 
 	{
 		super(registryName, harvestTool, harvestLevel);
@@ -21,8 +20,6 @@ public class TopazOre extends LibBlockOre
 	@Override
 	public void initRecipe() 
 	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.item_topaz, 1, 10, this);
-	}
-
-	
+		LibRegistry.addSmeltingRecipe(TUOMItems.ITEM_TOPAZ, 1, 10, this);
+	}	
 }

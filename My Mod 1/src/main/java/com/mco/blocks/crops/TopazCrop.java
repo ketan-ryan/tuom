@@ -20,13 +20,13 @@ public class TopazCrop extends LibBlockCrops
 	@Override
 	protected Item getSeed() 
 	{
-		return TUOMItems.topaz_seeds;
+		return TUOMItems.TOPAZ_SEEDS;
 	}
 
 	@Override
 	protected Item getCrop() 
 	{
-		return TUOMItems.topaz_shard;
+		return TUOMItems.TOPAZ_SHARD;
 	}
 
 }

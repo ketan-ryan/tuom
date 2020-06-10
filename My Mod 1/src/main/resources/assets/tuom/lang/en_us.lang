@@ -1,129 +1,129 @@
 container.opal_fuser.name=Opal Fuser
 // ITEMS
-item.tuom.item_topaz.name=Topaz
-item.tuom.item_garnet.name=Garnet
-item.tuom.fire_opal.name=Fire Opal
-item.tuom.dark_opal.name=Dark Opal
-item.tuom.light_opal.name=Light Opal
-item.tuom.item_satanic.name=Satanic Essence
+item.item_topaz.name=Topaz
+item.item_garnet.name=Garnet
+item.fire_opal.name=Fire Opal
+item.dark_opal.name=Dark Opal
+item.light_opal.name=Light Opal
+item.item_satanic.name=Satanic Essence
 
-item.tuom.garnet_sword.name=Garnet Sword
-item.tuom.garnet_pickaxe.name=Garnet Pickaxe
-item.tuom.garnet_axe.name=Garnet Axe
-item.tuom.garnet_shovel.name=Garnet Shovel
-item.tuom.garnet_hoe.name=Garnet Hoe
+item.garnet_sword.name=Garnet Sword
+item.garnet_pickaxe.name=Garnet Pickaxe
+item.garnet_axe.name=Garnet Axe
+item.garnet_shovel.name=Garnet Shovel
+item.garnet_hoe.name=Garnet Hoe
 
-item.tuom.topaz_sword.name=Topaz Sword
-item.tuom.topaz_pickaxe.name=Topaz Pickaxe
-item.tuom.topaz_axe.name=Topaz Axe
-item.tuom.topaz_shovel.name=Topaz Shovel
-item.tuom.topaz_hoe.name=Topaz Hoe
+item.topaz_sword.name=Topaz Sword
+item.topaz_pickaxe.name=Topaz Pickaxe
+item.topaz_axe.name=Topaz Axe
+item.topaz_shovel.name=Topaz Shovel
+item.topaz_hoe.name=Topaz Hoe
 
-item.tuom.fopal_sword.name=Fire Opal Sword
-item.tuom.fopal_pickaxe.name=Fire Opal Pickaxe
-item.tuom.fopal_axe.name=Fire Opal Axe
-item.tuom.fopal_shovel.name=Fire Opal Shovel
-item.tuom.fopal_hoe.name=Fire Opal Hoe
+item.fopal_sword.name=Fire Opal Sword
+item.fopal_pickaxe.name=Fire Opal Pickaxe
+item.fopal_axe.name=Fire Opal Axe
+item.fopal_shovel.name=Fire Opal Shovel
+item.fopal_hoe.name=Fire Opal Hoe
 
-item.tuom.dopal_sword.name=Dark Opal Sword
-item.tuom.dopal_pickaxe.name=Dark Opal Pickaxe
-item.tuom.dopal_axe.name=Dark Opal Axe
-item.tuom.dopal_shovel.name=Dark Opal Shovel
-item.tuom.dopal_hoe.name=Dark Opal Hoe
+item.dopal_sword.name=Dark Opal Sword
+item.dopal_pickaxe.name=Dark Opal Pickaxe
+item.dopal_axe.name=Dark Opal Axe
+item.dopal_shovel.name=Dark Opal Shovel
+item.dopal_hoe.name=Dark Opal Hoe
 
-item.tuom.lopal_sword.name=Light Opal Sword
-item.tuom.lopal_pickaxe.name=Light Opal Pickaxe
-item.tuom.lopal_axe.name=Light Opal Axe
-item.tuom.lopal_shovel.name=Light Opal Shovel
-item.tuom.lopal_hoe.name=Light Opal Hoe
+item.lopal_sword.name=Light Opal Sword
+item.lopal_pickaxe.name=Light Opal Pickaxe
+item.lopal_axe.name=Light Opal Axe
+item.lopal_shovel.name=Light Opal Shovel
+item.lopal_hoe.name=Light Opal Hoe
 
 item.dark_staff.name=Dark Staff
 
-item.tuom.topaz_bow.name=Topaz Bow
-item.tuom.topaz_arrow.name=Topaz Arrow
+item.topaz_bow.name=Topaz Bow
+item.topaz_arrow.name=Topaz Arrow
 
-item.tuom.projectile_grenade.name=Fire Opal Grenade
+item.fopal_grenade.name=Fire Opal Grenade
 
-item.tuom.topaz_boots.name=Topaz Boots
-item.tuom.topaz_leggings.name=Topaz Leggings
-item.tuom.topaz_chestplate.name=Topaz Chestplate
-item.tuom.topaz_helmet.name=Topaz Helmet
+item.topaz_boots.name=Topaz Boots
+item.topaz_leggings.name=Topaz Leggings
+item.topaz_chestplate.name=Topaz Chestplate
+item.topaz_helmet.name=Topaz Helmet
 
-item.tuom.dopal_boots.name=Dark Opal Boots
-item.tuom.dopal_leggings.name=Dark Opal Leggings
-item.tuom.dopal_chestplate.name=Dark Opal Chestplate
-item.tuom.dopal_helmet.name=Dark Opal Helmet
+item.dopal_boots.name=Dark Opal Boots
+item.dopal_leggings.name=Dark Opal Leggings
+item.dopal_chestplate.name=Dark Opal Chestplate
+item.dopal_helmet.name=Dark Opal Helmet
 
-item.tuom.fopal_boots.name=Fire Opal Boots
-item.tuom.fopal_leggings.name=Fire Opal Leggings
-item.tuom.fopal_chestplate.name=Fire Opal Chestplate
-item.tuom.fopal_helmet.name=Fire Opal Helmet
+item.fopal_boots.name=Fire Opal Boots
+item.fopal_leggings.name=Fire Opal Leggings
+item.fopal_chestplate.name=Fire Opal Chestplate
+item.fopal_helmet.name=Fire Opal Helmet
 
-item.tuom.lopal_boots.name=Light Opal Boots
-item.tuom.lopal_leggings.name=Light Opal Leggings
-item.tuom.lopal_chestplate.name=Light Opal Chestplate
-item.tuom.lopal_helmet.name=Light Opal Helmet
+item.lopal_boots.name=Light Opal Boots
+item.lopal_leggings.name=Light Opal Leggings
+item.lopal_chestplate.name=Light Opal Chestplate
+item.lopal_helmet.name=Light Opal Helmet
 
-item.tuom.garnet_boots.name=Garnet Boots
-item.tuom.garnet_leggings.name=Garnet Leggings
-item.tuom.garnet_chestplate.name=Garnet Chestplate
-item.tuom.garnet_helmet.name=Garnet Helmet
+item.garnet_boots.name=Garnet Boots
+item.garnet_leggings.name=Garnet Leggings
+item.garnet_chestplate.name=Garnet Chestplate
+item.garnet_helmet.name=Garnet Helmet
 
-item.tuom.satanic_boots.name=Satanic Boots
-item.tuom.satanic_leggings.name=Satanic Leggings
-item.tuom.satanic_chestplate.name=Satanic Chestplate
-item.tuom.satanic_helmet.name=Satanic Helmet
+item.satanic_boots.name=Satanic Boots
+item.satanic_leggings.name=Satanic Leggings
+item.satanic_chestplate.name=Satanic Chestplate
+item.satanic_helmet.name=Satanic Helmet
 
-item.tuom.topaz_seeds.name=Topaz Seeds
-item.tuom.fopal_seeds.name=Fire Opal Seeds
-item.tuom.dopal_seeds.name=Dark Opal Seeds
-item.tuom.lopal_seeds.name=Light Opal Seeds
+item.topaz_seeds.name=Topaz Seeds
+item.fopal_seeds.name=Fire Opal Seeds
+item.dopal_seeds.name=Dark Opal Seeds
+item.lopal_seeds.name=Light Opal Seeds
 
-item.tuom.topaz_shard.name=Topaz Shard
-item.tuom.fopal_shard.name=Fire Opal Shard
-item.tuom.dopal_shard.name=Dark Opal Shard
-item.tuom.lopal_shard.name=Light Opal Shard
+item.topaz_shard.name=Topaz Shard
+item.fopal_shard.name=Fire Opal Shard
+item.dopal_shard.name=Dark Opal Shard
+item.lopal_shard.name=Light Opal Shard
 
-item.tuom.topaz_apple.name=Topaz Apple
-item.tuom.dopal_apple.name=Dark Opal Apple
-item.tuom.fopal_apple.name=Fire Opal Apple
-item.tuom.lopal_apple.name=Light Opal Apple
+item.topaz_apple.name=Topaz Apple
+item.dopal_apple.name=Dark Opal Apple
+item.fopal_apple.name=Fire Opal Apple
+item.lopal_apple.name=Light Opal Apple
 
-item.tuom.dark_orb.name=Dark Orb
-item.tuom.obsidian_stick.name=Obsidian Stick
-item.tuom.dark_teleporter.name=Dark Teleporter Staff
+item.dark_orb.name=Dark Orb
+item.obsidian_stick.name=Obsidian Stick
+item.dark_teleporter.name=Dark Teleporter Staff
 
 // BLOCKS
-tile.tuom.topaz_ore.name=Topaz Ore
-tile.tuom.fopal_ore.name=Fire Opal Ore
-tile.tuom.dopal_ore.name=Dark Opal Ore
-tile.tuom.lopal_ore.name=Light Opal Ore
-tile.tuom.garnet_ore.name=Garnet Ore
+tile.null.topaz_ore.name=Topaz Ore
+tile.null.fopal_ore.name=Fire Opal Ore
+tile.null.dopal_ore.name=Dark Opal Ore
+tile.null.lopal_ore.name=Light Opal Ore
+tile.null.garnet_ore.name=Garnet Ore
 
-tile.tuom.dark_coal.name=Coal Ore
-tile.tuom.dark_iron.name=Iron Ore
-tile.tuom.dark_gold.name=Gold Ore
-tile.tuom.dark_diamond.name=Diamond Ore
-tile.tuom.dark_lapis.name=Lapis Lazuli Ore
-tile.tuom.dark_redstone.name=Redstone Ore
-tile.tuom.dark_emerald.name=Emerald Ore
+tile.null.dark_coal.name=Coal Ore
+tile.null.dark_iron.name=Iron Ore
+tile.null.dark_gold.name=Gold Ore
+tile.null.dark_diamond.name=Diamond Ore
+tile.null.dark_lapis.name=Lapis Lazuli Ore
+tile.null.dark_redstone.name=Redstone Ore
+tile.null.dark_emerald.name=Emerald Ore
 
-tile.tuom.dark_garnet.name=Garnet Ore
-tile.tuom.dark_topaz.name=Topaz Ore
-tile.tuom.dark_fopal.name=Fire Opal Ore
-tile.tuom.dark_dopal.name=Dark Opal Ore
-tile.tuom.dark_lopal.name=Light Opal Ore
+tile.null.dark_garnet.name=Garnet Ore
+tile.null.dark_topaz.name=Topaz Ore
+tile.null.dark_fopal.name=Fire Opal Ore
+tile.null.dark_dopal.name=Dark Opal Ore
+tile.null.dark_lopal.name=Light Opal Ore
 
-tile.tuom.topaz_crop.name=Topaz Fragments
-tile.tuom.fopal_crop.name=Fire Opal Fragments
-tile.tuom.dopal_crop.name=Dark Opal Fragments
-tile.tuom.lopal_crop.name=Light Opal Fragments
+tile.null.topaz_crop.name=Topaz Fragments
+tile.null.fopal_crop.name=Fire Opal Fragments
+tile.null.dopal_crop.name=Dark Opal Fragments
+tile.null.lopal_crop.name=Light Opal Fragments
 
-tile.tuom.dark_furnace.name=Darkened Fuser
+tile.null.dark_furnace.name=Darkened Fuser
 
-tile.tuom.dark_stone.name=Dark Stone
-tile.tuom.dark_obsidian.name=Dark Obsidian
-tile.tuom.dark_planks.name=Dark Planks
+tile.null.dark_stone.name=Dark Stone
+tile.null.dark_obsidian.name=Dark Obsidian
+tile.null.dark_planks.name=Dark Planks
 tile.dark_log.name=Dark Log
 tile.dark_leaves.name=Dark Leaves
 tile.dark_sapling.name=Dark Sapling

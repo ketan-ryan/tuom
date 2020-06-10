@@ -8,9 +8,8 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class LibItemArrow extends LibItem {
 
-    public LibItemArrow(String registryName) {
-        super(registryName);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), false);
+    public LibItemArrow() {
+    	super();
     }
 
     /**

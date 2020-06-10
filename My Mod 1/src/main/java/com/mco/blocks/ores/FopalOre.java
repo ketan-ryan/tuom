@@ -20,7 +20,7 @@ public class FopalOre extends LibBlockOre
 	@Override
 	public void initRecipe() 
 	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.fire_opal, 1, 10, this);
+		LibRegistry.addSmeltingRecipe(TUOMItems.FIRE_OPAL, 1, 10, this);
 	}
 
 	

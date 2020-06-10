@@ -7,26 +7,11 @@ import library.items.LibItemArrow;
 import net.minecraft.entity.projectile.EntityTippedArrow;
 import net.minecraft.init.Items;
 
-public class TopazArrow extends LibItemArrow {
-
-	public TopazArrow(String registryName) 
+public class TopazArrow extends LibItemArrow 
+{
+	public TopazArrow() 
 	{
-		super(registryName);
-	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 4, 
-				
-				"t",
-				"s",
-				"f",
-				
-				't', TUOMItems.item_topaz,
-				's', Items.STICK,
-				'f', Items.FEATHER
-				
-		);
+		super();
 	}
 	
 	@Override
@@ -34,5 +19,4 @@ public class TopazArrow extends LibItemArrow {
 	{
 		return EntityTopazArrow.class;
 	}
-
 }
