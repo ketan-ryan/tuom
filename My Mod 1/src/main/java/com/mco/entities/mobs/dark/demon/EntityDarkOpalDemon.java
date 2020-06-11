@@ -4,11 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.mco.entities.mobs.dark.demon.ai.AIBlindingPunches;
-import com.mco.entities.mobs.dark.demon.ai.AIJump;
-import library.entities.LibEntityMob;
-import library.util.Actions;
-import library.util.Conditions;
-import com.mco.entities.mobs.dark.demon.ai.AIBlindingPunches;
 import com.mco.entities.mobs.dark.demon.ai.AIDarkBombs;
 import com.mco.entities.mobs.dark.demon.ai.AIJump;
 import com.mco.entities.mobs.dark.demon.ai.AILifedrain;
@@ -23,6 +18,10 @@ import com.mco.entities.projectiles.FopalGrenadeEntity;
 import com.mco.main.TUOMConfig;
 import com.mco.main.TUOMItems;
 import com.mco.main.TUOMSoundHandler;
+
+import library.entities.LibEntityMob;
+import library.util.Actions;
+import library.util.Conditions;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
@@ -132,11 +131,6 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		this.ignoreFrustumCheck = true;
 		this.enableFadeOutDeath(200);
 		this.experienceValue = 150;
-	}
-	
-	public boolean isAIDisabled()
-	{
-		return false;
 	}
 	
 	@Override
