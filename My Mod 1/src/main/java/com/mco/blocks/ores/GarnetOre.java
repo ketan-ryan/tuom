@@ -11,10 +11,9 @@ import net.minecraft.item.Item;
 public class GarnetOre extends LibBlockOre 
 {
 
-	public GarnetOre(String registryName, String harvestTool, int harvestLevel) 
+	public GarnetOre(String harvestTool, int harvestLevel) 
 	{
-		super(registryName, harvestTool, harvestLevel);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(harvestTool, harvestLevel);
 		this.setHardness(3F);
 		this.setResistance(5F);		
 	}

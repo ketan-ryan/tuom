@@ -1,22 +1,8 @@
 package com.mco.main;
 
-import com.mco.TUOM;
-import com.mco.blocks.biomes.dark.DarkLeaves;
-import com.mco.blocks.biomes.dark.DarkObsidian;
-import com.mco.blocks.biomes.dark.DarkSapling;
-import com.mco.blocks.crops.DopalCrop;
-import com.mco.blocks.crops.FopalCrop;
-import com.mco.blocks.crops.LopalCrop;
-import com.mco.blocks.crops.TopazCrop;
-import com.mco.blocks.furnaces.dark.DarkFurnace;
-import com.mco.blocks.furnaces.dark.DarkFurnaceContainer;
-import com.mco.blocks.ores.DopalOre;
-import com.mco.blocks.ores.GarnetOre;
-import com.mco.blocks.ores.TUOMOre;
-import com.mco.blocks.ores.TopazOre;
-import library.LibRegistry;
-import library.blocks.LibBlockSimple;
-import library.blocks.LibItemBlock;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import com.mco.TUOM;
 import com.mco.blocks.biomes.dark.DarkLeaves;
 import com.mco.blocks.biomes.dark.DarkLog;
@@ -28,7 +14,6 @@ import com.mco.blocks.crops.FopalCrop;
 import com.mco.blocks.crops.LopalCrop;
 import com.mco.blocks.crops.TopazCrop;
 import com.mco.blocks.furnaces.dark.DarkFurnace;
-import com.mco.blocks.furnaces.dark.DarkFurnaceContainer;
 import com.mco.blocks.furnaces.dark.DarkFurnaceTileEntity;
 import com.mco.blocks.ores.DopalOre;
 import com.mco.blocks.ores.FopalOre;
@@ -36,23 +21,22 @@ import com.mco.blocks.ores.GarnetOre;
 import com.mco.blocks.ores.LopalOre;
 import com.mco.blocks.ores.TUOMOre;
 import com.mco.blocks.ores.TopazOre;
+
+import library.LibRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.chunk.BlockStatePaletteRegistry;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * DECLARE BLOCKS =================================================
@@ -61,192 +45,127 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 @ObjectHolder(TUOM.MODID)
 public class TUOMBlocks 
 {
+	public static ArrayList<Block> blocks = new ArrayList<>();
+	
 	//Ores
-	public static Block topaz_ore;
-	public static Block fopal_ore;
-	public static Block lopal_ore;
-	public static Block dopal_ore;
-	public static Block garnet_ore;
+	@ObjectHolder("topaz_ore")
+	public static final Block TOPAZ_ORE = null;
+	@ObjectHolder("fopal_ore")
+	public static final Block FOPAL_ORE = null;
+	@ObjectHolder("dopal_ore")
+	public static final Block DOPAL_ORE = null;
+	@ObjectHolder("lopal_ore")
+	public static final Block LOPAL_ORE = null;
+	@ObjectHolder("garnet_ore")
+	public static final Block GARNET_ORE = null;
 	
-	public static Block dark_coal;
-	public static Block dark_iron;
-	public static Block dark_gold;
-	public static Block dark_redstone;
-	public static Block dark_lapis;
-	public static Block dark_diamond;
-	public static Block dark_emerald;
+	@ObjectHolder("dark_coal")
+	public static final Block DARK_COAL = null;
+	@ObjectHolder("dark_iron")
+	public static final Block DARK_IRON = null;
+	@ObjectHolder("dark_gold")
+	public static final Block DARK_GOLD = null;
+	@ObjectHolder("dark_redstone")
+	public static final Block DARK_REDSTONE = null;
+	@ObjectHolder("dark_lapis")
+	public static final Block DARK_LAPIS = null;
+	@ObjectHolder("dark_diamond")
+	public static final Block DARK_DIAMOND = null;
+	@ObjectHolder("dark_emerald")
+	public static final Block DARK_EMERALD = null;
 	
-	public static Block dark_garnet;
-	public static Block dark_topaz;
-	public static Block dark_fopal;
-	public static Block dark_dopal;
-	public static Block dark_lopal;
+	@ObjectHolder("dark_garnet")
+	public static final Block DARK_GARNET = null;
+	@ObjectHolder("dark_topaz")
+	public static final Block DARK_TOPAZ = null;
+	@ObjectHolder("dark_fopal")
+	public static final Block DARK_FOPAL = null;
+	@ObjectHolder("dark_dopal")
+	public static final Block DARK_DOPAL = null;
+	@ObjectHolder("darl_lopal")
+	public static final Block DARK_LOPAL = null;
 	
 	//Crops
-	public static Block topaz_crop;
-	public static Block fopal_crop;
-	public static Block lopal_crop;
-	public static Block dopal_crop;
+	@ObjectHolder("topaz_crop")
+	public static final Block TOPAZ_CROP = null;
+	@ObjectHolder("fopal_crop")
+	public static final Block FOPAL_CROP = null;
+	@ObjectHolder("lopal_crop")
+	public static final Block LOPAL_CROP = null;
+	@ObjectHolder("dopal_crop")
+	public static final Block DOPAL_CROP = null;
 	
 	//Furnaces
-	public static Block dark_furnace;
-	public static Block opal_fuser;
+	@ObjectHolder("dark_furnace")
+	public static final Block DARK_FURNACE = null;
+	@ObjectHolder("opal_fuser")
+	public static final Block OPAL_FUSER = null;
 	
 	//Biome
-	public static Block dark_stone;
-	public static Block dark_cobble;
-	public static Block dark_brick;
-	public static Block dark_obsidian;
+	@ObjectHolder("dark_stone")
+	public static final Block DARK_STONE = null;
+	@ObjectHolder("dark_cobble")
+	public static final Block DARK_COBBLE = null;
+	@ObjectHolder("dark_brick")
+	public static final Block DARK_BRICK = null;
+	@ObjectHolder("dark_obsidian")
+	public static final Block DARK_OBSIDIAN = null;
 	
-	public static Block dark_log;
-	public static Block dark_leaves;
-	public static Block dark_planks;
-	public static Block dark_sapling;
+	@ObjectHolder("dark_log")
+	public static final Block DARK_LOG = null;
+	@ObjectHolder("dark_leaves")
+	public static final Block DARK_LEAVES = null;
+	@ObjectHolder("dark_planks")
+	public static final Block DARK_PLANKS = null;
+	@ObjectHolder("dark_sapling")
+	public static final Block DARK_SAPLING = null;
 	
-	/**
-	 * REGISTER BLOCKS =================================================
-	 */
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) 
+	public static void registerBlocks(IForgeRegistry<Block> registry)
 	{
-		//Ores
-		garnet_ore = new GarnetOre("garnet_ore", "pickaxe", 1);
-		event.getRegistry().register(garnet_ore);
+		registerBlock(registry, "garnet_ore", new GarnetOre("pickaxe", 1).setCreativeTab(TUOM.tuom_tab));
+		registerBlock(registry, "topaz_ore", new TopazOre("pickaxe", 2).setCreativeTab(TUOM.tuom_tab));
+		registerBlock(registry, "fopal_ore", new FopalOre("pickaxe", 3).setCreativeTab(TUOM.tuom_tab));
+		registerBlock(registry, "dopal_ore", new DopalOre("pickaxe", 3).setCreativeTab(TUOM.tuom_tab));
+		registerBlock(registry, "lopal_ore", new LopalOre("pickaxe", 3).setCreativeTab(TUOM.tuom_tab));
 		
-		topaz_ore = new TopazOre("topaz_ore", "pickaxe", 2);
-		event.getRegistry().register(topaz_ore);
-		
-		fopal_ore = new FopalOre("fopal_ore", "pickaxe", 3);
-		event.getRegistry().register(fopal_ore);
-		
-		dopal_ore = new DopalOre("dopal_ore", "pickaxe", 3);
-		event.getRegistry().register(dopal_ore);
-		
-		lopal_ore = new LopalOre("lopal_ore", "pickaxe", 3);
-		event.getRegistry().register(lopal_ore);
-		
-		dark_coal = new TUOMOre("dark_coal", 0, 2, 0.1F, 3, 15, false, Items.COAL, 1, 2, 2).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_coal);
-		
-		dark_iron = new TUOMOre("dark_iron", 1, 0, 0.7F, 3, 15, true, Items.IRON_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_iron);
-		
-		dark_gold = new TUOMOre("dark_gold", 2, 0, 1.0F, 3, 15, true, Items.GOLD_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_gold);
-		
-		dark_redstone = new TUOMOre("dark_redstone", 2, 5, .7F, 3, 15, false, Items.REDSTONE, 4, 8, 4).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_redstone);
-		
-		dark_lapis = new TUOMOre("dark_lapis", 1, 5, 0.2F, 3, 15, false, new ItemStack(Items.DYE, 1, 4).getItem(), 4, 5, 32).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_lapis);
-		
-		dark_diamond = new TUOMOre("dark_diamond", 2, 7, 1.0F, 3, 15, false, Items.DIAMOND, 1, 4, 1).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_diamond);
-		
-		dark_emerald = new TUOMOre("dark_emerald", 2, 7, 1.0F, 3, 15, false, Items.EMERALD, 1, 4, 1).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_emerald);
-		
-		dark_garnet = new GarnetOre("dark_garnet", "pickaxe", 1).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_garnet);
-		
-		dark_topaz = new TopazOre("dark_topaz", "pickaxe", 2).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_topaz);
-		
-		dark_fopal = new FopalOre("dark_fopal", "pickaxe", 3).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_fopal);
-		
-		dark_dopal = new DopalOre("dark_dopal", "pickaxe", 3).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_dopal);
-		
-		dark_lopal = new LopalOre("dark_lopal", "pickaxe", 3).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_lopal);
-		
-		//Crops
-		topaz_crop = new TopazCrop("topaz_crop");
-		event.getRegistry().register(topaz_crop);
+		registerBlock(registry, "dark_coal", new TUOMOre(0, 2, 0.1F, 3, 15, false, Items.COAL, 1, 2, 2).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_iron", new TUOMOre(1, 0, 0.7F, 3, 15, false, Items.IRON_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_gold", new TUOMOre(2, 0, 1.0F, 3, 15, false, Items.GOLD_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_redstone", new TUOMOre(2, 5, 0.7F, 3, 15, false, Items.REDSTONE, 4, 8, 4).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_lapis", new TUOMOre(1, 5, 0.2F, 3, 15, false, new ItemStack(Items.DYE, 1, 4).getItem(), 4, 5, 32).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_diamond", new TUOMOre(2, 7, 1.0F, 3, 15, false, Items.DIAMOND, 1, 4, 1).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_emerald", new TUOMOre(2, 7, 1.0F, 3, 15, false, Items.EMERALD, 1, 4, 1).setCreativeTab(TUOM.dim_tab));
 
-		fopal_crop = new FopalCrop("fopal_crop");
-		event.getRegistry().register(fopal_crop);
+		registerBlock(registry, "dark_garnet", new GarnetOre("pickaxe", 1).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_topaz", new TopazOre("pickaxe", 2).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_fopal", new FopalOre("pickaxe", 3).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_dopal", new DopalOre("pickaxe", 3).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_lopal", new LopalOre("pickaxe", 3).setCreativeTab(TUOM.dim_tab));
 		
-		lopal_crop = new LopalCrop("lopal_crop");
-		event.getRegistry().register(lopal_crop);
+		registerBlock(registry, "topaz_crop", new TopazCrop());
+		registerBlock(registry, "fopal_crop", new FopalCrop());
+		registerBlock(registry, "dopal_crop", new DopalCrop());
+		registerBlock(registry, "lopal_crop", new LopalCrop());
 		
-		dopal_crop = new DopalCrop("dopal_crop");
-		event.getRegistry().register(dopal_crop);
-		
-		//Furnaces
-		dark_furnace = new DarkFurnace("dark_furnace", DarkFurnaceTileEntity.class);
-		event.getRegistry().register(dark_furnace);
-		GameRegistry.registerTileEntity(DarkFurnaceTileEntity.class, new ResourceLocation("tuom:blocks/dark_furnace/dark_furnace_gui.png"));
+		registerBlock(registry, "dark_furnace", new DarkFurnace(DarkFurnaceTileEntity.class).setCreativeTab(TUOM.tuom_tab));
+	//	GameRegistry.registerTileEntity(DarkFurnaceTileEntity.class, new ResourceLocation("tuom:blocks/dark_furnace/dark_furnace_gui.png"));
 	//	LibRegistry.registerGUI(DarkFurnaceTileEntity.class, DarkFurnaceContainer.class, "blocks/dark_furnace/dark_furnace_gui.png");
-		
-		//Biome
-		dark_stone = new LibBlockSimple("dark_stone").setHardness(1.5F).setResistance(10).setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_stone);
-		
-		dark_obsidian = new DarkObsidian("dark_obsidian").setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_obsidian);       
-		
-		dark_log = new DarkLog().setRegistryName("dark_log").setUnlocalizedName("dark_log").setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_log);
-		
-		dark_planks = new LibBlockSimple("dark_planks").setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_planks);
-		
-		dark_leaves = new DarkLeaves("dark_leaves").setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_leaves);
-		
-		dark_sapling = new DarkSapling("dark_sapling").setCreativeTab(TUOM.dim_tab);
-		event.getRegistry().register(dark_sapling);
-	}
-	
 
-	/**
-	 * REGISTER BLOCK ITEMS =================================================
-	 */
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) 
+		registerBlock(registry, "dark_stone", new Block(Material.ROCK).setResistance(10).setHardness(1.5F).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_obsidian", new DarkObsidian().setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_log", new DarkLog().setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_planks", new Block(Material.WOOD).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_leaves", new DarkLeaves().setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_sapling", new DarkSapling().setCreativeTab(TUOM.dim_tab));
+	}	
+	
+	public static <T extends Block> void registerBlock(IForgeRegistry<Block> registry, String name, T block)
 	{
-		//Ores
-		event.getRegistry().register(new LibItemBlock(topaz_ore));
-		event.getRegistry().register(new LibItemBlock(fopal_ore));
-		event.getRegistry().register(new LibItemBlock(lopal_ore));
-		event.getRegistry().register(new LibItemBlock(dopal_ore));
-		event.getRegistry().register(new LibItemBlock(garnet_ore));
-		
-		event.getRegistry().register(new LibItemBlock(dark_coal));
-		event.getRegistry().register(new LibItemBlock(dark_iron));
-		event.getRegistry().register(new LibItemBlock(dark_gold));
-		event.getRegistry().register(new LibItemBlock(dark_redstone));
-		event.getRegistry().register(new LibItemBlock(dark_lapis));
-		event.getRegistry().register(new LibItemBlock(dark_diamond));
-		event.getRegistry().register(new LibItemBlock(dark_emerald));
-		
-		event.getRegistry().register(new LibItemBlock(dark_garnet));
-		event.getRegistry().register(new LibItemBlock(dark_topaz));
-		event.getRegistry().register(new LibItemBlock(dark_fopal));
-		event.getRegistry().register(new LibItemBlock(dark_dopal));
-		event.getRegistry().register(new LibItemBlock(dark_lopal));
-		
-		//Crops
-		event.getRegistry().register(new LibItemBlock(topaz_crop));
-		event.getRegistry().register(new LibItemBlock(fopal_crop));
-		event.getRegistry().register(new LibItemBlock(lopal_crop));
-		event.getRegistry().register(new LibItemBlock(dopal_crop));
-
-		//Furnaces
-		event.getRegistry().register(new LibItemBlock(dark_furnace));
-		
-		//Biome
-		event.getRegistry().register(new LibItemBlock(dark_stone));
-		event.getRegistry().register(new LibItemBlock(dark_obsidian));
-		event.getRegistry().register(new LibItemBlock(dark_log));
-		event.getRegistry().register(new LibItemBlock(dark_planks));
-		event.getRegistry().register(new LibItemBlock(dark_leaves));
-		event.getRegistry().register(new LibItemBlock(dark_sapling));
-		
+		block.setUnlocalizedName(name);
+		block.setRegistryName(name);
+		registry.register(block);
+		blocks.add(block);
 	}
-	
 
 	/**
 	 * GENERATE ORE =================================================
@@ -254,31 +173,27 @@ public class TUOMBlocks
 	public static void init(FMLInitializationEvent event) 
 	{
 //		%chance, minheight, maxheight, veinsize, veincount
-		LibRegistry.registerOreGen(garnet_ore.getDefaultState(), 99, 30, 200, 8, 8);
-		LibRegistry.registerOreGen(topaz_ore.getDefaultState(), 10, 5, 30, 4, 1);
-		LibRegistry.registerOreGen(fopal_ore.getDefaultState(), 7, 0, 25, 2, 1);
-		LibRegistry.registerOreGen(dopal_ore.getDefaultState(), 3, 0, 20, 2, 1);
-		LibRegistry.registerOreGen(lopal_ore.getDefaultState(), 2, 0, 15, 2, 1);
+		LibRegistry.registerOreGen(GARNET_ORE.getDefaultState(), 99, 30, 200, 8, 8);
+		LibRegistry.registerOreGen(TOPAZ_ORE.getDefaultState(), 10, 5, 30, 4, 1);
+		LibRegistry.registerOreGen(FOPAL_ORE.getDefaultState(), 7, 0, 25, 2, 1);
+		LibRegistry.registerOreGen(DOPAL_ORE.getDefaultState(), 3, 0, 20, 2, 1);
+		LibRegistry.registerOreGen(LOPAL_ORE.getDefaultState(), 2, 0, 15, 2, 1);
 	}
 	
 	@SubscribeEvent
-	public static void registerRenders(ModelRegistryEvent event)
+	public static void registerRenders(ModelRegistryEvent event) throws IOException
 	{
+		JSONGenerator.generateJsonBlock(blocks);
+		
 		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
 		{
-			registerRender(dark_planks, i, "planks_" + DarkPlanks.EnumType.values()[i].getName());
+			registerRender(DARK_PLANKS, i, "planks_" + DarkPlanks.EnumType.values()[i].getName());
 		}
-		registerRender(dark_log, 0, "dark_log");
-		registerRender(dark_leaves, 0, "dark_leaves");
-		registerRender(dark_sapling, 0, "dark_sapling");
-	}
-	
-	public static void registerBlockWithVariants(Block block, ItemBlock itemBlock)
-	{
-		ForgeRegistries.BLOCKS.register(block);
-		block.setCreativeTab(TUOM.tuom_tab);
-		itemBlock.setRegistryName(block.getRegistryName());
-		ForgeRegistries.ITEMS.register(itemBlock);
+		
+		for(Block block: blocks)
+		{
+			registerRender(block, 0, block.getUnlocalizedName().substring(5));
+		}
 	}
 	
 	public static void registerRender(Block block, int meta, String fileName)

@@ -7,9 +7,9 @@ import net.minecraft.item.Item;
 
 public class DopalCrop extends LibBlockCrops 
 {
-	public DopalCrop(String registryName) 
+	public DopalCrop() 
 	{
-		super(registryName);
+		super();
 	}
 
 	@Override

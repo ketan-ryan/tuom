@@ -1,10 +1,8 @@
 package com.mco.dimensions.opal.mapgen;
 
 import com.mco.main.TUOMBlocks;
-import com.mco.main.TUOMBlocks;
-import net.minecraft.block.material.Material;
+
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenRavine;
@@ -34,7 +32,7 @@ public class OpalMapGenRavine extends MapGenRavine{
         IBlockState top = biome.topBlock;
         IBlockState filler = biome.fillerBlock;
 
-        if (state.getBlock() == TUOMBlocks.dark_stone || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
+        if (state.getBlock() == TUOMBlocks.DARK_STONE || state.getBlock() == top.getBlock() || state.getBlock() == filler.getBlock())
         {
             if (y - 1 < 10)
             {

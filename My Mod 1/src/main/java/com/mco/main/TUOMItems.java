@@ -1,74 +1,67 @@
 package com.mco.main;
 
-import com.mco.items.archery.TopazBow;
-import com.mco.items.armor.DopalArmor;
-import com.mco.items.armor.FopalArmor;
-import com.mco.items.armor.SatanicArmor;
-import com.mco.items.basic.ItemSatanic;
-import com.mco.items.crops.DopalSeeds;
-import com.mco.items.crops.LopalSeeds;
-import com.mco.items.crops.TopazSeeds;
-import com.mco.items.food.FopalApple;
-import com.mco.items.food.TopazApple;
-import com.mco.items.projectiles.FopalGrenade;
-import com.mco.items.teleporters.DarkOpalTeleporterStaff;
-import com.mco.items.tools.dark.DopalAxe;
-import com.mco.items.tools.dark.DopalShovel;
- import com.mco.items.tools.fopal.FopalAxe;
-import com.mco.items.tools.fopal.FopalPickaxe;
-import com.mco.items.tools.fopal.FopalSword;
-import com.mco.items.tools.garnet.GarnetHoe;
-import com.mco.items.tools.light.LopalHoe;
-import com.mco.items.tools.light.LopalPickaxe;
-import com.mco.items.tools.light.LopalShovel;
-import com.mco.items.tools.topaz.TopazAxe;
-import com.mco.items.tools.topaz.TopazHoe;
-import library.LibRegistry;
-import library.items.LibItemSimple;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.mco.TUOM;
 import com.mco.items.archery.TopazArrow;
+import com.mco.items.archery.TopazBow;
+import com.mco.items.armor.DopalArmor;
+import com.mco.items.armor.FopalArmor;
 import com.mco.items.armor.GarnetArmor;
 import com.mco.items.armor.LopalArmor;
+import com.mco.items.armor.SatanicArmor;
 import com.mco.items.armor.TopazArmor;
+import com.mco.items.basic.ItemSatanic;
+import com.mco.items.crops.DopalSeeds;
 import com.mco.items.crops.FopalSeeds;
+import com.mco.items.crops.LopalSeeds;
+import com.mco.items.crops.TopazSeeds;
 import com.mco.items.food.DopalApple;
+import com.mco.items.food.FopalApple;
 import com.mco.items.food.LopalApple;
+import com.mco.items.food.TopazApple;
+import com.mco.items.projectiles.FopalGrenade;
+import com.mco.items.teleporters.DarkOpalTeleporterStaff;
 import com.mco.items.tools.dark.DarkStaff;
+import com.mco.items.tools.dark.DopalAxe;
 import com.mco.items.tools.dark.DopalHoe;
 import com.mco.items.tools.dark.DopalPickaxe;
+import com.mco.items.tools.dark.DopalShovel;
+import com.mco.items.tools.fopal.FopalAxe;
 import com.mco.items.tools.fopal.FopalHoe;
+import com.mco.items.tools.fopal.FopalPickaxe;
 import com.mco.items.tools.fopal.FopalShovel;
+import com.mco.items.tools.fopal.FopalSword;
 import com.mco.items.tools.garnet.GarnetAxe;
+import com.mco.items.tools.garnet.GarnetHoe;
 import com.mco.items.tools.garnet.GarnetPickaxe;
 import com.mco.items.tools.garnet.GarnetShovel;
 import com.mco.items.tools.light.LopalAxe;
+import com.mco.items.tools.light.LopalHoe;
+import com.mco.items.tools.light.LopalPickaxe;
+import com.mco.items.tools.light.LopalShovel;
 import com.mco.items.tools.light.LopalSword;
+import com.mco.items.tools.topaz.TopazAxe;
+import com.mco.items.tools.topaz.TopazHoe;
 import com.mco.items.tools.topaz.TopazPickaxe;
 import com.mco.items.tools.topaz.TopazShovel;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSword;
-import net.minecraft.item.ItemTool;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
-import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.registries.IForgeRegistry;
 
 /**
@@ -356,14 +349,17 @@ public class TUOMItems {
 		registerItem(registry, "satanic_chestplate", new SatanicArmor(SATANIC_AM, EntityEquipmentSlot.CHEST).setCreativeTab(TUOM.tuom_tab));
 		registerItem(registry, "satanic_helmet", new SatanicArmor(SATANIC_AM, EntityEquipmentSlot.HEAD).setCreativeTab(TUOM.tuom_tab));
 		
-		registerItem(registry, "topaz_seeds", new TopazSeeds(TUOMBlocks.topaz_crop).setCreativeTab(TUOM.tuom_tab));
-		registerItem(registry, "fopal_seeds", new FopalSeeds(TUOMBlocks.fopal_crop).setCreativeTab(TUOM.tuom_tab));
-		registerItem(registry, "dopal_seeds", new DopalSeeds(TUOMBlocks.dopal_crop).setCreativeTab(TUOM.tuom_tab));
-		registerItem(registry, "lopal_seeds", new LopalSeeds(TUOMBlocks.lopal_crop).setCreativeTab(TUOM.tuom_tab));
+		registerItem(registry, "topaz_seeds", new TopazSeeds(TUOMBlocks.TOPAZ_CROP).setCreativeTab(TUOM.tuom_tab));
+		registerItem(registry, "fopal_seeds", new FopalSeeds(TUOMBlocks.FOPAL_CROP).setCreativeTab(TUOM.tuom_tab));
+		registerItem(registry, "dopal_seeds", new DopalSeeds(TUOMBlocks.DOPAL_CROP).setCreativeTab(TUOM.tuom_tab));
+		registerItem(registry, "lopal_seeds", new LopalSeeds(TUOMBlocks.LOPAL_CROP).setCreativeTab(TUOM.tuom_tab));
 		
 		registerItem(registry, "dark_orb", new Item().setCreativeTab(TUOM.dim_tab));
 		registerItem(registry, "obsidian_stick", new Item().setCreativeTab(TUOM.dim_tab));
 		registerItem(registry, "dark_teleporter", new DarkOpalTeleporterStaff().setCreativeTab(TUOM.dim_tab));
+		
+		for(Block block : TUOMBlocks.blocks)
+			registerItem(registry, block.getUnlocalizedName().substring(5), new ItemBlock(block));
 	}
 	
 	public static <T extends Item> void registerItem(IForgeRegistry<Item> registry, String name, T item) 
@@ -377,7 +373,7 @@ public class TUOMItems {
 	@SubscribeEvent
 	public static void registerRenders(ModelRegistryEvent event) throws IOException 
 	{
-		JSONGenerator.generateJson(items);
+		JSONGenerator.generateJsonItem(items);
 		for(Item item : items) {
 			registerRender(item);
 		}

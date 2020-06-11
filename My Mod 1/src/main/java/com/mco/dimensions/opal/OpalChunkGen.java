@@ -6,11 +6,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
-
-import com.mco.dimensions.noise.OctaveNoiseSampler;
-import com.mco.dimensions.opal.mapgen.OpalMapGenCaves;
-import com.mco.dimensions.util.BiomeWeightTable;
-import com.mco.main.TUOMBiomes;
 import com.mco.dimensions.noise.OctaveNoiseSampler;
 import com.mco.dimensions.opal.mapgen.OpalMapGenCaves;
 import com.mco.dimensions.opal.mapgen.OpalMapGenRavine;
@@ -18,6 +13,7 @@ import com.mco.dimensions.util.BiomeWeightTable;
 import com.mco.dimensions.util.NoiseChunkPrimer;
 import com.mco.main.TUOMBiomes;
 import com.mco.main.TUOMBlocks;
+
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -55,7 +51,7 @@ public class OpalChunkGen implements IChunkGenerator
     private static final int BIOME_NOISE_OFFSET = BIOME_WEIGHT_RADIUS;
     private static final int BIOME_NOISE_SIZE = BUFFER_WIDTH + BIOME_WEIGHT_RADIUS * 2;
 
-    private static final IBlockState STONE = TUOMBlocks.dark_stone.getDefaultState();
+    private static final IBlockState STONE = TUOMBlocks.DARK_STONE.getDefaultState();
     
     private List<Biome.SpawnListEntry> mobs = Lists.newArrayList(new Biome.SpawnListEntry(EntityZombie.class, 100, 2, 4));
     

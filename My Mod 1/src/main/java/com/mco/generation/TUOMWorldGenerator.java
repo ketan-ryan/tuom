@@ -5,15 +5,11 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
+import com.mco.dimensions.opal.OpalWorldType;
+import com.mco.dimensions.opal.OpaliteWorldProvider;
+import com.mco.dimensions.opal.mapgen.OpalOreGen;
+import com.mco.main.TUOMBlocks;
 
-import com.mco.dimensions.opal.OpalWorldType;
-import com.mco.dimensions.opal.OpaliteWorldProvider;
-import com.mco.dimensions.opal.mapgen.OpalOreGen;
-import com.mco.main.TUOMBlocks;
-import com.mco.dimensions.opal.OpalWorldType;
-import com.mco.dimensions.opal.OpaliteWorldProvider;
-import com.mco.dimensions.opal.mapgen.OpalOreGen;
-import com.mco.main.TUOMBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
@@ -25,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.common.DimensionManager;
@@ -71,11 +66,11 @@ public class TUOMWorldGenerator extends WorldGenerator implements IWorldGenerato
 		else if(id == 0)
 		{
 			//           block to gen, blockAmt, chance, veinCount, minH, maxH, block to replace, world, rand, chunkX, chunkZ
-			runGenerator(TUOMBlocks.garnet_ore.getDefaultState(), 12, 60, 70, 1, 100, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-			runGenerator(TUOMBlocks.topaz_ore.getDefaultState(), 8, 15, 5, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-			runGenerator(TUOMBlocks.fopal_ore.getDefaultState(), 6, 12, 4, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-			runGenerator(TUOMBlocks.dopal_ore.getDefaultState(), 6, 10, 3, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-			runGenerator(TUOMBlocks.lopal_ore.getDefaultState(), 6, 8, 2, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(TUOMBlocks.GARNET_ORE.getDefaultState(), 12, 60, 70, 1, 100, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(TUOMBlocks.TOPAZ_ORE.getDefaultState(), 8, 15, 5, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(TUOMBlocks.FOPAL_ORE.getDefaultState(), 6, 12, 4, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(TUOMBlocks.DOPAL_ORE.getDefaultState(), 6, 10, 3, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(TUOMBlocks.LOPAL_ORE.getDefaultState(), 6, 8, 2, 1, 26, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 
 		}
 		else if(id == 1)

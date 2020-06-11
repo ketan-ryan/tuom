@@ -94,36 +94,36 @@ item.obsidian_stick.name=Obsidian Stick
 item.dark_teleporter.name=Dark Teleporter Staff
 
 // BLOCKS
-tile.null.topaz_ore.name=Topaz Ore
-tile.null.fopal_ore.name=Fire Opal Ore
-tile.null.dopal_ore.name=Dark Opal Ore
-tile.null.lopal_ore.name=Light Opal Ore
-tile.null.garnet_ore.name=Garnet Ore
+tile.topaz_ore.name=Topaz Ore
+tile.fopal_ore.name=Fire Opal Ore
+tile.dopal_ore.name=Dark Opal Ore
+tile.lopal_ore.name=Light Opal Ore
+tile.garnet_ore.name=Garnet Ore
 
-tile.null.dark_coal.name=Coal Ore
-tile.null.dark_iron.name=Iron Ore
-tile.null.dark_gold.name=Gold Ore
-tile.null.dark_diamond.name=Diamond Ore
-tile.null.dark_lapis.name=Lapis Lazuli Ore
-tile.null.dark_redstone.name=Redstone Ore
-tile.null.dark_emerald.name=Emerald Ore
+tile.dark_coal.name=Coal Ore
+tile.dark_iron.name=Iron Ore
+tile.dark_gold.name=Gold Ore
+tile.dark_diamond.name=Diamond Ore
+tile.dark_lapis.name=Lapis Lazuli Ore
+tile.dark_redstone.name=Redstone Ore
+tile.dark_emerald.name=Emerald Ore
 
-tile.null.dark_garnet.name=Garnet Ore
-tile.null.dark_topaz.name=Topaz Ore
-tile.null.dark_fopal.name=Fire Opal Ore
-tile.null.dark_dopal.name=Dark Opal Ore
-tile.null.dark_lopal.name=Light Opal Ore
+tile.dark_garnet.name=Garnet Ore
+tile.dark_topaz.name=Topaz Ore
+tile.dark_fopal.name=Fire Opal Ore
+tile.dark_dopal.name=Dark Opal Ore
+tile.dark_lopal.name=Light Opal Ore
 
-tile.null.topaz_crop.name=Topaz Fragments
-tile.null.fopal_crop.name=Fire Opal Fragments
-tile.null.dopal_crop.name=Dark Opal Fragments
-tile.null.lopal_crop.name=Light Opal Fragments
+tile.topaz_crop.name=Topaz Fragments
+tile.fopal_crop.name=Fire Opal Fragments
+tile.dopal_crop.name=Dark Opal Fragments
+tile.lopal_crop.name=Light Opal Fragments
 
-tile.null.dark_furnace.name=Darkened Fuser
+tile.dark_furnace.name=Darkened Fuser
 
-tile.null.dark_stone.name=Dark Stone
-tile.null.dark_obsidian.name=Dark Obsidian
-tile.null.dark_planks.name=Dark Planks
+tile.dark_stone.name=Dark Stone
+tile.dark_obsidian.name=Dark Obsidian
+tile.dark_planks.name=Dark Planks
 tile.dark_log.name=Dark Log
 tile.dark_leaves.name=Dark Leaves
 tile.dark_sapling.name=Dark Sapling

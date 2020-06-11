@@ -27,8 +27,6 @@ public class LibItemFood extends ItemFood implements IRegistryObject, IJavaDocs 
 
     public LibItemFood(int amount, float saturation, boolean isWolfFood) {
         super(amount, saturation, isWolfFood);
-		this.setCreativeTab(TUOM.tuom_tab);
-        Registry.register(this);
     }
 
     @Override

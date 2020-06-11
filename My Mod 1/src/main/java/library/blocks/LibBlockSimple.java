@@ -47,18 +47,14 @@ public class LibBlockSimple extends Block implements IRegistryObject, ITileEntit
 
     /** Constructors **/
 
-    public LibBlockSimple(String registryName) {
-        this(registryName, -1, null);
+    public LibBlockSimple() {
+        this(-1, null);
     }
 
-    public LibBlockSimple(String registryName, int guiID, Class<? extends TileEntity> tileEntityClass) {
+    public LibBlockSimple(int guiID, Class<? extends TileEntity> tileEntityClass) {
         super(Material.ROCK);
         this.guiID = guiID;
         this.tileEntityClass = tileEntityClass;
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-        setCreativeTab(TUOM.tuom_tab);
-        Registry.register(this);
     }
 
 

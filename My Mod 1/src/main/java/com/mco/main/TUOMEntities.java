@@ -27,7 +27,7 @@ import com.mco.entities.mobs.dark.demon.skull.EntityDarkSkull;
 import com.mco.entities.mobs.dark.demon.skull.ModelDarkSkull;
 import com.mco.entities.projectiles.EntityCustomFallingBlock;
 import com.mco.entities.projectiles.EntityTopazArrow;
-import com.mco.entities.projectiles.ProjectileGrenadeEntity;
+import com.mco.entities.projectiles.FopalGrenadeEntity;
 import com.mco.entities.vehicles.DarkShip;
 import net.minecraft.client.model.ModelCow;
 import net.minecraft.client.model.ModelPig;
@@ -62,7 +62,7 @@ public class TUOMEntities {
 		/** PROJECTILES */
 
 		LibRegistry.registerEntity("topaz_arrow", EntityTopazArrow.class);
-		LibRegistry.registerEntity("projectile_grenade_entity", ProjectileGrenadeEntity.class);
+		LibRegistry.registerEntity("projectile_grenade_entity", FopalGrenadeEntity.class);
 		LibRegistry.registerEntity("dark_skull", EntityDarkSkull.class);
 		LibRegistry.registerEntity("falling_block", EntityCustomFallingBlock.class);
 		LibRegistry.registerEntity("dark_bomb_projectile", EntityProjectileDarkBomb.class);
@@ -108,7 +108,7 @@ public class TUOMEntities {
 		/** PROJECTILES */
 
 		LibRegistry.registerProjectileModel(EntityTopazArrow.class);
-		LibRegistry.registerProjectileSprite(ProjectileGrenadeEntity.class, 1F);
+		LibRegistry.registerProjectileSprite(FopalGrenadeEntity.class, 1F);
 		LibRegistry.registerProjectileSprite(EntityProjectileDarkBomb.class, 1);
 		LibRegistry.registerProjectileSprite(EntityLaserProjectile.class, 1);
 		LibRegistry.registerProjectileCustomModel(EntityDarkSkull.class, ModelDarkSkull.class, 1);

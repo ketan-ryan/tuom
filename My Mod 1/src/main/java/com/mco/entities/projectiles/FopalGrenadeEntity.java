@@ -7,10 +7,9 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class ProjectileGrenadeEntity extends LibEntityProjectile 
+public class FopalGrenadeEntity extends LibEntityProjectile 
 {
-
-	public ProjectileGrenadeEntity(World worldIn) 
+	public FopalGrenadeEntity(World worldIn) 
 	{
 		super(worldIn);
 	}

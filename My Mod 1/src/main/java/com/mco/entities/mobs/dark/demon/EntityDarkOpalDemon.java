@@ -19,7 +19,7 @@ import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
-import com.mco.entities.projectiles.ProjectileGrenadeEntity;
+import com.mco.entities.projectiles.FopalGrenadeEntity;
 import com.mco.main.TUOMConfig;
 import com.mco.main.TUOMItems;
 import com.mco.main.TUOMSoundHandler;
@@ -621,7 +621,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) 
 	{
-    	ProjectileGrenadeEntity entityProjectileGrenade = new ProjectileGrenadeEntity(this.world);
+    	FopalGrenadeEntity entityProjectileGrenade = new FopalGrenadeEntity(this.world);
         double d0 = target.posY + (double)target.getEyeHeight() - 1.100000023841858D;
         double d1 = target.posX - this.posX;
         double d2 = d0 - entityProjectileGrenade.posY;

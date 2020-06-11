@@ -6,9 +6,9 @@ import net.minecraft.item.Item;
 
 public class TopazCrop extends LibBlockCrops 
 {
-	public TopazCrop(String registryName) 
+	public TopazCrop() 
 	{
-		super(registryName);
+		super();
 	}
 
 	@Override

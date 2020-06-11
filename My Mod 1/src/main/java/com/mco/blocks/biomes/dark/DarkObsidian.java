@@ -10,9 +10,9 @@ import net.minecraft.world.IBlockAccess;
 public class DarkObsidian extends LibBlockSimple
 {
 
-	public DarkObsidian(String registryName) 
+	public DarkObsidian() 
 	{
-		super(registryName);
+		super();
 		this.setHardness(50F);
 		this.setResistance(2500F);
 		this.setSoundType(SoundType.STONE);

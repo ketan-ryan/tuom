@@ -3,34 +3,33 @@ package com.mco.dimensions.opal.mapgen;
 import java.util.Random;
 
 import com.mco.main.TUOMBlocks;
+
 import net.minecraft.block.state.pattern.BlockMatcher;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class OpalOreGen implements IWorldGenerator{
 
     private static final long SEED = 21052088057241959L;
 
-    private static final WorldGenerator COAL_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_coal.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator IRON_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_iron.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator GOLD_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_gold.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator DIAMOND_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_diamond.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator REDSTONE_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_redstone.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator LAPIS_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_lapis.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator EMERALD_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_emerald.getDefaultState(), 2, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
+    private static final WorldGenerator COAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_COAL.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator IRON_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_IRON.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator GOLD_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_GOLD.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator DIAMOND_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_DIAMOND.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator REDSTONE_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_REDSTONE.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator LAPIS_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_LAPIS.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator EMERALD_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_EMERALD.getDefaultState(), 2, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
 
-    private static final WorldGenerator GARNET_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_garnet.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator TOPAZ_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_topaz.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator FOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_fopal.getDefaultState(), 9, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator DOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_dopal.getDefaultState(), 12, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
-    private static final WorldGenerator LOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.dark_lopal.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.dark_stone));
+    private static final WorldGenerator GARNET_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_GARNET.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator TOPAZ_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_TOPAZ.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator FOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_FOPAL.getDefaultState(), 9, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator DOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_DOPAL.getDefaultState(), 12, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenerator LOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_LOPAL.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
 
     
 	private static final int COAL_PER_CHUNK = 80;

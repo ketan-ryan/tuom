@@ -2,10 +2,11 @@ package com.mco.biomes;
 
 import java.util.Random;
 
-import library.blocks.LibBlockCrops;
 import com.mco.dimensions.opal.WorldGenCrops;
 import com.mco.main.TUOMBiomes;
 import com.mco.main.TUOMBlocks;
+
+import library.blocks.LibBlockCrops;
 import net.minecraft.block.BlockFlower.EnumFlowerType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -175,7 +176,7 @@ public class DarkOpalBiomeDecorator extends BiomeDecorator
             int flowerZ = random.nextInt(16) + 8;
             int yRange = worldIn.getHeight(chunkPos.add(flowerX, 0, flowerZ)).getY() + 32;
             
-            cropGen = new WorldGenCrops((LibBlockCrops) TUOMBlocks.dopal_crop);
+            cropGen = new WorldGenCrops((LibBlockCrops) TUOMBlocks.DOPAL_CROP);
             
             if (yRange > 0)
             {
