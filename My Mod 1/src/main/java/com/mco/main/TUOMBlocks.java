@@ -82,7 +82,7 @@ public class TUOMBlocks
 	public static final Block DARK_FOPAL = null;
 	@ObjectHolder("dark_dopal")
 	public static final Block DARK_DOPAL = null;
-	@ObjectHolder("darl_lopal")
+	@ObjectHolder("dark_lopal")
 	public static final Block DARK_LOPAL = null;
 	
 	//Crops
