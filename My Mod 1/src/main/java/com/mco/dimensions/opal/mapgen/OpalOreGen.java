@@ -10,27 +10,25 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class OpalOreGen implements IWorldGenerator{
 
     private static final long SEED = 21052088057241959L;
 
-    private static final WorldGenerator COAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_COAL.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator IRON_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_IRON.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator GOLD_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_GOLD.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator DIAMOND_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_DIAMOND.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator REDSTONE_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_REDSTONE.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator LAPIS_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_LAPIS.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator EMERALD_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_EMERALD.getDefaultState(), 2, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable COAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_COAL.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable IRON_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_IRON.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable GOLD_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_GOLD.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable DIAMOND_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_DIAMOND.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable REDSTONE_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_REDSTONE.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable LAPIS_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_LAPIS.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable EMERALD_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_EMERALD.getDefaultState(), 2, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
 
-    private static final WorldGenerator GARNET_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_GARNET.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator TOPAZ_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_TOPAZ.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator FOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_FOPAL.getDefaultState(), 9, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator DOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_DOPAL.getDefaultState(), 12, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-    private static final WorldGenerator LOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_LOPAL.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
-
+    private static final WorldGenMinable GARNET_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_GARNET.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable TOPAZ_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_TOPAZ.getDefaultState(), 10, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable FOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_FOPAL.getDefaultState(), 9, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable DOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_DOPAL.getDefaultState(), 12, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
+    private static final WorldGenMinable LOPAL_GENERATOR = new WorldGenMinable(TUOMBlocks.DARK_LOPAL.getDefaultState(), 8, BlockMatcher.forBlock(TUOMBlocks.DARK_STONE));
     
 	private static final int COAL_PER_CHUNK = 80;
 	private static final int IRON_PER_CHUNK = 60;
@@ -45,131 +43,49 @@ public class OpalOreGen implements IWorldGenerator{
 	private static final int FOPAL_PER_CHUNK = 2;
 	private static final int DOPAL_PER_CHUNK = 5;
 	private static final int LOPAL_PER_CHUNK = 1;
-
-    public void generate(Random random, int chunkX, int chunkZ, World world) {
-
-        random.setSeed(random.nextLong() ^ SEED);
-
-        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-
-        int globalX = chunkX << 4;
-        int globalZ = chunkZ << 4;
-
-        for (int i = 0; i < COAL_PER_CHUNK; i++) {
-        	if(random.nextInt(100) < 50) {
-	        	int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(64);
-	            int offsetZ = random.nextInt(16);
-            	pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-            	COAL_GENERATOR.generate(world, random, pos);
-            }
-        }
-        for (int f = 0; f < IRON_PER_CHUNK; f++) {
-            if(random.nextInt(100) < 40) {
-	        	int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(64);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            if(random.nextInt(10) < 7)
-	            IRON_GENERATOR.generate(world, random, pos);
-            }
-        }
-        for (int f = 0; f < GOLD_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 30) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(32);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            GOLD_GENERATOR.generate(world, random, pos);
-        	}
-    	}
-        for (int f = 0; f < DIAMOND_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 15) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(16);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            DIAMOND_GENERATOR.generate(world, random, pos);
-            }
-        }
-        for (int f = 0; f < REDSTONE_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 30) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(16);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            REDSTONE_GENERATOR.generate(world, random, pos);
-        	}
-    	}
-        for (int f = 0; f < LAPIS_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 30) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(31);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            LAPIS_GENERATOR.generate(world, random, pos);
-	        }
-    	}
-        for (int f = 0; f < EMERALD_PER_CHUNK; f++) {
-            int offsetX = random.nextInt(16);
-            int offsetY = random.nextInt(32);
-            int offsetZ = random.nextInt(16);
-            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-            EMERALD_GENERATOR.generate(world, random, pos);
-        }
-        for (int f = 0; f < GARNET_PER_CHUNK; f++) {
-            if(random.nextInt(100) < 43) {
-	        	int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(64);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            if(random.nextInt(10) < 7)
-	            GARNET_GENERATOR.generate(world, random, pos);
-            }
-        }
-        for (int f = 0; f < TOPAZ_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 15) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(16);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            TOPAZ_GENERATOR.generate(world, random, pos);
-            }
-        }
-        for (int f = 0; f < FOPAL_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 15) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(16);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            FOPAL_GENERATOR.generate(world, random, pos);
-        	}
-        }
-        for (int f = 0; f < DOPAL_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 20) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(24);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            DOPAL_GENERATOR.generate(world, random, pos);
-            }
-        }
-        for (int f = 0; f < LOPAL_PER_CHUNK; f++) {
-        	if(random.nextInt(100) < 15) {
-	            int offsetX = random.nextInt(16);
-	            int offsetY = random.nextInt(14);
-	            int offsetZ = random.nextInt(16);
-	            pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
-	            LOPAL_GENERATOR.generate(world, random, pos);
-            }
-        }
-    }
+	
+	private static World worldObj;
+	private static int globalX;
+	private static int globalZ;
+	private static BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
-			IChunkProvider chunkProvider) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) 
+	{
+		worldObj = world;
+        random.setSeed(random.nextLong() ^ SEED);
+
+        this.globalX = chunkX << 4;
+        this.globalZ = chunkZ << 4;
+        
+        generateOres(COAL_PER_CHUNK, 64, 16, 50, COAL_GENERATOR);
+        generateOres(IRON_PER_CHUNK, 64, 16, 40, IRON_GENERATOR);
+        generateOres(GOLD_PER_CHUNK, 32, 16, 30, GOLD_GENERATOR);
+        generateOres(DIAMOND_PER_CHUNK, 16, 16, 15, DIAMOND_GENERATOR);
+        generateOres(REDSTONE_PER_CHUNK, 16, 16, 30, REDSTONE_GENERATOR);
+        generateOres(LAPIS_PER_CHUNK, 31, 16, 30, LAPIS_GENERATOR);
+        generateOres(EMERALD_PER_CHUNK, 32, 16, 12, EMERALD_GENERATOR);
+        
+        generateOres(GARNET_PER_CHUNK, 64, 16, 43, GARNET_GENERATOR);
+        generateOres(TOPAZ_PER_CHUNK, 16, 16, 15, TOPAZ_GENERATOR);
+        generateOres(FOPAL_PER_CHUNK, 16, 16, 15, FOPAL_GENERATOR);
+        generateOres(DOPAL_PER_CHUNK, 24, 16, 20, DOPAL_GENERATOR);
+        generateOres(LOPAL_PER_CHUNK, 14, 16, 15, LOPAL_GENERATOR);
+    }	
 	
+	private static void generateOres(int numPerChunk, int offY, int offZ, int chance, WorldGenMinable gen) 
+	{
+		for(int i = 0; i < numPerChunk; i++) 
+		{
+			if(new Random().nextInt(100) < chance) 
+			{
+				int offsetX = new Random().nextInt(16);
+				int offsetY = new Random().nextInt(offY);
+				int offsetZ = new Random().nextInt(offZ);
+				
+				pos.setPos(globalX + offsetX, offsetY, globalZ + offsetZ);
+				gen.generate(worldObj, new Random(), pos);
+			}
+		}
+	}
 }

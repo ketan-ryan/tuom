@@ -4,6 +4,7 @@ import com.mco.TUOM;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -29,6 +30,12 @@ public class RegistryEventHandler
 	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) 
 	{
 		TUOMEntities.registerEntities(event.getRegistry());
+	}
+	
+	@SubscribeEvent
+	public static void registerBiomes(RegistryEvent.Register<Biome> event)
+	{
+		TUOMBiomes.registerBiomes(event.getRegistry());
 	}
 
 }

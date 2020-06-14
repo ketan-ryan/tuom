@@ -202,8 +202,6 @@ public class OpalChunkGen implements IChunkGenerator
                         float neighborHeightVariation = neighborBiome.getHeightVariation();
                         float neighborRidgeWeight = 1;
                         float neighborDensityScale = 1;
-                        //float neighborRidgeWeight = IMidnightBiome.getRidgeWeight(neighborBiome);
-                        //float neighborDensityScale = IMidnightBiome.getDensityScale(neighborBiome);
 
                         float biomeWeight = this.weightTable.get(neighborX, neighborZ) / (neighborBaseHeight + 2.0F);
                         if (neighborBiome.getBaseHeight() > originBiome.getBaseHeight()) 
@@ -324,18 +322,18 @@ public class OpalChunkGen implements IChunkGenerator
             }
         }
 
-        TUOMBiomes.dark_forest.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
-        TUOMBiomes.dark_mountains.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
-        TUOMBiomes.dark_plains.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
+        TUOMBiomes.DARK_FOREST.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
+        TUOMBiomes.DARK_MOUNTAINS.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
+        TUOMBiomes.DARK_PLAINS.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
 
         /*
          * Spawn creatures
          */
         if (TerrainGen.populate(this, world, random, parChunkX, parChunkZ, villageHasGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM))
         {            
-            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.dark_forest, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
-            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.dark_mountains, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
-            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.dark_plains, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
+            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_FOREST, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
+            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_MOUNTAINS, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
+            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_PLAINS, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
 
         }
         

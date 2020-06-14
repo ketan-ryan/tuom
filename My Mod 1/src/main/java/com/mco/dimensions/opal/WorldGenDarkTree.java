@@ -41,7 +41,7 @@ public class WorldGenDarkTree extends WorldGenAbstractTree
         int minHeight = parRandom.nextInt(5) + minTreeHeight;
         
         // Check if tree fits in world
-        if (parBlockPos.getY() >= 1 && parBlockPos.getY() + minHeight + 1 <= parWorld.getHeight() && parWorld.getBiome(parBlockPos) != TUOMBiomes.dark_plains)
+        if (parBlockPos.getY() >= 1 && parBlockPos.getY() + minHeight + 1 <= parWorld.getHeight() && parWorld.getBiome(parBlockPos) != TUOMBiomes.DARK_PLAINS)
         {
             if (!isSuitableLocation(parWorld, parBlockPos, minHeight))
             {
@@ -142,7 +142,7 @@ public class WorldGenDarkTree extends WorldGenAbstractTree
             {
                 for (int checkZ = parBlockPos.getZ() - extraSpaceNeeded; checkZ <= parBlockPos.getZ() + extraSpaceNeeded && isSuitableLocation; ++checkZ)
                 {
-                    isSuitableLocation = isReplaceable(parWorld,blockPos.setPos(checkX, checkY, checkZ)) && parWorld.getBiome(parBlockPos) != TUOMBiomes.dark_plains; 
+                    isSuitableLocation = isReplaceable(parWorld,blockPos.setPos(checkX, checkY, checkZ)) && parWorld.getBiome(parBlockPos) != TUOMBiomes.DARK_PLAINS; 
                 }
             }
         }

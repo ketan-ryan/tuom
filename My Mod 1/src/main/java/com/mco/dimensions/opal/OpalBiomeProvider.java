@@ -1,10 +1,9 @@
 package com.mco.dimensions.opal;
 
 import com.mco.dimensions.layer.ReplaceRandomLayer;
-import com.mco.main.TUOMBiomes;
-import com.mco.dimensions.layer.ReplaceRandomLayer;
 import com.mco.dimensions.layer.TUOMSeedLayer;
 import com.mco.main.TUOMBiomes;
+
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeProvider;
@@ -39,11 +38,11 @@ public class OpalBiomeProvider extends BiomeProvider
         {
         	//seed, chance, replacement, GenLayer parent
         	//Voronoi param1: size of biome
-	        layer = new ReplaceRandomLayer(100, 33, Biome.getIdForBiome(TUOMBiomes.dark_forest), layer);
+	        layer = new ReplaceRandomLayer(100, 33, Biome.getIdForBiome(TUOMBiomes.DARK_FOREST), layer);
 	        layer = new GenLayerVoronoiZoom(1000, layer);
-	        layer = new ReplaceRandomLayer(100,  33, Biome.getIdForBiome(TUOMBiomes.dark_mountains), layer);
+	        layer = new ReplaceRandomLayer(100,  33, Biome.getIdForBiome(TUOMBiomes.DARK_MOUNTAINS), layer);
 	        layer = new GenLayerFuzzyZoom(1000, layer);
-	        layer = new ReplaceRandomLayer(100,  33, Biome.getIdForBiome(TUOMBiomes.dark_plains), layer);
+	        layer = new ReplaceRandomLayer(100,  33, Biome.getIdForBiome(TUOMBiomes.DARK_PLAINS), layer);
 	        layer = new GenLayerFuzzyZoom(5000, layer);
 	        
 	        layer = GenLayerZoom.magnify(8000, layer, 2);

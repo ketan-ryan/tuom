@@ -2,11 +2,8 @@ package com.mco.generation;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.google.common.base.Predicate;
-import com.mco.dimensions.opal.OpalWorldType;
-import com.mco.dimensions.opal.OpaliteWorldProvider;
+import com.mco.dimensions.TUOMWorldGen;
 import com.mco.dimensions.opal.mapgen.OpalOreGen;
 import com.mco.main.TUOMBlocks;
 
@@ -16,43 +13,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.Template;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class TUOMWorldGenerator extends WorldGenerator implements IWorldGenerator
-{
-	public static final String OPAL_NAME = "opal";
-	public static final int OPAL_DIM_ID = findFreeDimensionID();
-	public static final DimensionType OPAL_DIMENSION_TYPE = DimensionType.register(OPAL_NAME, "_" + OPAL_NAME, OPAL_DIM_ID, OpaliteWorldProvider.class, true);
-	public static final WorldType OPAL_WORLD_TYPE = new OpalWorldType();
-	static Random rand = new Random();
-	
-    private static final long SEED = 21052088057241959L;
-	
-	@Nullable
-    private static Integer findFreeDimensionID()
-    {
-        for (int i=2; i<Integer.MAX_VALUE; i++)
-        {
-            if (!DimensionManager.isDimensionRegistered(i))
-            {
-                System.out.println("Found free dimension ID = "+i);
-                return i;
-            }
-        }
-        
-        // DEBUG
-        System.out.println("ERROR: Could not find free dimension ID");
-        return null;
-    }
-	
+public class OpalWorldGenerator extends WorldGenerator implements IWorldGenerator
+{	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -76,11 +45,11 @@ public class TUOMWorldGenerator extends WorldGenerator implements IWorldGenerato
 		else if(id == 1)
 		{
 		}
-		else if(id == OPAL_DIM_ID)
+		else if(id == TUOMWorldGen.OPAL_DIM_ID)
 		{
-			generateDark(world, rand, blockX + 8, blockZ + 8);
+			generateDark(world, new Random(), blockX + 8, blockZ + 8);
 			OpalOreGen oreGen = new OpalOreGen();
-			oreGen.generate(random, chunkX, chunkZ, world);
+			oreGen.generate(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
 			//          block to gen, blockAmt, chance, veinCount, minH, maxH, block to replace, world, rand, chunkX, chunkZ
 /*			runGenerator(TUOMBlocks.garnet_ore.getDefaultState(), 12, 60, 70, 1, 100, BlockMatcher.forBlock(TUOMBlocks.dark_stone), world, random, chunkX, chunkZ);
 			runGenerator(TUOMBlocks.topaz_ore.getDefaultState(), 8, 15, 5, 35, 200, BlockMatcher.forBlock(TUOMBlocks.dark_stone), world, random, chunkX, chunkZ);
@@ -162,7 +131,7 @@ public class TUOMWorldGenerator extends WorldGenerator implements IWorldGenerato
 	{
 		IBlockState iBlockState = Blocks.VINE.getDefaultState().withProperty(property, Boolean.valueOf(true));
 		this.setBlockAndNotifyAdequately(world, pos, iBlockState);
-		int i = 15 + rand.nextInt(15);
+		int i = 15 + new Random().nextInt(15);
 		
 		for(BlockPos blockPos = pos.down(); world.isAirBlock(blockPos) && i > 0; i--)
 		{

@@ -3,8 +3,7 @@ package com.mco;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.mco.generation.TUOMWorldGenerator;
-import com.mco.main.TUOMBiomes;
+import com.mco.dimensions.TUOMWorldGen;
 import com.mco.main.TUOMItems;
 import com.mco.potions.TUOMPotions;
 import com.mco.proxies.IProxy;
@@ -14,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -23,7 +21,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * MOD INFO =================================================
@@ -99,28 +96,22 @@ public class TUOM {
 				return new ItemStack(TUOMItems.DARK_TELEPORTER);
 			}
 		};
-        
-	//	TUOMEntities.preInit();
-      //  TUOMEntities.registerEntitySpawns();
-		GameRegistry.registerWorldGenerator(new TUOMWorldGenerator(), 0);	
-		DimensionManager.registerDimension(TUOMWorldGenerator.OPAL_DIM_ID, TUOMWorldGenerator.OPAL_DIMENSION_TYPE);
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) 
-	{
-		TUOMBiomes.init(event);
-		
+	{		
         MinecraftForge.EVENT_BUS.register(new TUOMPotions());
 
     	DARK_CHEST_DEMON = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_demon"));
     	DARK_CHEST_LAVA = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_lava"));
     	DARK_CHEST_TOP = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_top"));
+    	
+		TUOMWorldGen.init();
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) 
-	{
-	}
+	{}
 
 }

@@ -1,6 +1,7 @@
 package library.biomes;
 
-import library.LibRegistry;
+import com.mco.TUOM;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
@@ -18,7 +19,7 @@ public class LibBiome extends Biome
     public LibBiome(String registryName, BiomeProperties properties)
     {
         super(properties);
-        setRegistryName(LibRegistry.getModid() + ":" + registryName);
+        setRegistryName(TUOM.MODID + ":" + registryName);
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
     }

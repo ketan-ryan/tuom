@@ -1,23 +1,20 @@
 package com.mco.dimensions.opal;
 
-import java.util.Random;
+import com.mco.dimensions.TUOMWorldGen;
 
-import com.mco.generation.TUOMWorldGenerator;
-import com.mco.main.TUOMBiomes;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class OpaliteWorldProvider extends WorldProvider {
+public class OpaliteWorldProvider extends WorldProvider 
+{
 	@Override
 	public DimensionType getDimensionType() {
-		return TUOMWorldGenerator.OPAL_DIMENSION_TYPE;
+		return TUOMWorldGen.OPAL_DIMENSION_TYPE;
 	}
 
 	/**
@@ -34,7 +31,7 @@ public class OpaliteWorldProvider extends WorldProvider {
 	 * 
 	 */
 	public void init() {
-		this.setDimension(TUOMWorldGenerator.OPAL_DIM_ID);
+		this.setDimension(TUOMWorldGen.OPAL_DIM_ID);
 		this.hasSkyLight = true;
 		this.biomeProvider = new OpalBiomeProvider(world.getWorldInfo());
 	}

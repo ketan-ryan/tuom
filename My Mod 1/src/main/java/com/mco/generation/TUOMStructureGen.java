@@ -59,7 +59,7 @@ public class TUOMStructureGen extends WorldGenerator
 			return false;
 		}
 		
-		if(TUOMWorldGenerator.canSpawnHere(templateDarkBottom, worldServer, pos) && world.getBiome(pos) instanceof DarkOpalPlains)
+		if(OpalWorldGenerator.canSpawnHere(templateDarkBottom, worldServer, pos) && world.getBiome(pos) instanceof DarkOpalPlains)
 		{
 			IBlockState iblockstate = world.getBlockState(pos);
 			world.notifyBlockUpdate(pos, iblockstate, iblockstate, 3);

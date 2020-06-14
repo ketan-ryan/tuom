@@ -1,10 +1,8 @@
 package com.mco.items.teleporters;
 
-import com.mco.TUOM;
-import library.items.LibItemSimple;
+import com.mco.dimensions.TUOMWorldGen;
+
 import library.util.Actions;
-import com.mco.TUOM;
-import com.mco.generation.TUOMWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -28,8 +26,8 @@ public class DarkOpalTeleporterStaff extends Item
 		if(!worldIn.isRemote)
 		{
 			if(playerIn.dimension == 0)
-				playerIn.changeDimension(TUOMWorldGenerator.OPAL_DIM_ID, new DarkOpalTeleporter(playerIn.getServer().getWorld(0)));
-			else if(playerIn.dimension == TUOMWorldGenerator.OPAL_DIM_ID)
+				playerIn.changeDimension(TUOMWorldGen.OPAL_DIM_ID, new DarkOpalTeleporter(playerIn.getServer().getWorld(0)));
+			else if(playerIn.dimension == TUOMWorldGen.OPAL_DIM_ID)
 				playerIn.changeDimension(0, new DarkOpalTeleporter(playerIn.getServer().getWorld(0)));
 			else
 				Actions.playSound(playerIn, SoundEvents.BLOCK_ANVIL_BREAK, 1F, 1F);
