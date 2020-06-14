@@ -2,7 +2,7 @@ package com.mco.entities.mobs.dark.demon.layers;
 
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
-import library.LibRegistry;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class LayerDarkGlow<T extends EntityDarkOpalDemon> implements LayerRenderer<T>
 {
-	private static final ResourceLocation DEMON_GLOW = new ResourceLocation(LibRegistry.getModid(), "textures/entities/mobs/dark_demon_glow.png");
+	private static final ResourceLocation DEMON_GLOW = new ResourceLocation("tuom:textures/entities/mobs/dark_demon_glow.png");
     private final RenderDarkOpalDemon demonRenderer;
 
     public LayerDarkGlow(RenderDarkOpalDemon renderDarkOpalDemon)

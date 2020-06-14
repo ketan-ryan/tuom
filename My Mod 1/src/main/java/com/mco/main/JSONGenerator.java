@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 /**
  * @author TheMCO
  * Why spend 1 hour doing something when you could spend 5 automating it?
+ * This class automatically generates a new JSON model for any simple item/block
  */
 public class JSONGenerator {
 
@@ -69,12 +70,13 @@ public class JSONGenerator {
 	
 	private static void createItemFile(Item item) throws FileNotFoundException
 	{
+		String name = item.getUnlocalizedName().substring(5);
 		try {
-			itemJson = new FileWriter(directory + "models/item/" + item.getUnlocalizedName().substring(5) + ".json");			
+			itemJson = new FileWriter(directory + "models/item/" + name + ".json");			
 			itemJson.write("{\n");
 			itemJson.write("	\"parent\": \"item/generated\",\n");
 			itemJson.write("	\"textures\": {\n");
-			itemJson.write("		\"layer0\": \"tuom:items/" + item.getUnlocalizedName().substring(5) + "\"" +"\n");
+			itemJson.write("		\"layer0\": \"tuom:items/" + name + "\"" +"\n");
 			itemJson.write("	}\n");
 			itemJson.write("}");
 		}
@@ -94,12 +96,13 @@ public class JSONGenerator {
 	
 	private static void createBlockFile(Block block) throws FileNotFoundException
 	{
+		String name = block.getUnlocalizedName().substring(5);
 		try {
-			blockJson = new FileWriter(directory + "models/block/" + block.getUnlocalizedName().substring(5) + ".json");			
+			blockJson = new FileWriter(directory + "models/block/" + name + ".json");			
 			blockJson.write("{\n");
 			blockJson.write("	\"parent\": \"block/cube_all\",\n");
 			blockJson.write("	\"textures\": {\n");
-			blockJson.write("		\"all\": \"tuom:blocks/" + block.getUnlocalizedName().substring(5) + "\"" +"\n");
+			blockJson.write("		\"all\": \"tuom:blocks/" + name + "\"" +"\n");
 			blockJson.write("	}\n");
 			blockJson.write("}");
 		}
@@ -119,14 +122,15 @@ public class JSONGenerator {
 	
 	private static void createBlockState(Block block) throws FileNotFoundException
 	{
+		String name = block.getUnlocalizedName().substring(5);
 		try {
-			blockStateJson = new FileWriter(directory + "blockstates/" + block.getUnlocalizedName().substring(5) + ".json");
+			blockStateJson = new FileWriter(directory + "blockstates/" + name + ".json");
 			blockStateJson.write("{\n");
 			blockStateJson.write("	\"forge_marker\": 1,\n");
 			blockStateJson.write("	\"defaults\": {\n");
 			blockStateJson.write("		\"model\": \"cube_all\",\n");
 			blockStateJson.write("		\"textures\": {\n");
-			blockStateJson.write("			\"all\": \"tuom:blocks/" + block.getUnlocalizedName().substring(5) +"\"\n");
+			blockStateJson.write("			\"all\": \"tuom:blocks/" + name +"\"\n");
 			blockStateJson.write("		}\n");
 			blockStateJson.write("	},\n");
 			blockStateJson.write("	\"variants\": {\n");

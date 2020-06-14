@@ -5,26 +5,22 @@ import org.apache.logging.log4j.Logger;
 
 import com.mco.generation.TUOMWorldGenerator;
 import com.mco.main.TUOMBiomes;
-import com.mco.main.TUOMBlocks;
-import com.mco.main.TUOMEntities;
 import com.mco.main.TUOMItems;
-import com.mco.potions.DarkPotion;
 import com.mco.potions.TUOMPotions;
 import com.mco.proxies.IProxy;
-import com.mco.proxies.ServerProxy;
+
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLModIdMappingEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -113,7 +109,6 @@ public class TUOM {
 	@EventHandler
 	public void init(FMLInitializationEvent event) 
 	{
-		TUOMBlocks.init(event);
 		TUOMBiomes.init(event);
 		
         MinecraftForge.EVENT_BUS.register(new TUOMPotions());

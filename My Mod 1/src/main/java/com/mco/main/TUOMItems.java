@@ -264,6 +264,9 @@ public class TUOMItems {
 	@ObjectHolder("dark_teleporter")
 	public static final Item DARK_TELEPORTER = null;
 	
+	@ObjectHolder("dark_bomb")
+	public static final Item DARK_BOMB = null;
+	
 	public static void registerItems(IForgeRegistry<Item> registry)
 	{
 		registerItem(registry, "item_garnet", new Item().setCreativeTab(TUOM.tuom_tab));
@@ -357,6 +360,8 @@ public class TUOMItems {
 		registerItem(registry, "dark_orb", new Item().setCreativeTab(TUOM.dim_tab));
 		registerItem(registry, "obsidian_stick", new Item().setCreativeTab(TUOM.dim_tab));
 		registerItem(registry, "dark_teleporter", new DarkOpalTeleporterStaff().setCreativeTab(TUOM.dim_tab));
+		
+		registerItem(registry, "dark_bomb", new Item());
 		
 		for(Block block : TUOMBlocks.blocks)
 			registerItem(registry, block.getUnlocalizedName().substring(5), new ItemBlock(block));

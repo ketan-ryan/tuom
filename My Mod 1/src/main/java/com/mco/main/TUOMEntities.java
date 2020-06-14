@@ -2,36 +2,39 @@ package com.mco.main;
 
 import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.ModelDarkOpalDemon;
+import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
 import com.mco.entities.mobs.dark.demon.bomb.EntityProjectileDarkBomb;
+import com.mco.entities.mobs.dark.demon.bomb.RenderDarkBomb;
+import com.mco.entities.mobs.dark.demon.bomb.RenderProjectileDarkBomb;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
-import com.mco.entities.mobs.dark.demon.corrupted.ModelDarkVex;
-import com.mco.entities.mobs.dark.demon.laser.EntityLaserProjectile;
+import com.mco.entities.mobs.dark.demon.corrupted.render.RenderCorruptedChicken;
+import com.mco.entities.mobs.dark.demon.corrupted.render.RenderCorruptedCow;
+import com.mco.entities.mobs.dark.demon.corrupted.render.RenderCorruptedPig;
+import com.mco.entities.mobs.dark.demon.corrupted.render.RenderCorruptedSheep;
+import com.mco.entities.mobs.dark.demon.corrupted.render.RenderDarkVex;
 import com.mco.entities.mobs.dark.demon.skull.EntityDarkSkull;
-import com.mco.entities.mobs.dark.demon.skull.ModelDarkSkull;
+import com.mco.entities.mobs.dark.demon.skull.RenderDarkSkull;
 import com.mco.entities.projectiles.EntityCustomFallingBlock;
 import com.mco.entities.projectiles.EntityTopazArrow;
 import com.mco.entities.projectiles.FopalGrenadeEntity;
+import com.mco.entities.projectiles.RenderCustomFallingBlock;
+import com.mco.entities.projectiles.RenderFopalGrenade;
+import com.mco.entities.projectiles.RenderTopazArrow;
 import com.mco.entities.vehicles.DarkShip;
+import com.mco.entities.vehicles.RenderDarkShip;
 
-import library.LibRegistry;
-import library.entities.mobs.models.LibModelChicken;
-import library.entities.mobs.models.LibModelSheep;
-import library.entities.vehicles.LibModelJet;
-import net.minecraft.client.model.ModelCow;
-import net.minecraft.client.model.ModelPig;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid = TUOM.MODID)
@@ -97,7 +100,7 @@ public class TUOMEntities {
 																.name("corrupted_cow")
 																.tracker(64, 3, false)
 																.egg(0x6d390a, 0x00000)
-																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+															//	.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_CHICKEN = EntityEntryBuilder.create()	
@@ -106,7 +109,7 @@ public class TUOMEntities {
 																.name("corrupted_chicken")
 																.tracker(64, 3, false)
 																.egg(0xFFFFFF, 0x00000)
-																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+														//		.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_PIG = EntityEntryBuilder.create()
@@ -115,7 +118,7 @@ public class TUOMEntities {
 																.name("corrupted_pig")
 																.tracker(64, 3, false)
 																.egg(0xff82fc, 0x00000)
-																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+													//			.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_SHEEP = EntityEntryBuilder.create()
@@ -124,7 +127,7 @@ public class TUOMEntities {
 																.name("corrupted_sheep")
 																.tracker(64, 3, false)
 																.egg(0xdbdde0, 0x00000)
-																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+													//			.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
 																.build();
 	
 	private static final EntityEntry DARK_VEX = EntityEntryBuilder.create()
@@ -133,7 +136,7 @@ public class TUOMEntities {
 																.name("dark_vex")
 																.tracker(64, 3, false)
 																.egg(0x00000, 0x00000)
-																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+											//					.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
 																.build();
 	
 	private static final EntityEntry DARK_BOMB = EntityEntryBuilder.create()
@@ -162,35 +165,25 @@ public class TUOMEntities {
 	}
 	
 	public static <T extends EntityEntry> void registerEntity(IForgeRegistry<EntityEntry> registry, String name, T entityEntry) {
-		entityEntry.setRegistryName(TUOM.MODID, name);
 		registry.register(entityEntry);
 	}
 
-	/**
-	 * REGISTER ENTITY MODELS =================================================
-	 */
-	@SideOnly(Side.CLIENT)
-	public static void registerEntityModels() {
-
-		/** VEHICLES */
-
-		LibRegistry.registerVehicleModel(DarkShip.class, LibModelJet.class, 1F);
+	@SubscribeEvent
+	public static void registerRenders(ModelRegistryEvent e) 
+	{
+		RenderingRegistry.registerEntityRenderingHandler(DarkShip.class, RenderDarkShip::new);
+		RenderingRegistry.registerEntityRenderingHandler(FopalGrenadeEntity.class, RenderFopalGrenade::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityTopazArrow.class, RenderTopazArrow::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkSkull.class, RenderDarkSkull::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileDarkBomb.class, RenderProjectileDarkBomb::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCustomFallingBlock.class, RenderCustomFallingBlock::new);
 		
-		/** PROJECTILES */
-
-		LibRegistry.registerProjectileModel(EntityTopazArrow.class);
-		LibRegistry.registerProjectileSprite(FopalGrenadeEntity.class, 1F);
-		LibRegistry.registerProjectileSprite(EntityProjectileDarkBomb.class, 1);
-		LibRegistry.registerProjectileSprite(EntityLaserProjectile.class, 1);
-		LibRegistry.registerProjectileCustomModel(EntityDarkSkull.class, ModelDarkSkull.class, 1);
-		
-		/** MOBS */
-
-		LibRegistry.registerMobModel(EntityDarkOpalDemon.class, ModelDarkOpalDemon.class, 1F);
-		LibRegistry.registerMobModel(EntityCorruptedCow.class, ModelCow.class, 1.25F);        
-		LibRegistry.registerMobModel(EntityCorruptedChicken.class, LibModelChicken.class, 1.25F);
-		LibRegistry.registerMobModel(EntityCorruptedPig.class, ModelPig.class, 1.25F);        
-		LibRegistry.registerMobModel(EntityCorruptedSheep.class, LibModelSheep.class, 1.25F);
-		LibRegistry.registerMobModel(EntityDarkVex.class, ModelDarkVex.class, 2F);
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkOpalDemon.class, RenderDarkOpalDemon::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCorruptedCow.class, RenderCorruptedCow::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCorruptedChicken.class, RenderCorruptedChicken::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCorruptedPig.class, RenderCorruptedPig::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCorruptedSheep.class, RenderCorruptedSheep::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkVex.class, RenderDarkVex::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityDarkBomb.class, RenderDarkBomb::new);
 	}
 }

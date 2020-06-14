@@ -1,37 +1,25 @@
 package com.mco.proxies;
 
-import com.mco.TUOM;
-import com.mco.blocks.biomes.dark.DarkLeaves;
-import com.mco.entities.lightning.dark.RenderDarkLightning;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
-import com.mco.entities.projectiles.RenderCustomFallingBlock;
-import com.mco.events.TUOMEventHandler;
-import com.mco.main.TUOMEntities;
-import com.mco.potions.TUOMPotions;
-
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
 
-import library.LibRegistry;
-import library.common.BakedModelLoader;
-import library.gui.LibFurnaceGUI;
-import library.gui.LibGUIHandler;
 import com.mco.TUOM;
+import com.mco.blocks.biomes.dark.DarkLeaves;
 import com.mco.entities.lightning.dark.EntityDarkLightning;
 import com.mco.entities.lightning.dark.RenderDarkLightning;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
 import com.mco.entities.mobs.dark.demon.bomb.RenderDarkBomb;
-import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 import com.mco.entities.projectiles.EntityCustomFallingBlock;
 import com.mco.entities.projectiles.RenderCustomFallingBlock;
-import com.mco.main.TUOMEntities;
+import com.mco.events.TUOMEventHandler;
+
+import library.common.BakedModelLoader;
+import library.gui.LibFurnaceGUI;
+import library.gui.LibGUIHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderVex;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
@@ -55,8 +43,6 @@ public class ClientProxy implements IProxy
     {        
         OBJLoader.INSTANCE.addDomain(TUOM.MODID);
         ModelLoaderRegistry.registerLoader(new BakedModelLoader());
-        TUOMEntities.registerEntityModels();
-        LibRegistry.registerEntityModels();
       
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, RenderDarkLightning.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityCustomFallingBlock.class, RenderCustomFallingBlock.FACTORY);
