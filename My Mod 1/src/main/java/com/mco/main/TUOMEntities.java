@@ -80,7 +80,7 @@ public class TUOMEntities {
 																.build();
 																
 	private static final EntityEntry DARK_BOMB_PROJECTILE = EntityEntryBuilder.create()
-																.entity(EntityDarkBomb.class)
+																.entity(EntityProjectileDarkBomb.class)
 																.id(new ResourceLocation(TUOM.MODID, "dark_bomb_projectile"), mobID++)
 																.name("dark_bomb_projectile")
 																.tracker(64, 3, true)

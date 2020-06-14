@@ -136,6 +136,7 @@ entity.corrupted_cow.name=Corrupted Cow
 entity.corrupted_chicken.name=Corrupted Chicken
 entity.corrupted_pig.name=Corrupted Pig
 entity.corrupted_sheep.name=Corrupted Sheep
+entity.dark_vex.name=Dark Vex
 
 entity.topaz_arrow.name=Topaz Arrow
 entity.dark_bomb.name=Dark Bomb
