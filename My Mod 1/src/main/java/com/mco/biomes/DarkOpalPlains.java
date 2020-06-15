@@ -2,6 +2,11 @@ package com.mco.biomes;
 
 import java.util.Random;
 
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 import com.mco.main.TUOMBlocks;
 
 import net.minecraft.block.material.Material;
@@ -24,6 +29,11 @@ public class DarkOpalPlains extends LibBiomeDark
 		this.setFoliageColor(0x36004F);
 		this.setSkyColor(0x36004F);
 		
+		this.addMonsterSpawn(EntityDarkVex.class, 1, 1, 1);
+		this.addMonsterSpawn(EntityCorruptedChicken.class, 1, 1, 3);
+		this.addMonsterSpawn(EntityCorruptedCow.class, 1, 1, 3);
+		this.addMonsterSpawn(EntityCorruptedPig.class, 1, 1, 3);
+		this.addMonsterSpawn(EntityCorruptedSheep.class, 1, 1, 3);
 	}
 
 	public void genTerrainBlocks(final World world, final Random rand, final ChunkPrimer primer, final int x, final int z, final double noiseVal) 

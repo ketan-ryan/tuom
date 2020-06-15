@@ -28,6 +28,7 @@ import com.mco.entities.projectiles.RenderTopazArrow;
 import com.mco.entities.vehicles.DarkShip;
 import com.mco.entities.vehicles.RenderDarkShip;
 
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -100,7 +101,7 @@ public class TUOMEntities {
 																.name("corrupted_cow")
 																.tracker(64, 3, false)
 																.egg(0x6d390a, 0x00000)
-															//	.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_FOREST, TUOMBiomes.DARK_MOUNTAINS, TUOMBiomes.DARK_PLAINS)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_CHICKEN = EntityEntryBuilder.create()	
@@ -109,7 +110,7 @@ public class TUOMEntities {
 																.name("corrupted_chicken")
 																.tracker(64, 3, false)
 																.egg(0xFFFFFF, 0x00000)
-														//		.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+														//		.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_FOREST, TUOMBiomes.DARK_MOUNTAINS, TUOMBiomes.DARK_PLAINS)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_PIG = EntityEntryBuilder.create()
@@ -118,7 +119,7 @@ public class TUOMEntities {
 																.name("corrupted_pig")
 																.tracker(64, 3, false)
 																.egg(0xff82fc, 0x00000)
-													//			.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+															//	.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_FOREST, TUOMBiomes.DARK_MOUNTAINS, TUOMBiomes.DARK_PLAINS)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_SHEEP = EntityEntryBuilder.create()
@@ -127,7 +128,7 @@ public class TUOMEntities {
 																.name("corrupted_sheep")
 																.tracker(64, 3, false)
 																.egg(0xdbdde0, 0x00000)
-													//			.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+														//		.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_FOREST, TUOMBiomes.DARK_MOUNTAINS, TUOMBiomes.DARK_PLAINS)
 																.build();
 	
 	private static final EntityEntry DARK_VEX = EntityEntryBuilder.create()
@@ -136,7 +137,7 @@ public class TUOMEntities {
 																.name("dark_vex")
 																.tracker(64, 3, false)
 																.egg(0x00000, 0x00000)
-											//					.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.dark_forest, TUOMBiomes.dark_mountains, TUOMBiomes.dark_plains)
+														//		.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_FOREST, TUOMBiomes.DARK_MOUNTAINS, TUOMBiomes.DARK_PLAINS)
 																.build();
 	
 	private static final EntityEntry DARK_BOMB = EntityEntryBuilder.create()

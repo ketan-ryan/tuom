@@ -27,15 +27,15 @@ public class RegistryEventHandler
 	}
 	
 	@SubscribeEvent
-	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) 
-	{
-		TUOMEntities.registerEntities(event.getRegistry());
-	}
-	
-	@SubscribeEvent
 	public static void registerBiomes(RegistryEvent.Register<Biome> event)
 	{
 		TUOMBiomes.registerBiomes(event.getRegistry());
+	}
+
+	@SubscribeEvent
+	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) 
+	{
+		TUOMEntities.registerEntities(event.getRegistry());
 	}
 
 }

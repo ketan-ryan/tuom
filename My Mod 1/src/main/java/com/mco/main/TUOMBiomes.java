@@ -1,4 +1,4 @@
-package com.mco.main;
+ package com.mco.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,11 +73,15 @@ public class TUOMBiomes
     {
     	registry.register(biome);
     	BiomeDictionary.addTypes(biome, types);
-    	SEED_BIOMES.add(biome);
+    	
+    	if(biome != SATANIC)
+    		SEED_BIOMES.add(biome);
     }
 
     public static List<Biome> getSeedBiomes() 
     {
+    	if(SEED_BIOMES.contains(SATANIC))
+    		SEED_BIOMES.remove(SATANIC);
         return Collections.unmodifiableList(SEED_BIOMES);
     }
 	
