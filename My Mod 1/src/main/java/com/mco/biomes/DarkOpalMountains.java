@@ -10,9 +10,9 @@ import net.minecraft.world.biome.BiomeDecorator;
 
 public class DarkOpalMountains extends LibBiomeDark
 {
-	public DarkOpalMountains(String registryName, BiomeProperties properties) 
+	public DarkOpalMountains(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 		
 		this.addMonsterSpawn(EntityDarkVex.class, 1, 1, 1);
 		this.addMonsterSpawn(EntityCorruptedChicken.class, 1, 1, 3);

@@ -3,6 +3,7 @@ package com.mco.biomes;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.collect.Lists;
 import com.mco.dimensions.opal.WorldGenDarkTree;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
@@ -17,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -25,10 +27,11 @@ import net.minecraftforge.common.BiomeManager.BiomeType;
 public class LibBiomeDark extends LibBiome
 {
 	protected static final WorldGenAbstractTree TREE = new WorldGenDarkTree(true);
+    protected List<Biome.SpawnListEntry> spawnableEntityList = Lists.<Biome.SpawnListEntry>newArrayList();
 
-	public LibBiomeDark(String registryName, BiomeProperties properties) 
+	public LibBiomeDark(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 		
 		this.topBlock = Blocks.GRASS.getDefaultState();
 		this.fillerBlock = TUOMBlocks.DARK_STONE.getDefaultState();
@@ -39,11 +42,12 @@ public class LibBiomeDark extends LibBiome
 		
 		this.type = BiomeType.COOL;		
 		
-		this.addMonsterSpawn(EntityDarkVex.class, 1, 1, 1);
-		this.addMonsterSpawn(EntityCorruptedChicken.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedCow.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedPig.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedSheep.class, 1, 1, 3);
+		this.spawnableEntityList.add(new SpawnListEntry(EntityDarkVex.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedChicken.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedCow.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedPig.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedSheep.class, 15, 1, 3));
+
 	}
 
 	@Override

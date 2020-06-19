@@ -63,14 +63,15 @@ public class TUOMBiomes
 	
     public static void registerBiomes(IForgeRegistry<Biome> registry) 
     {
-    	registerBiome(registry, new SatanicBiome("satanic", SATANIC_PROPERTIES), Type.COLD, Type.PLAINS, Type.WET);
-    	registerBiome(registry, new DarkOpalBiome("dark_opal_forest", DARK_FOREST_PROPERTIES), Type.SPOOKY, Type.DENSE, Type.WET);
-    	registerBiome(registry, new DarkOpalMountains("dark_opal_mountains", DARK_MOUNTAIN_PROPERTIES), Type.SPOOKY, Type.DENSE, Type.WET);
-    	registerBiome(registry, new DarkOpalPlains("dark_opal_plains", DARK_PLAINS_PROPERTIES), Type.SPOOKY, Type.PLAINS, Type.WET);
+    	registerBiome(registry, "satanic", new SatanicBiome(SATANIC_PROPERTIES), Type.COLD, Type.PLAINS, Type.WET);
+    	registerBiome(registry, "dark_opal_forest", new DarkOpalBiome( DARK_FOREST_PROPERTIES), Type.SPOOKY, Type.DENSE, Type.WET);
+    	registerBiome(registry, "dark_opal_mountains", new DarkOpalMountains(DARK_MOUNTAIN_PROPERTIES), Type.SPOOKY, Type.DENSE, Type.WET);
+    	registerBiome(registry, "dark_opal_plains", new DarkOpalPlains(DARK_PLAINS_PROPERTIES), Type.SPOOKY, Type.PLAINS, Type.WET);
     }
     
-    public static <T extends Biome> void registerBiome(IForgeRegistry<Biome> registry, T biome, BiomeDictionary.Type... types) 
+    public static <T extends Biome> void registerBiome(IForgeRegistry<Biome> registry, String name, T biome, BiomeDictionary.Type... types) 
     {
+    	biome.setRegistryName(name);
     	registry.register(biome);
     	BiomeDictionary.addTypes(biome, types);
     	

@@ -6,10 +6,6 @@ import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.items.armor.DopalArmor;
 import com.mco.main.TUOMDamageSources;
-import com.mco.TUOM;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.items.armor.DopalArmor;
-import com.mco.main.TUOMDamageSources;
 import com.mco.main.TUOMItems;
 import com.mco.proxies.ClientProxy;
 
@@ -36,7 +32,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author TheMCOverlordYT
@@ -58,8 +53,7 @@ public class TUOMEventHandler
 		if(event.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)event.getEntity();
-			if(DopalArmor.isWearingFullSet(player, TUOMItems.DOPAL_HELMET, TUOMItems.DOPAL_CHESTPLATE, TUOMItems.DOPAL_LEGGINGS,
-					TUOMItems.DOPAL_BOOTS) && player.getHeldItemOffhand().getItem() == TUOMItems.DARK_STAFF)
+			if(DopalArmor.getHasFullSet())
 				event.setCanceled(true);
 		}
 	}

@@ -28,7 +28,6 @@ import com.mco.entities.projectiles.RenderTopazArrow;
 import com.mco.entities.vehicles.DarkShip;
 import com.mco.entities.vehicles.RenderDarkShip;
 
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -101,7 +100,7 @@ public class TUOMEntities {
 																.name("corrupted_cow")
 																.tracker(64, 3, false)
 																.egg(0x6d390a, 0x00000)
-																.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_FOREST, TUOMBiomes.DARK_MOUNTAINS, TUOMBiomes.DARK_PLAINS)
+															//	.spawn(EnumCreatureType.CREATURE, 15, 1, 3, TUOMBiomes.DARK_PLAINS)
 																.build();
 	
 	private static final EntityEntry CORRUPTED_CHICKEN = EntityEntryBuilder.create()	

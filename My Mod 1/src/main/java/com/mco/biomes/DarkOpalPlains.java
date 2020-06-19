@@ -11,6 +11,8 @@ import com.mco.main.TUOMBlocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,9 +21,9 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class DarkOpalPlains extends LibBiomeDark
 {
-	public DarkOpalPlains(String registryName, BiomeProperties properties) 
+	public DarkOpalPlains(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 		this.topBlock = Blocks.GRASS.getDefaultState();
 		this.fillerBlock = TUOMBlocks.DARK_STONE.getDefaultState();
 
@@ -29,11 +31,13 @@ public class DarkOpalPlains extends LibBiomeDark
 		this.setFoliageColor(0x36004F);
 		this.setSkyColor(0x36004F);
 		
-		this.addMonsterSpawn(EntityDarkVex.class, 1, 1, 1);
-		this.addMonsterSpawn(EntityCorruptedChicken.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedCow.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedPig.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedSheep.class, 1, 1, 3);
+		this.addMonsterSpawn(EntityDarkVex.class, 15, 1, 1);
+		this.addMonsterSpawn(EntityCorruptedChicken.class, 15, 1, 3);
+		this.addCreatureSpawn(EntityCorruptedCow.class, 45, 3, 7);
+		this.addMonsterSpawn(EntityCorruptedPig.class, 15, 1, 3);
+		this.addMonsterSpawn(EntityCorruptedSheep.class, 15, 1, 3);
+		this.addCreatureSpawn(EntityCow.class, 15, 1, 1);
+		this.addMonsterSpawn(EntityZombie.class, 15, 2, 4);
 	}
 
 	public void genTerrainBlocks(final World world, final Random rand, final ChunkPrimer primer, final int x, final int z, final double noiseVal) 

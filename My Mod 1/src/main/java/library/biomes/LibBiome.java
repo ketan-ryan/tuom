@@ -1,7 +1,5 @@
 package library.biomes;
 
-import com.mco.TUOM;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeManager;
@@ -16,12 +14,9 @@ public class LibBiome extends Biome
     public int foliageColor = -1;
     
 
-    public LibBiome(String registryName, BiomeProperties properties)
+    public LibBiome(BiomeProperties properties)
     {
         super(properties);
-        setRegistryName(TUOM.MODID + ":" + registryName);
-        this.spawnableCreatureList.clear();
-        this.spawnableMonsterList.clear();
     }
 
     public BiomeManager.BiomeType getType() {

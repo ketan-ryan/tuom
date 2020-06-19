@@ -1,17 +1,15 @@
 package com.mco.items.armor;
 
-import library.LibRegistry;
+import com.mco.main.TUOMItems;
+
 import library.items.LibItemArmor;
 import library.util.Actions;
-import com.mco.TUOM;
-import com.mco.main.TUOMItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 public class SatanicArmor extends LibItemArmor
@@ -34,25 +32,38 @@ public class SatanicArmor extends LibItemArmor
 				&& player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == boots;
 	}
 	
-	 public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) 
-	 {
-	  if (itemStack.getItem() == TUOMItems.SATANIC_CHESTPLATE) 
-	  {
-			Actions.addPotionEffect(player, MobEffects.RESISTANCE, 200, 2, false);
-	  }
-	  if (itemStack.getItem() == TUOMItems.SATANIC_LEGGINGS)
-	  {
-			Actions.addPotionEffect(player, MobEffects.JUMP_BOOST, 200, 2, false);
-	  }
-	  if (itemStack.getItem() == TUOMItems.SATANIC_BOOTS) 
-	  {
-			Actions.addPotionEffect(player, MobEffects.SPEED, 200, 2, false);
-	  }
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) 
+	{
+		if(!player.isSpectator()) 
+		{
+			NonNullList<ItemStack> armor = player.inventory.armorInventory;
+			int armorPieces = 0;
+			
+			for(ItemStack itemArmor: armor) 
+			{
+				if(itemArmor != null && itemArmor.getItem() instanceof SatanicArmor) 
+				{
+					armorPieces += 1;
+				}
+			}	
 
-	if (this.isWearingFullSet(player, TUOMItems.SATANIC_HELMET, TUOMItems.SATANIC_CHESTPLATE, TUOMItems.SATANIC_LEGGINGS, 
-			TUOMItems.SATANIC_BOOTS)) {
-		Actions.addPotionEffect(player, MobEffects.WEAKNESS, 200, 2, false);
-	  }
+			Item item = stack.getItem();		
+			if(item != null) 
+			{
+				if(item == TUOMItems.SATANIC_CHESTPLATE)
+					Actions.addPotionEffect(player, MobEffects.RESISTANCE, 2, 2, false);
+				if(item == TUOMItems.SATANIC_LEGGINGS)
+					Actions.addPotionEffect(player, MobEffects.JUMP_BOOST, 2, 2, false);
+				if(item == TUOMItems.SATANIC_BOOTS)
+					Actions.addPotionEffect(player, MobEffects.SPEED, 2, 2, false);
+			}
+			
+			if(armorPieces >= 4) 
+			{
+				Actions.addPotionEffect(player, MobEffects.WEAKNESS, 2, 2, false);
+			}
+		}	
 	}
 
 }

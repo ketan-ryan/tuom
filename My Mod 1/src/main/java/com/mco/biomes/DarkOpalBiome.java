@@ -11,9 +11,9 @@ import net.minecraft.world.biome.BiomeDecorator;
 
 public class DarkOpalBiome extends LibBiomeDark
 {
-	public DarkOpalBiome(String registryName, BiomeProperties properties) 
+	public DarkOpalBiome(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 		
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();

@@ -291,7 +291,10 @@ public class OpalChunkGen implements IChunkGenerator
         
         int chunkStartXInWorld = parChunkX * 16;
         int chunkStartZInWorld = parChunkZ * 16;
+        
         BlockPos blockpos = new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld);
+        Biome biome = world.getBiome(blockpos.add(16, 0, 16));
+        
         random.setSeed(world.getSeed());
         long k = random.nextLong() / 2L * 2L + 1L;
         long l = random.nextLong() / 2L * 2L + 1L;
@@ -326,16 +329,18 @@ public class OpalChunkGen implements IChunkGenerator
         TUOMBiomes.DARK_MOUNTAINS.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
         TUOMBiomes.DARK_PLAINS.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
 
-        /*
+        WorldEntitySpawner.performWorldGenSpawning(world, biome, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, this.random);
+/*        
+        
          * Spawn creatures
-         */
+         
         if (TerrainGen.populate(this, world, random, parChunkX, parChunkZ, villageHasGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM))
         {            
             WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_FOREST, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
             WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_MOUNTAINS, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
             WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_PLAINS, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
 
-        }
+        }*/
         
         ForgeEventFactory.onChunkPopulate(false, this, world, random, parChunkX, parChunkZ, villageHasGenerated);
 
@@ -351,7 +356,8 @@ public class OpalChunkGen implements IChunkGenerator
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) 
     {
-        return this.world.getBiome(pos).getSpawnableList(creatureType);
+        Biome biome = world.getBiome(pos);
+        return biome.getSpawnableList(creatureType);
     }
 
     @Nullable
