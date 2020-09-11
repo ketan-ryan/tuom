@@ -57,7 +57,7 @@ public class TUOMOre extends LibBlockOre{
     public int quantityDropped(Random random) 
 	{
 		if(!dropSelf)
-			return quantity + random.nextInt(yield);
+			return quantity + random.nextInt(yield + 1);
 		else
 			return 1;
     }

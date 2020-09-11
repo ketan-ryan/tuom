@@ -1,12 +1,10 @@
 package com.mco.items.armor;
 
-import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
-
 import com.mco.TUOM;
 import com.mco.main.TUOMItems;
 
 import library.items.LibItemArmor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -15,9 +13,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 public class DopalArmor extends LibItemArmor
-{	
-	private static boolean hasFullSet = false;
-	
+{		
 	public DopalArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
 		super(materialIn, equipmentSlotIn);
@@ -53,15 +49,7 @@ public class DopalArmor extends LibItemArmor
 				{
 					if(armorPieces >= 4) 
 					{
-						hasFullSet = true;
-						try 
-						{
-							Keyboard.create();
-						} catch (LWJGLException e) 
-						{
-							e.printStackTrace();
-						}
-						if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)) 
+						if(Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed()) 
 						{
 							player.motionY += 0.04;
 							player.motionX *= 1.01;
@@ -69,15 +57,8 @@ public class DopalArmor extends LibItemArmor
 							player.isAirBorne = true;
 						}
 					}
-					else
-						hasFullSet = false;
 				}
 			}
 		}	
-	}
-	
-	public static boolean getHasFullSet() 
-	{
-		return hasFullSet;
 	}
 }

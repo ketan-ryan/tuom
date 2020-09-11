@@ -129,8 +129,8 @@ public class TUOMBlocks
 		registerBlock(registry, "lopal_ore", new LopalOre("pickaxe", 3).setCreativeTab(TUOM.tuom_tab));
 		
 		registerBlock(registry, "dark_coal", new TUOMOre(0, 2, 0.1F, 3, 15, false, Items.COAL, 1, 2, 2).setCreativeTab(TUOM.dim_tab));
-		registerBlock(registry, "dark_iron", new TUOMOre(1, 0, 0.7F, 3, 15, false, Items.IRON_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab));
-		registerBlock(registry, "dark_gold", new TUOMOre(2, 0, 1.0F, 3, 15, false, Items.GOLD_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_iron", new TUOMOre(1, 0, 0.7F, 3, 15, true, Items.IRON_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab));
+		registerBlock(registry, "dark_gold", new TUOMOre(2, 0, 1.0F, 3, 15, true, Items.GOLD_INGOT, 1, 0, 0).setCreativeTab(TUOM.dim_tab));
 		registerBlock(registry, "dark_redstone", new TUOMOre(2, 5, 0.7F, 3, 15, false, Items.REDSTONE, 4, 8, 4).setCreativeTab(TUOM.dim_tab));
 		registerBlock(registry, "dark_lapis", new TUOMOre(1, 5, 0.2F, 3, 15, false, new ItemStack(Items.DYE, 1, 4).getItem(), 4, 5, 32).setCreativeTab(TUOM.dim_tab));
 		registerBlock(registry, "dark_diamond", new TUOMOre(2, 7, 1.0F, 3, 15, false, Items.DIAMOND, 1, 4, 1).setCreativeTab(TUOM.dim_tab));

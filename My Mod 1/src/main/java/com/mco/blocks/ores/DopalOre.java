@@ -1,9 +1,9 @@
 package com.mco.blocks.ores;
 
+import com.mco.main.TUOMItems;
+
 import library.LibRegistry;
 import library.blocks.LibBlockOre;
-import com.mco.TUOM;
-import com.mco.main.TUOMItems;
 
 public class DopalOre extends LibBlockOre 
 {
