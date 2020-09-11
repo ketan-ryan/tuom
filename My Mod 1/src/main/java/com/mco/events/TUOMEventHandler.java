@@ -14,7 +14,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.GlStateManager.DestFactor;
 import net.minecraft.client.renderer.GlStateManager.SourceFactor;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -22,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -128,9 +126,11 @@ public class TUOMEventHandler
 	
 	/**
 	 * Handles death overlay for Dark Opal Demon - finds one nearby then applies the overlay if it's in the death anim 
+	 * 
+	 * @param event the RenderGameOverlay event
 	 */
 	@SubscribeEvent
-	public static void onRenderOverlay(RenderGameOverlayEvent.Pre event)
+	public static void onRenderOverlay(RenderGameOverlayEvent.Post event)
 	{
 		EntityPlayer player = ClientProxy.getClientPlayer();
 		
@@ -140,12 +140,16 @@ public class TUOMEventHandler
 		{
 			if(demon != null && demon.getDeathTicks() > 1 && demon.getDeathTicks() < 200)
 			{
+				//Setup GL methods
 				GlStateManager.enableAlpha();
 				GlStateManager.enableBlend();
 				GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE_MINUS_SRC_ALPHA);
+				//Set to black with progressively higher alpha
 				GlStateManager.color(1, 1, 1, demon.getDarknessAlpha() / 10);
+				//OSetup texture and size
 				mc.getTextureManager().bindTexture(darkDeathOverlay);
 				ScaledResolution res = event.getResolution();
+				//Draw the overlay
 				Gui.drawModalRectWithCustomSizedTexture(0,  0,  0,  0, res.getScaledWidth(), res.getScaledHeight(), 
 						res.getScaledWidth(), res.getScaledHeight());
 			}
@@ -175,40 +179,24 @@ public class TUOMEventHandler
 		}
 		
 	}
-
-	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEvent(EntityViewRenderEvent.FogDensity event)
-	{
-		if(((EntityLivingBase) event.getEntity()).isPotionActive(TUOM.darkPotion))
-		{
-			System.out.println("density");
-			event.setDensity(1F);
-			event.setCanceled(true);
-		}
-	}
-
-
-	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEvent(EntityViewRenderEvent.FogColors event)
-	{
-		if(((EntityLivingBase) event.getEntity()).isPotionActive(TUOM.darkPotion))
-		{
-			event.setRed(-1F);
-			event.setGreen(-1F);
-			event.setBlue(-1F);
-		}
-	}
 	
+	/**
+	 * When armored, any damge the {@link EntityDarkOpalDemon}
+	 * takes will be reduced by 50%
+	 * 
+	 * @param event the LivingDamageEvent to cancel
+	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public static void onDarkShield(LivingDamageEvent event)
 	{
+		//We only want this to apply to the demon
 		if(event.getEntity() instanceof EntityDarkOpalDemon)
 		{
 			EntityDarkOpalDemon demon = (EntityDarkOpalDemon) event.getEntity();
+			
+			//If armored, halve damge
 			if(demon.isArmored())
-			{
-				event.setAmount(event.getAmount() * .50F);
-			}
+				event.setAmount(event.getAmount() * .50F);			
 		}
 	}
 

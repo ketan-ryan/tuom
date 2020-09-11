@@ -40,9 +40,7 @@ public class EntityCorruptedCow extends EntityMob
 
 	@Override
 	public void onLivingUpdate() {
-		// TODO Auto-generated method stub
 		super.onLivingUpdate();
-		System.out.println(this.getPosition());
 	}
 	
 	protected SoundEvent getAmbientSound()

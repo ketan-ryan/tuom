@@ -3,6 +3,7 @@ package com.mco.entities.mobs.dark.demon;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.collect.ImmutableList;
 import com.mco.entities.mobs.dark.demon.ai.AIBlindingPunches;
 import com.mco.entities.mobs.dark.demon.ai.AIDarkBombs;
 import com.mco.entities.mobs.dark.demon.ai.AIJump;
@@ -27,6 +28,7 @@ import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -42,7 +44,6 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -88,6 +89,11 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	
 	private static final Animation[] ANIMATIONS = {ANIMATION_JUMP, ANIMATION_SKULL, ANIMATION_LIFEDRAIN, ANIMATION_SHIELD, ANIMATION_LIGHTNING, 
 			ANIMATION_DEATH, ANIMATION_MINION, ANIMATION_PUNCH, ANIMATION_BOMBS};
+
+	private static final ImmutableList<Class<? extends EntityLiving>> MOBS = ImmutableList.of(EntityChicken.class, EntityPig.class,
+			EntityCow.class, EntitySheep.class, EntityVillager.class);
+	private static final ImmutableList<Class<? extends EntityLiving>> CORRUPTED = ImmutableList.of(EntityCorruptedChicken.class, EntityCorruptedPig.class, 
+			EntityCorruptedCow.class, EntityCorruptedSheep.class, EntityIllusionIllager.class);
 	
 	public float targetDistance;
     public float targetAngle;
@@ -502,74 +508,46 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         //Replaces regular mobs with their corrupted variants, or husks
         if(deathTicks == 200)
         {
+        	//Get all entities within 30 blocks of the demon
             List<EntityLivingBase> list = this.world.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, 
             		this.getEntityBoundingBox().grow(30.0D, 30.0D, 30.0D));
+            //SFX
         	Actions.playSound(this, TUOMSoundHandler.darkOpalWhoosh, 1, 5);
 
+        	//Iterate through every entity in the list
             for(EntityLivingBase entity : list)
             {
+            	//Get the position of every entity in the list
             	BlockPos location = new BlockPos(entity.getPosition());
-            	
-            	if(entity instanceof EntityChicken)
+
+            	//Go through our predetermined list 
+            	for (int i = 0; i < MOBS.size(); i++) 
             	{
-            		EntityCorruptedChicken chicken = new EntityCorruptedChicken(world);
-            		chicken.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(chicken);
-            		entity.setDead();
-            	}
-            	else if (entity instanceof EntityPig)
-            	{
-            		EntityCorruptedPig pig = new EntityCorruptedPig(world);
-            		pig.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(pig);
-            		entity.setDead();
-            	}
-            	else if(entity instanceof EntityCow)
-            	{
-            		EntityCorruptedCow cow = new EntityCorruptedCow(world);
-            		cow.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(cow);
-            		entity.setDead();
-            	}
-            	else if(entity instanceof EntityRabbit)
-            	{
-            		EntityRabbit rabbit = new EntityRabbit(world);
-            		rabbit.setRabbitType(99);
-            		rabbit.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(rabbit);
-            		entity.setDead();
-            	}
-            	else if(entity instanceof EntitySheep)
-            	{
-            		EntityCorruptedSheep sheep = new EntityCorruptedSheep(world);
-            		sheep.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(sheep);
-            		entity.setDead();
-            	}
-            	else if(entity instanceof EntityVillager)
-            	{
-            		EntityIllusionIllager illager = new EntityIllusionIllager(world);
-            		illager.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(illager);
-            		entity.setDead();
-            	}
-            	else if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityMob) && entity.isNonBoss())
-            	{
-            		EntityHusk husk = new EntityHusk(world);
-            		husk.setPosition(location.getX(), location.getY(), location.getZ());
-            		if(!world.isRemote)
-            			world.spawnEntity(husk);
-            		entity.setDead();
-            	}            	
-            }            
-        	setDead();
-        }        
+            		try 
+            		{
+            			//If our classes match
+						if(entity.getClass() == MOBS.get(i)) 
+						{
+							//Create a new Corrupted mob from the corresponding spot in the list with the world constructor
+							EntityLiving corrupted = CORRUPTED.get(i).getConstructor(World.class).newInstance(world);
+							//spawn the corrupted entity
+							this.spawnEntity(corrupted, location);
+							//Remove the vanilla entity
+							entity.setDead();
+						}
+	
+						//If the entity doesn't match any from the list and isn't a player, mob, or boss, spawn a husk
+						else if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityMob) && entity.isNonBoss()) 
+							this.spawnEntity(new EntityHusk(world), location);
+						
+					//Catch a bunch of reflection exceptions
+            		} catch(Exception e) {
+            				e.printStackTrace();
+            			}
+					} 
+				}
+    		setDead();           
+        }            
 
         if(Conditions.secondsGoneBy(world, 1)) 
         {
@@ -586,6 +564,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	        	alpha += 0.1F;
 	        	if(y < 9)
 	        		Actions.playSound(this, TUOMSoundHandler.darkOpalWhoosh, 5, 1);
+	        	
 	        	for(int i = 0; i < 360; i++) 
 				{
 	                this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * ((double)this.width - y/2), 
@@ -596,6 +575,21 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         }
     }
 
+    /**
+     * Sets given entity's spawn location and spawns 
+     * it after a side check
+     * 
+     * @param entity the entity to spawn
+     * @param pos the position where the entity should spawn
+     */
+    private void spawnEntity(EntityLiving entity, BlockPos pos) 
+    {
+    	entity.setPosition(pos.getX(), pos.getY(), pos.getZ());
+    	
+    	if(!world.isRemote)
+    		world.spawnEntity(entity);
+    }
+    
     protected void onDeathAIUpdate() 
     {
     	if(getAnimation() != ANIMATION_DEATH)
