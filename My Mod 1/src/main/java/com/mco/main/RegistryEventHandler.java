@@ -1,9 +1,12 @@
 package com.mco.main;
 
 import com.mco.TUOM;
+import com.mco.potions.TUOMPotions;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -37,5 +40,16 @@ public class RegistryEventHandler
 	{
 		TUOMEntities.registerEntities(event.getRegistry());
 	}
-
+	
+	@SubscribeEvent
+	public static void registerPotions(RegistryEvent.Register<Potion> event)
+	{
+		TUOMPotions.registerPotions(event.getRegistry());
+	}
+	
+	@SubscribeEvent
+	public static void registerPotionTypes(RegistryEvent.Register<PotionType> event)
+	{
+		TUOMPotions.registerPotionTypes(event.getRegistry());
+	}
 }

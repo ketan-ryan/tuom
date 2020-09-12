@@ -6,6 +6,7 @@ import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.main.TUOMDamageSources;
 import com.mco.main.TUOMItems;
+import com.mco.potions.TUOMPotions;
 import com.mco.proxies.ClientProxy;
 
 import net.minecraft.client.Minecraft;
@@ -162,18 +163,20 @@ public class TUOMEventHandler
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
 	public static void onEntityUpdate(LivingUpdateEvent e)
 	{
-		if(e.getEntityLiving().isPotionActive(TUOM.darkPotion))
+		//Handle only dark potion
+		if(e.getEntityLiving().isPotionActive(TUOMPotions.DARK_POTION))
 		{
-			if(e.getEntityLiving().getActivePotionEffect(TUOM.darkPotion).getDuration() == 0 )
+			//If expired, remove
+			if(e.getEntityLiving().getActivePotionEffect(TUOMPotions.DARK_POTION).getDuration() == 0 )
 			{
-				System.out.println("remove");
-				e.getEntityLiving().removeActivePotionEffect(TUOM.darkPotion);
+				e.getEntityLiving().removeActivePotionEffect(TUOMPotions.DARK_POTION);
 				return;
 			}
+			
+			//When applied, should take rapid damage
 			else 
 			{	
 				e.getEntityLiving().attackEntityFrom(TUOMDamageSources.darkDamage, .3F);
-				System.out.println("hurt");
 				e.getEntityLiving().hurtResistantTime = 7;
 			}
 		}

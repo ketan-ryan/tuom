@@ -6,27 +6,38 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 @EventBusSubscriber(modid=TUOM.MODID)
 public class TUOMPotions 
 {
 
 	public static final Potion DARK_POTION = new DarkPotion(true, 0x00000).setIconIndex(0, 0).setPotionName("Darkness Affliction").registerPotionAttributeModifier(
-			SharedMonsterAttributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", -0.40000000298023224D, 2).setRegistryName(TUOM.MODID, "darkPotion");
-	public static final PotionType DARK_POTION_NORMAL = new PotionType(TUOM.MODID + ".darkPotion", new PotionEffect(DARK_POTION, 200)).setRegistryName(TUOM.MODID, "darkPotion");
+			SharedMonsterAttributes.MOVEMENT_SPEED, "91AEAA56-376B-4498-935B-2F7F68070635", -0.40000000298023224D, 2);
 	
-	@SubscribeEvent
-	public static void registerPotions(RegistryEvent.Register<Potion> event) 
+	public static final PotionType DARK_POTION_NORMAL = new PotionType(TUOM.MODID + ".darkPotion", new PotionEffect(DARK_POTION, 200));
+	
+	public static void registerPotions(IForgeRegistry<Potion> registry) 
 	{
-		event.getRegistry().register(DARK_POTION);
+		registerPotion(registry, "dark_potion", DARK_POTION);
 	}
 	
-	@SubscribeEvent
-	public static void registerPotionTypes(RegistryEvent.Register<PotionType> event)
+	public static void registerPotionTypes(IForgeRegistry<PotionType> registry)
 	{
-		event.getRegistry().register(DARK_POTION_NORMAL);
+		registerPotionEvent(registry, TUOM.MODID + ".dark_potion", DARK_POTION_NORMAL);
+	}
+	
+	
+	public static <T extends Potion> void registerPotion(IForgeRegistry<Potion> registry, String name, T potion) 
+	{
+		potion.setRegistryName(TUOM.MODID, name);
+		registry.register(potion);
+	}
+	
+	public static <T extends PotionType> void registerPotionEvent(IForgeRegistry<PotionType> registry, String name, T potion) 
+	{
+		potion.setRegistryName(TUOM.MODID, name);
+		registry.register(potion);
 	}
 }

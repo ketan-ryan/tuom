@@ -10,7 +10,6 @@ import com.mco.proxies.IProxy;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.ForgeModContainer;
@@ -39,9 +38,7 @@ public class TUOM {
 
 	// Creative Tabs
 	public static CreativeTabs tuom_tab, dim_tab;
-	
-	public static Potion darkPotion;
-	
+		
 	public static ResourceLocation DARK_CHEST_DEMON, DARK_CHEST_LAVA, DARK_CHEST_TOP;
 	
 	public static final Logger TUOM_LOG = LogManager.getLogger(MODID);
