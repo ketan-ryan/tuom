@@ -15,14 +15,12 @@ import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
-import com.mco.entities.projectiles.FopalGrenadeEntity;
 import com.mco.main.TUOMConfig;
 import com.mco.main.TUOMItems;
 import com.mco.main.TUOMSoundHandler;
 
 import library.entities.LibEntityMob;
 import library.util.Actions;
-import library.util.Conditions;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
@@ -49,68 +47,98 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements IMob, IAnimatedEntity, IRangedAttackMob
 {
-	private SoundEvent spawnSound = TUOMSoundHandler.darkOpalSpawn;
-	private SoundEvent idleSound = TUOMSoundHandler.darkOpalIdle;
-	private SoundEvent hurtSound = TUOMSoundHandler.darkOpalHurt;
-	private SoundEvent deathSound = TUOMSoundHandler.darkOpalDeath;
+	/** Sound that plays on entity spawn */
+	private static final SoundEvent SPAWN_SOUND = TUOMSoundHandler.darkOpalSpawn;
+	/** Sound that plays occasionally on idle */
+	private static final SoundEvent IDLE_SOUND = TUOMSoundHandler.darkOpalIdle;
+	/** Sound that plays on entity hurt */
+	private static final SoundEvent HURT_SOUND = TUOMSoundHandler.darkOpalHurt;
+	/** Sound that plays on entity death */
+	private static final SoundEvent DEATH_SOUND = TUOMSoundHandler.darkOpalDeath;
 	
+	/** The current animation */
 	private Animation animation = NO_ANIMATION;
+	/** What tick the current anim is on */
 	private int animationTick;
 	
-	public static Animation ANIMATION_JUMP = Animation.create(120);            
-	public static Animation ANIMATION_SKULL = Animation.create(100);           
-	public static Animation ANIMATION_LIFEDRAIN = Animation.create(35);        
-	public static Animation ANIMATION_SHIELD = Animation.create(60);
-	public static Animation ANIMATION_LIGHTNING = Animation.create(100);
-	public static Animation ANIMATION_DEATH = Animation.create(300);           
-	public static Animation ANIMATION_MINION = Animation.create(60);            
-	public static Animation ANIMATION_PUNCH = Animation.create(120);           
-	public static Animation ANIMATION_BOMBS = Animation.create(60);
+	/** Jump animation */
+	public static final Animation ANIMATION_JUMP = Animation.create(120);            
+	/** Skull shoot animation */
+	public static final Animation ANIMATION_SKULL = Animation.create(100);      
+	/** Lifedrain animation */
+	public static final Animation ANIMATION_LIFEDRAIN = Animation.create(35);      
+	/** Shield animation (Not yet implemented) */
+	public static final Animation ANIMATION_SHIELD = Animation.create(60);
+	/** Lightning animation (Not yet implemented) */
+	public static final Animation ANIMATION_LIGHTNING = Animation.create(100);
+	/** Death animation */
+	public static final Animation ANIMATION_DEATH = Animation.create(300);          
+	/** Vex summon animation */
+	public static final Animation ANIMATION_MINION = Animation.create(60);         
+	/** Punch animation */
+	public static final Animation ANIMATION_PUNCH = Animation.create(120);      
+	/** Bomb animation */
+	public static final Animation ANIMATION_BOMBS = Animation.create(60);
 	
+	/** Array of all animations */
 	private static final Animation[] ANIMATIONS = {ANIMATION_JUMP, ANIMATION_SKULL, ANIMATION_LIFEDRAIN, ANIMATION_SHIELD, ANIMATION_LIGHTNING, 
 			ANIMATION_DEATH, ANIMATION_MINION, ANIMATION_PUNCH, ANIMATION_BOMBS};
 
+	/** List of vanilla mobs to search for and replace during death animation */
 	private static final ImmutableList<Class<? extends EntityLiving>> MOBS = ImmutableList.of(EntityChicken.class, EntityPig.class,
 			EntityCow.class, EntitySheep.class, EntityVillager.class);
+	/** List of mobs to replace vanilla with during death animation */
 	private static final ImmutableList<Class<? extends EntityLiving>> CORRUPTED = ImmutableList.of(EntityCorruptedChicken.class, EntityCorruptedPig.class, 
 			EntityCorruptedCow.class, EntityCorruptedSheep.class, EntityIllusionIllager.class);
 	
+	/** How far the target is from demon */
 	public float targetDistance;
+	/** Angle between target and demon */
     public float targetAngle;
 	
-	protected ResourceLocation lootTable = LootTableList.ENTITIES_WOLF;
+    //Unused
+	//protected ResourceLocation lootTable = LootTableList.ENTITIES_WOLF;
 	
+    /** Bossbar */
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, 
     		BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
     
+    /** Current {@link AnimationAI} */
 	public AnimationAI currentAnim;
 
+	/** Local random variable */
 	public static Random rand = new Random();
 	
+	/** Local var to keep track of death ticks */
 	private int deathTicks;
+	/** Local var to keep track of overlay alpha */
 	private float alpha = 0;	
+	/** Whether demon is below half health */
 	private boolean armored = false;
 
+	/**
+	 * Initializes AI tasks for demon
+	 * including special animations
+	 * as well as size experience etc
+	 * 
+	 * @param worldIn world object every entity needs
+	 */
 	public EntityDarkOpalDemon(World worldIn) 
 	{
 		super(worldIn);
@@ -129,7 +157,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		targetTasks.addTask(3, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
 		
-        this.lootTable = null;
+        //this.lootTable = null;
         
 		this.setSize(4F, 9F);
 		this.isImmuneToFire = true;
@@ -139,22 +167,34 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		this.experienceValue = 150;
 	}
 	
+	/**
+	 * Counts as undead
+	 */
 	@Override
 	public boolean isEntityUndead()
 	{
 		return true;
 	}
 	
+	/**
+	 * Don't want the boss despawning
+	 */
 	public boolean canDespawn()
 	{
 		return false;
 	}
 	
+	/**
+	 * Is a boss mob
+	 */
 	public boolean isNonBoss()
 	{
 		return false;
 	}
 	
+	/**
+	 * Sets up health, speed, follow range, and armor
+	 */
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
@@ -163,12 +203,17 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(60D);
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8);
 	}
-
+	
+	/**
+	 * Handles most of the actual logic
+	 */
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
+		//Updates bossbar
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
         
+        //If animation finishes, set to null
         if (getAnimation() != NO_ANIMATION) 
         {
             animationTick++;
@@ -178,12 +223,14 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
             }
         }
         
+        //If has a target, set distance and angle
         if (getAttackTarget() != null) 
         {
             targetDistance = getDistance(getAttackTarget());
             targetAngle = (float) getAngleBetweenEntities(this, getAttackTarget());
         }    
         
+        //If below half hp, gains armor
         if(this.getHealth() <= this.getMaxHealth() / 2.0F)
         {
 	        if(getAttackTarget() != null && currentAnim == null && getAnimation() == NO_ANIMATION && getAnimation() != ANIMATION_DEATH && !isArmored())
@@ -193,9 +240,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	        armored = true;
         }
         
-        /**
-    	 * Randomly select an animation to play without overriding itself
-    	 */
+        //Randomly select an animation to play without overriding itself
         if(getAttackTarget() != null && currentAnim == null && getAnimation() == NO_ANIMATION && getAnimation() != ANIMATION_DEATH)
         {
         	switch(new Random().nextInt(6))
@@ -204,10 +249,9 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_JUMP);
         			break;
         		case 1:
+        			//Only shoot skull if far away
         			if(getAttackTarget() != null && this.getDistance(getAttackTarget()) > 16)
-        			{
 	        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_SKULL);
-        			}
         			break;
         		case 2:
         			AnimationHandler.INSTANCE.sendAnimationMessage(this,  ANIMATION_PUNCH);
@@ -226,11 +270,10 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         	}
         }
         
-        /**
-    	 * Handles particles of jump animation
-    	 */        
+        //Handles particles of jump animation        
         if(getAnimation() == ANIMATION_JUMP)
         {
+        	//Launch
         	if(getAnimationTick() == 25) 
         	{
         		for(int i = 0; i < 200; i++) 
@@ -241,6 +284,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         		}
         	}
         	
+        	//Land
         	else if(getAnimationTick() == 86) 
         	{
 	        	for(int i = 0; i < 720; i++) 
@@ -252,20 +296,14 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         	}
         }
         
-        /**
-    	 * Handles particles of punch teleport
-    	 */  
+        //Handles particles of punch teleport 
         if(getAnimation() == ANIMATION_PUNCH)
         {
-        	if(getAnimationTick() == 1 || getAnimationTick() == 29 || getAnimationTick() == 35 || 
-        			getAnimationTick() == 41 || getAnimationTick() == 47) 
-        	{
-        		spawnParticle(1000, EnumParticleTypes.DRAGON_BREATH, (int) (this.rand.nextDouble() * (double)this.height), 0, 0, 0);
-        	}
-        		
-        }
-        
+        	if(getAnimationTick() == 1 || getAnimationTick() == 29 || getAnimationTick() == 35 || getAnimationTick() == 41 || getAnimationTick() == 47) 
+        		spawnParticle(1000, EnumParticleTypes.DRAGON_BREATH, (int) (this.rand.nextDouble() * (double)this.height), 0, 0, 0);   	
+    	}
 	}
+	
 	/**
 	 * @param forMax How many times the for loop iterates
 	 * @param particle Particle to spawn
@@ -327,6 +365,10 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
     	return this.armored;
     }
     
+    /**
+     * Sets the demon's armored status
+     * @param b whether or not the demon is armored
+     */
     public void setArmored(boolean b)
     {
     	this.armored = b;
@@ -361,29 +403,43 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         this.bossInfo.removePlayer(player);
     }
     
+    /**
+     * Gets the demon's idle sound
+     * 
+     * @return the entity's idle sound
+     */
 	@Override
 	protected SoundEvent getAmbientSound()
 	{
-		return idleSound;
+		return IDLE_SOUND;
 	}
 	
+    /**
+     * Gets the demon's hurt sound
+     * 
+     * @return the entity's hurt sound
+     */
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damage)
 	{
-		return hurtSound;
+		return HURT_SOUND;
 	}
 	
+    /**
+     * Gets the demon's death sound
+     * 
+     * @return the entity's death sound
+     */
 	@Override
 	protected SoundEvent getDeathSound()
 	{
-		return deathSound;
+		return DEATH_SOUND;
 	}
-	
-	public boolean isAIEnabled()
-	{
-		return true;
-	}
-		
+
+	/**
+	 * Gets the shadow size
+	 * @return a float representing the shadow size
+	 */
 	@SideOnly(Side.CLIENT)
 	public float getShadowSize()
 	{
@@ -406,12 +462,18 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	{
 		super.onFirstSpawn();
 
-		Actions.playSound(this, spawnSound, 5F, 1F);		
+		Actions.playSound(this, SPAWN_SOUND, 5F, 1F);		
 		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TUOMItems.DARK_STAFF));
 		EntityPlayer player = Actions.getClosestPlayer(this);
 		Actions.chatAtPlayer(player, TextFormatting.DARK_PURPLE + "You've made a grave mistake...");
 	}
 	
+	/**
+	 * Prevents demon from taking arrow damage when armored
+	 * 
+	 * @param source the damgage source demon is attacked by
+	 * @param amount how much damage is being taken
+	 */
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) 
 	{
@@ -428,6 +490,12 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		return super.attackEntityFrom(source, amount);
 	}
 	
+	/**
+	 * Drops dark staff on death
+	 * TODO: replace with loot tables
+	 * 
+	 * @param source the cause of death
+	 */
 	@Override
 	public void onDeath(DamageSource cause)
 	{
@@ -437,42 +505,70 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 			dropItem(TUOMItems.DARK_STAFF, 1);		
 	}
 
+	/**
+	 * Getter for animation tick
+	 * 
+	 * @return the animation tick
+	 */
 	@Override
 	public int getAnimationTick() 
 	{
 		return animationTick;
 	}
 
+	/**
+	 * Sets the animation tick
+	 * 
+	 * @param tick the tick to set
+	 */
 	@Override
 	public void setAnimationTick(int tick) 
 	{
 		animationTick = tick;
 	}
 
+	/**
+	 * Returns the current animation
+	 * 
+	 * @return current animation
+	 */
 	@Override
 	public Animation getAnimation() 
 	{
 		return this.animation;
 	}
 
+	/**
+	 * Sets the current animation
+	 * 
+	 * @param animation the animation to set
+	 */
 	@Override
 	public void setAnimation(Animation animation) 
 	{
-		if (animation == NO_ANIMATION) {
-            onAnimationFinish(this.animation);
+		//if no animation is playing, the tick should be 0
+		if (animation == NO_ANIMATION) 
             setAnimationTick(0);
-        }
+		
         this.animation = animation;
 	}
 
+	/**
+	 * Returns an array of all possible animations
+	 * 
+	 * @return array of all animations
+	 */
 	@Override
 	public Animation[] getAnimations() 
 	{
 		return ANIMATIONS;
 	}
 
-	protected void onAnimationFinish(Animation animation) {}
-
+	/**
+	 * Returns the death animation
+	 * 
+	 * @return the specific death animation
+	 */
 	public Animation getDeathAnimation() {
 		return ANIMATION_DEATH;
 	}
@@ -487,7 +583,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         deathTicks++;
 
         if(getAnimation() == NO_ANIMATION && currentAnim == null)
-        AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
+        	AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
         
         //Death Message
         EntityPlayer player = Actions.getClosestPlayer(this);
@@ -546,10 +642,9 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
             			}
 					} 
 				}
-    		setDead();           
-        }            
+            }            
 
-        if(Conditions.secondsGoneBy(world, 1)) 
+        if(deathTicks % 20 == 0) 
         {
         	//Time updating
         	if(world.getWorldTime() < 23000 && TUOMConfig.darkDay)
@@ -573,6 +668,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 				}
 	        }
         }
+    	setDead();        
     }
 
     /**
@@ -590,38 +686,49 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
     		world.spawnEntity(entity);
     }
     
+    /**
+     * Triggers death animation
+     */
     protected void onDeathAIUpdate() 
     {
     	if(getAnimation() != ANIMATION_DEATH)
     		AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
     }
 	
+    /**
+     * Getter method for overlay alpha
+     * 
+     * @return the overlay's alpha
+     */
     public float getDarknessAlpha()
     {
     	return alpha;
     }
     
+    /**
+     * Getter method for death ticks
+     * 
+     * @return death ticks
+     */
     public int getDeathTicks()
     {
     	return deathTicks;
     }
-
+    
+    /**
+     * Necessary override for range attack
+     * 
+     * @param target the demon's target
+     * @param distanceFactor whether distance affects accuracy
+     */
 	@Override
-	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) 
-	{
-    	FopalGrenadeEntity entityProjectileGrenade = new FopalGrenadeEntity(this.world);
-        double d0 = target.posY + (double)target.getEyeHeight() - 1.100000023841858D;
-        double d1 = target.posX - this.posX;
-        double d2 = d0 - entityProjectileGrenade.posY;
-        double d3 = target.posZ - this.posZ;
-        float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-        entityProjectileGrenade.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
-        this.playSound(SoundEvents.ENTITY_SNOWMAN_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.world.spawnEntity(entityProjectileGrenade);
-	}
+	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {}
 
+	/**
+	 * Necessary override for ranged attack
+	 * 
+	 * @param swingingArms true or false
+	 */
 	@Override
-	public void setSwingingArms(boolean swingingArms)
-    {
-    }
+	public void setSwingingArms(boolean swingingArms) {}
 }
