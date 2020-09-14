@@ -4,6 +4,7 @@ import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.main.TUOMConfig;
 import com.mco.main.TUOMDamageSources;
 import com.mco.main.TUOMSoundHandler;
+
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.minecraft.entity.EntityLivingBase;
@@ -61,20 +62,20 @@ public class AIJump extends AnimationAI<EntityDarkOpalDemon>
 		
 		//Takeoff sound
 		if(demon.getAnimationTick() == 10 && demon.getAttackTarget() != null){
-			demon.playSound(TUOMSoundHandler.darkOpalTakeoff, 3, 1);
+			demon.playSound(TUOMSoundHandler.DARK_OPAL_TAKEOFF, 3, 1);
           
 		//Land sound
 		}else if(demon.getAnimationTick() == 70 && demon.getAttackTarget() != null){
-			demon.playSound(TUOMSoundHandler.darkOpalLanding, 3, 1);
+			demon.playSound(TUOMSoundHandler.DARK_OPAL_LANDING, 3, 1);
 		}
 		
 		//Wing flap on ascent
 		if(demon.getAnimationTick() > 15 && demon.getAnimationTick() < 55 && demon.ticksExisted % 7 == 0)
-			demon.playSound(TUOMSoundHandler.darkOpalFlap, 10, 1);
+			demon.playSound(TUOMSoundHandler.DARK_OPAL_FLAP, 10, 1);
 		
 		//Wing flutter on descent
 		else if(demon.getAnimationTick() > 40 && demon.getAnimationTick() < 70 && demon.ticksExisted % 5 == 0) {
-			demon.playSound(TUOMSoundHandler.darkOpalFlutter, 2, 1);
+			demon.playSound(TUOMSoundHandler.DARK_OPAL_FLUTTER, 2, 1);
 		}
 		
 		if(demon.getAnimationTick() > 40 && demon.getAnimationTick() < 70 && attackTarget != null) 

@@ -65,13 +65,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements IMob, IAnimatedEntity, IRangedAttackMob
 {
 	/** Sound that plays on entity spawn */
-	private static final SoundEvent SPAWN_SOUND = TUOMSoundHandler.darkOpalSpawn;
+	private static final SoundEvent SPAWN_SOUND = TUOMSoundHandler.DARK_OPAL_SPAWN;
 	/** Sound that plays occasionally on idle */
-	private static final SoundEvent IDLE_SOUND = TUOMSoundHandler.darkOpalIdle;
+	private static final SoundEvent IDLE_SOUND = TUOMSoundHandler.DARK_OPAL_IDLE;
 	/** Sound that plays on entity hurt */
-	private static final SoundEvent HURT_SOUND = TUOMSoundHandler.darkOpalHurt;
+	private static final SoundEvent HURT_SOUND = TUOMSoundHandler.DARK_OPAL_HURT;
 	/** Sound that plays on entity death */
-	private static final SoundEvent DEATH_SOUND = TUOMSoundHandler.darkOpalDeath;
+	private static final SoundEvent DEATH_SOUND = TUOMSoundHandler.DARK_OPAL_DEATH;
 	
 	/** The current animation */
 	private Animation animation = NO_ANIMATION;
@@ -609,7 +609,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
             List<EntityLivingBase> list = this.world.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, 
             		this.getEntityBoundingBox().grow(30.0D, 30.0D, 30.0D));
             //SFX
-        	Actions.playSound(this, TUOMSoundHandler.darkOpalWhoosh, 1, 5);
+        	Actions.playSound(this, TUOMSoundHandler.DARK_OPAL_WHOOSH, 1, 5);
 
         	//Iterate through every entity in the list
             for(EntityLivingBase entity : list)
@@ -660,7 +660,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	        {
 	        	alpha += 0.15F;
 	        	if(y < 9)
-	        		Actions.playSound(this, TUOMSoundHandler.darkOpalWhoosh, 5, 1);
+	        		Actions.playSound(this, TUOMSoundHandler.DARK_OPAL_WHOOSH, 5, 1);
 	        	
 	        	for(int i = 0; i < 360; i++) 
 				{

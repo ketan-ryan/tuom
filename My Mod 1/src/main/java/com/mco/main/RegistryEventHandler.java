@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -51,5 +52,11 @@ public class RegistryEventHandler
 	public static void registerPotionTypes(RegistryEvent.Register<PotionType> event)
 	{
 		TUOMPotions.registerPotionTypes(event.getRegistry());
+	}
+	
+	@SubscribeEvent
+	public static void registerSoundEvents(RegistryEvent.Register<SoundEvent> event)
+	{
+		TUOMSoundHandler.registerSounds(event.getRegistry());
 	}
 }
