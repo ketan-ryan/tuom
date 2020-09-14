@@ -59,6 +59,10 @@ public class ClientProxy implements IProxy
     	return MINECRAFT.player;
     }
     
+    public static Minecraft getMC() {
+    	return MINECRAFT;
+    }
+    
     @Override
     public void setGraphicsLevel(DarkLeaves leaves, boolean isFancyEnabled) {
     	leaves.setGraphicsLevel(isFancyEnabled);   

@@ -21,6 +21,7 @@ import com.mco.main.TUOMSoundHandler;
 
 import library.entities.LibEntityMob;
 import library.util.Actions;
+import library.util.Conditions;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
@@ -642,9 +643,10 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
             			}
 					} 
 				}
-            }            
+        	setDead();           
+        }            
 
-        if(deathTicks % 20 == 0) 
+        if(Conditions.secondsGoneBy(world, 1)) 
         {
         	//Time updating
         	if(world.getWorldTime() < 23000 && TUOMConfig.darkDay)
@@ -656,7 +658,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
         	//Sends out rings and plays sound
 	        for(int y = 0; y < 10; y ++) 
 	        {
-	        	alpha += 0.1F;
+	        	alpha += 0.15F;
 	        	if(y < 9)
 	        		Actions.playSound(this, TUOMSoundHandler.darkOpalWhoosh, 5, 1);
 	        	
@@ -668,7 +670,6 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 				}
 	        }
         }
-    	setDead();        
     }
 
     /**
