@@ -29,10 +29,11 @@ public class TUOMClientEventHandler
 {
 	private static Minecraft mc = Minecraft.getMinecraft();
 	private static EntityDarkOpalDemon demon;
-	private static final ResourceLocation darkDeathOverlay = new ResourceLocation("tuom:textures/entities/dark.png");
-	private static final ResourceLocation icons = new ResourceLocation("tuom:textures/icons.png");
-	private static ResourceLocation texture = new ResourceLocation(TUOM.MODID,
-			"textures/bossbars/dopal_bossbar.png");
+	
+	private static final ResourceLocation DARK_DEATH_OVERLAY = new ResourceLocation("tuom:textures/entities/dark.png");
+	private static final ResourceLocation ICONS = new ResourceLocation("tuom:textures/icons.png");
+	private static final ResourceLocation DARK_BAR = new ResourceLocation(TUOM.MODID, "textures/bossbars/dopal_bossbar.png");
+	
 	/**
 	 * Handles death overlay for Dark Opal Demon - finds one nearby then applies the overlay if it's in the death anim 
 	 * 
@@ -58,7 +59,7 @@ public class TUOMClientEventHandler
 				//Set to black with progressively higher alpha
 				GlStateManager.color(1, 1, 1, demon.getDarknessAlpha() / (i));
 				//OSetup texture and size
-				mc.getTextureManager().bindTexture(darkDeathOverlay);
+				mc.getTextureManager().bindTexture(DARK_DEATH_OVERLAY);
 				ScaledResolution res = event.getResolution();
 				//Draw the overlay
 				Gui.drawModalRectWithCustomSizedTexture(0,  0,  0,  0, res.getScaledWidth(), res.getScaledHeight(), 
@@ -87,14 +88,14 @@ public class TUOMClientEventHandler
 			int texWidth = 512;
 			int texHeight = 64/2;
 			event.setIncrement(texHeight + 2);
-			double renderWidth = 464;
+			double renderWidth = 416;
 			double renderHeight = (double)texHeight / (double)texWidth * renderWidth;
 			double renderHealth  = (renderWidth - 16.0F / texWidth * renderWidth - (renderWidth - 16.0F / texWidth * renderWidth) * percent);
 
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			mc.getTextureManager().bindTexture(texture);
+			mc.getTextureManager().bindTexture(DARK_BAR);
 			//Old rendering code
 			GlStateManager.enableBlend();
 
