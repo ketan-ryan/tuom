@@ -28,11 +28,14 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(modid = TUOM.MODID, value = Side.CLIENT)
 public class TUOMClientEventHandler 
 {
+	/** Minecraft Instance */
 	private static Minecraft mc = Minecraft.getMinecraft();
+	/** Dark Opal Demon Instance*/
 	private static EntityDarkOpalDemon demon;
 	
+	/** Darkness screen overlay */
 	private static final ResourceLocation DARK_DEATH_OVERLAY = new ResourceLocation("tuom:textures/entities/dark.png");
-	private static final ResourceLocation ICONS = new ResourceLocation("tuom:textures/icons.png");
+	/** Dark Opal Demon bossbar texture */
 	private static final ResourceLocation DARK_BAR = new ResourceLocation(TUOM.MODID, "textures/bossbars/dopal_bossbar_512.png");
 	
 	/**
@@ -81,7 +84,6 @@ public class TUOMClientEventHandler
 	{
 		Entity boss = null;
 		//Get instance of Minecraft and check all loaded entities
-		Minecraft mc = Minecraft.getMinecraft();
 		for(Entity entity : mc.world.loadedEntityList) {
 			if(entity instanceof EntityDarkOpalDemon) {
 				//If we have a dark opal demon that can see the player
@@ -89,7 +91,8 @@ public class TUOMClientEventHandler
 					boss = entity;
 			}
 		}
-		if(boss != null && boss instanceof EntityDarkOpalDemon) {
+		if(boss != null && boss instanceof EntityDarkOpalDemon) 
+		{
 			BossInfoClient info = event.getBossInfo();
 			float percent = info.getPercent();
 			ITextComponent name = info.getName();
@@ -128,7 +131,8 @@ public class TUOMClientEventHandler
 				GlStateManager.glTexCoord2f(1, 0);
 				GL11.glVertex2d(renderWidth, 0);
 				//Foreground
-				if (percent > 0) {
+				if (percent > 0) 
+				{
 					GlStateManager.glTexCoord2f(0, 0.5F);
 					GL11.glVertex2d(0, 0);
 					GlStateManager.glTexCoord2f(0, 1.0F);

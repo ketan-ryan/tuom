@@ -179,13 +179,5 @@ public class TUOMEventHandler
 //		if(event.getEntity().isPotionActive(TUOM.lightPotion)){
 //			event.setNewfov(1F);
 //		}
-//	}
-	/*	
-	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onEvent(RenderGameOverlayEvent event)
-	{
-		//EntityWither
-		//private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-	}*/
-	
+//	}		
 }
