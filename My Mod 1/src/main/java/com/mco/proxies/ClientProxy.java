@@ -5,6 +5,7 @@ import org.lwjgl.util.glu.Sphere;
 
 import com.mco.TUOM;
 import com.mco.blocks.biomes.dark.DarkLeaves;
+import com.mco.entities.TUOMBossBarGui;
 import com.mco.entities.lightning.dark.EntityDarkLightning;
 import com.mco.entities.lightning.dark.RenderDarkLightning;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
@@ -13,6 +14,7 @@ import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
 import com.mco.entities.mobs.dark.demon.bomb.RenderDarkBomb;
 import com.mco.entities.projectiles.EntityCustomFallingBlock;
 import com.mco.entities.projectiles.RenderCustomFallingBlock;
+import com.mco.events.TUOMClientEventHandler;
 import com.mco.events.TUOMEventHandler;
 
 import library.common.BakedModelLoader;
@@ -53,6 +55,8 @@ public class ClientProxy implements IProxy
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new TUOMEventHandler());
+        MinecraftForge.EVENT_BUS.register(new TUOMClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(new TUOMBossBarGui(MINECRAFT));
     }
     
     public static EntityPlayer getClientPlayer() {

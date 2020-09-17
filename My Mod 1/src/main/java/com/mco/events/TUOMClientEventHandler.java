@@ -2,18 +2,23 @@ package com.mco.events;
 
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.proxies.ClientProxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.BossInfoClient;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.GlStateManager.DestFactor;
 import net.minecraft.client.renderer.GlStateManager.SourceFactor;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,7 +31,8 @@ public class TUOMClientEventHandler
 	private static EntityDarkOpalDemon demon;
 	private static final ResourceLocation darkDeathOverlay = new ResourceLocation("tuom:textures/entities/dark.png");
 	private static final ResourceLocation icons = new ResourceLocation("tuom:textures/icons.png");
-	
+	private static ResourceLocation texture = new ResourceLocation(TUOM.MODID,
+			"textures/bossbars/dopal_bossbar.png");
 	/**
 	 * Handles death overlay for Dark Opal Demon - finds one nearby then applies the overlay if it's in the death anim 
 	 * 
@@ -60,5 +66,69 @@ public class TUOMClientEventHandler
 			}
 		}
 	}
+	
+	@SubscribeEvent
+	public static void onRenderOverlay(RenderGameOverlayEvent.BossInfo event) {
+		Entity boss = null;
+		Minecraft mc = Minecraft.getMinecraft();
+		for(Entity entity : mc.world.loadedEntityList) {
+			if(entity instanceof EntityDarkOpalDemon) {
+				if(boss == null || entity.getDistance(mc.player) < boss.getDistance(mc.player))
+					boss = entity;
+			}
+		}
+		if(boss != null) {
+			event.setCanceled(true);
+
+			BossInfoClient info = event.getBossInfo();
+			float percent = info.getPercent();
+			ITextComponent name = info.getName();
+
+			int texWidth = 512;
+			int texHeight = 64/2;
+			event.setIncrement(texHeight + 2);
+			double renderWidth = 464;
+			double renderHeight = (double)texHeight / (double)texWidth * renderWidth;
+			double renderHealth  = (renderWidth - 16.0F / texWidth * renderWidth - (renderWidth - 16.0F / texWidth * renderWidth) * percent);
+
+			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			mc.getTextureManager().bindTexture(texture);
+			//Old rendering code
+			GlStateManager.enableBlend();
+
+			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			GlStateManager.pushMatrix();
+			GlStateManager.translate(event.getResolution().getScaledWidth() / 2 - renderWidth / 2.0D, event.getY() - 2, 0);
+			GlStateManager.glBegin(GL11.GL_QUADS);
+			//Background
+			GlStateManager.glTexCoord2f(0, 0);
+			GL11.glVertex2d(0, 0);
+			GlStateManager.glTexCoord2f(0, 0.5F);
+			GL11.glVertex2d(0, renderHeight);
+			GlStateManager.glTexCoord2f(1, 0.5F);
+			GL11.glVertex2d(renderWidth, renderHeight);
+			GlStateManager.glTexCoord2f(1, 0);
+			GL11.glVertex2d(renderWidth, 0);
+			//Foreground
+			if (percent > 0) {
+				GlStateManager.glTexCoord2f(0, 0.5F);
+				GL11.glVertex2d(0, 0);
+				GlStateManager.glTexCoord2f(0, 1.0F);
+				GL11.glVertex2d(0, renderHeight);
+				GlStateManager.glTexCoord2f(16.0F / texWidth + (1.0F - 16.0F / texWidth) * percent, 1.0F);
+				GL11.glVertex2d(renderWidth - renderHealth, renderHeight);
+				GlStateManager.glTexCoord2f(16.0F / texWidth + (1.0F - 16.0F / texWidth) * percent, 0.5F);
+				GL11.glVertex2d(renderWidth - renderHealth, 0);
+			}
+			GlStateManager.glEnd();
+			GlStateManager.popMatrix();
+			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+			int strWidth = mc.fontRenderer.getStringWidth(name.getFormattedText());
+			mc.fontRenderer.drawStringWithShadow(name.getFormattedText(), event.getResolution().getScaledWidth() / 2  - strWidth / 2, event.getY() + 3, 0x8800ff);
+		}
+	}
+
 	
 }

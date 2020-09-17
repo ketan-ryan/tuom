@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
  * MOD INFO =================================================
  */
 @Mod(modid = "tuom", name = "The Ultimate Ore Mod", version = "0.2.0",
-		dependencies = "required-after:llibrary@[1.7.14,)")
+	dependencies = "required-after:llibrary@[1.7.14,)")
 
 /**
  * DECLARE =================================================
