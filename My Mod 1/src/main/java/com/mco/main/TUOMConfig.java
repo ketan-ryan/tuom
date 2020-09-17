@@ -23,6 +23,22 @@ public class TUOMConfig
 	@Config.Name("Can Adjust Day")
 	public static boolean darkDay = true;
 	
+	@Config.Comment("Width of bossbar texture")
+	@Config.Name("Bossbar Width")
+	public static int bossbarWidth = 512;
+	
+	@Config.Comment("How wide to render the bar")
+	@Config.Name("Bossbar Render Width")
+	public static int bossbarRenderWidth = 416;
+	
+	@Config.Comment("How tall twice the bar's height is")
+	@Config.Name("Bossbar Height")
+	public static int bossbarHeight = 84;
+	
+	@Config.Comment("How far in the Y direction to offset the text")
+	@Config.Name("Text Offset")
+	public static int textOffset = 16;
+	
 	@Config.Name("dimension")
 	public static final Dimension DIMENSION = new Dimension();
 	
