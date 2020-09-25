@@ -7,9 +7,9 @@ import net.minecraft.item.Item;
 
 public class DopalCrop extends LibBlockCrops 
 {
-	public DopalCrop(String registryName) 
+	public DopalCrop() 
 	{
-		super(registryName);
+		super();
 	}
 
 	@Override
@@ -21,13 +21,13 @@ public class DopalCrop extends LibBlockCrops
 	@Override
 	protected Item getSeed() 
 	{
-		return TUOMItems.dopal_seeds;
+		return TUOMItems.DOPAL_SEEDS;
 	}
 
 	@Override
 	protected Item getCrop() 
 	{
-		return TUOMItems.dopal_shard;
+		return TUOMItems.DOPAL_SHARD;
 	}
 
 }

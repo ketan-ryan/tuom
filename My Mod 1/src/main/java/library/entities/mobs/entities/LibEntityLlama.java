@@ -1,17 +1,32 @@
 package library.entities.mobs.entities;
 
+import javax.annotation.Nullable;
+
 import library.ai.LibEntityAILlamaFollowCaravan;
 import library.entities.LibEntityChestHorse;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackRanged;
+import net.minecraft.entity.ai.EntityAIFollowParent;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMate;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIPanic;
+import net.minecraft.entity.ai.EntityAIRunAroundLikeCrazy;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.AbstractChestHorse;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,8 +52,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class LibEntityLlama extends LibEntityChestHorse implements IRangedAttackMob {
 
@@ -226,7 +239,6 @@ public class LibEntityLlama extends LibEntityChestHorse implements IRangedAttack
         if (this.isPassenger(passenger)) {
             float f = MathHelper.cos(this.renderYawOffset * 0.017453292F);
             float f1 = MathHelper.sin(this.renderYawOffset * 0.017453292F);
-            float f2 = 0.3F;
             passenger.setPosition(this.posX + (0.3F * f1), this.posY + this.getMountedYOffset() + passenger.getYOffset(), this.posZ - (0.3F * f));
         }
     }

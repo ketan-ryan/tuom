@@ -8,10 +8,9 @@ import library.blocks.LibBlockOre;
 public class LopalOre extends LibBlockOre 
 {
 
-	public LopalOre(String registryName, String harvestTool, int harvestLevel) 
+	public LopalOre(String harvestTool, int harvestLevel) 
 	{
-		super(registryName, harvestTool, harvestLevel);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(harvestTool, harvestLevel);
 		this.setHardness(10F);
 		this.setLightLevel(.5F);
 		this.setResistance(20F);
@@ -20,7 +19,7 @@ public class LopalOre extends LibBlockOre
 	@Override
 	public void initRecipe() 
 	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.light_opal, 1, 10, this);
+		LibRegistry.addSmeltingRecipe(TUOMItems.LIGHT_OPAL, 1, 10, this);
 	}
 
 	

@@ -22,7 +22,6 @@ public class LibModelCreeper extends ModelBase {
     }
 
     public LibModelCreeper(float p_i46366_1_) {
-        int i = 6;
         this.head = new ModelRenderer(this, 0, 0);
         this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, p_i46366_1_);
         this.head.setRotationPoint(0.0F, 6.0F, 0.0F);

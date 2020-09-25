@@ -8,11 +8,9 @@ import com.mco.main.TUOMItems;
 
 public class TopazOre extends LibBlockOre 
 {
-
-	public TopazOre(String registryName, String harvestTool, int harvestLevel) 
+	public TopazOre(String harvestTool, int harvestLevel) 
 	{
-		super(registryName, harvestTool, harvestLevel);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(harvestTool, harvestLevel);
 		this.setHardness(10F);
 		this.setLightLevel(.5F);
 		this.setResistance(20F);
@@ -21,8 +19,6 @@ public class TopazOre extends LibBlockOre
 	@Override
 	public void initRecipe() 
 	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.item_topaz, 1, 10, this);
-	}
-
-	
+		LibRegistry.addSmeltingRecipe(TUOMItems.ITEM_TOPAZ, 1, 10, this);
+	}	
 }

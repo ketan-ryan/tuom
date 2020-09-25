@@ -4,7 +4,6 @@ import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.AbstractChestHorse;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -40,8 +39,6 @@ public class LibModelLlama extends ModelQuadruped
         this.chest2.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3, p_i47226_1_);
         this.chest2.setRotationPoint(5.5F, 3.0F, 3.0F);
         this.chest2.rotateAngleY = ((float)Math.PI / 2F);
-        int i = 4;
-        int j = 14;
         this.leg1 = new ModelRenderer(this, 29, 29);
         this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, p_i47226_1_);
         this.leg1.setRotationPoint(-2.5F, 10.0F, 6.0F);
@@ -76,18 +73,15 @@ public class LibModelLlama extends ModelQuadruped
 
         if (this.isChild)
         {
-            float f = 2.0F;
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, this.childYOffset * scale, this.childZOffset * scale);
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
-            float f1 = 0.7F;
             GlStateManager.scale(0.71428573F, 0.64935064F, 0.7936508F);
             GlStateManager.translate(0.0F, 21.0F * scale, 0.22F);
             this.head.render(scale);
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
-            float f2 = 1.1F;
             GlStateManager.scale(0.625F, 0.45454544F, 0.45454544F);
             GlStateManager.translate(0.0F, 33.0F * scale, 0.0F);
             this.body.render(scale);

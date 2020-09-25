@@ -36,10 +36,10 @@ public class TUOMOre extends LibBlockOre{
 	 * @param fortune How much fortune affects the ore
 	 * @param yield The max extra that can drop off the ore without fortune
 	 * */
-	public TUOMOre(String registryName, int harvestLevel, int xp, float smeltXP, int hardness, int resistance, boolean dropSelf, 
+	public TUOMOre(int harvestLevel, int xp, float smeltXP, int hardness, int resistance, boolean dropSelf, 
 			@Nullable Item itemToDrop, int quantity, int fortune, int yield) {
 		
-		super(registryName, "pickaxe", harvestLevel);
+		super("pickaxe", harvestLevel);
 	
 		this.dropSelf = dropSelf;
 		this.itemToDrop = itemToDrop;
@@ -57,7 +57,7 @@ public class TUOMOre extends LibBlockOre{
     public int quantityDropped(Random random) 
 	{
 		if(!dropSelf)
-			return quantity + random.nextInt(yield);
+			return quantity + random.nextInt(yield + 1);
 		else
 			return 1;
     }

@@ -1,6 +1,7 @@
 package com.mco.entities.mobs.fire;
 
 import com.mco.entities.mobs.AdvancedLibModelBase;
+
 import net.ilexiconn.llibrary.client.model.ModelAnimator;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
@@ -547,7 +548,7 @@ public class ModelFireOpalDemon extends AdvancedLibModelBase
         this.HeadCubeA.rotateAngleY = netHeadYaw * 0.017453292F;
         this.HeadCubeA.rotateAngleZ = headPitch * -0.017453292F;
             
-		EntityFireOpalDemon fireDemon = (EntityFireOpalDemon) entityIn;
+//		EntityFireOpalDemon fireDemon = (EntityFireOpalDemon) entityIn;
 
 //		limbSwing = entityIn.ticksExisted;
 //		limbSwingAmount = 0.5F;

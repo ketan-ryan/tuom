@@ -18,9 +18,8 @@ import java.lang.reflect.Constructor;
 
 public abstract class LibItemProjectile extends LibItem {
 
-    public LibItemProjectile(String registryName) {
-        super(registryName);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), true);
+    public LibItemProjectile() {
+        super();
         this.maxStackSize = 16;
     }
     public float throwSpeed = 1.5F;

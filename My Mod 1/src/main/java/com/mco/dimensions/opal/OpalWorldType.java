@@ -2,8 +2,9 @@ package com.mco.dimensions.opal;
 
 import java.util.Random;
 
-import com.mco.generation.TUOMWorldGenerator;
+import com.mco.dimensions.TUOMWorldGen;
 import com.mco.main.TUOMBiomes;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiCreateWorld;
 import net.minecraft.world.World;
@@ -21,7 +22,7 @@ public class OpalWorldType extends WorldType
      */
     public OpalWorldType()
     {
-        super(TUOMWorldGenerator.OPAL_NAME);
+        super(TUOMWorldGen.OPAL_NAME);
         
         // DEBUG
         System.out.println("Constructing Opal World Type");
@@ -36,7 +37,7 @@ public class OpalWorldType extends WorldType
     @Override
     public BiomeProvider getBiomeProvider(World world)
     {
-        return new BiomeProviderSingle(TUOMBiomes.dark_forest);
+        return new BiomeProviderSingle(TUOMBiomes.DARK_FOREST);
     }
 
     /* (non-Javadoc)

@@ -1,12 +1,15 @@
 package library.items;
 
+import javax.annotation.Nullable;
+
+import com.mco.TUOM;
+
 import library.LibRegistry;
 import library.common.IJavaDocs;
 import library.common.IRegistryObject;
 import library.common.Registry;
 import library.common.RegistryClientInfo;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -17,8 +20,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
 public abstract class LibItemArmor extends ItemArmor implements IRegistryObject, IJavaDocs {
 
     @Nullable
@@ -28,13 +29,8 @@ public abstract class LibItemArmor extends ItemArmor implements IRegistryObject,
     private float scale = 1.0f;
 
 
-    public LibItemArmor(String registryName, ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) {
+    public LibItemArmor( ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, 0, equipmentSlotIn);
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
-        Registry.register(this);
-		setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), false);
     }
 
     /**
@@ -102,7 +98,7 @@ public abstract class LibItemArmor extends ItemArmor implements IRegistryObject,
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
 
-    		return LibRegistry.getModid() + ":textures/" + getArmorWrapTextureImpl();
+    		return TUOM.MODID + ":textures/" + getArmorWrapTextureImpl();
         
     }
 }

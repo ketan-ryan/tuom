@@ -12,22 +12,9 @@ import net.minecraft.item.crafting.Ingredient;
 
 public class LopalSeeds extends LibItemSeeds 
 {
-	public LopalSeeds(String registryName, Block crops) 
+	public LopalSeeds(Block crops) 
 	{
-		super(registryName, crops);
+		super(crops);
 		this.setCreativeTab(TUOM.tuom_tab);
-	}
-
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"s",
-				"l",
-				
-				'l', TUOMItems.light_opal,
-				's', Items.WHEAT_SEEDS
-				
-		);
 	}
 }

@@ -27,7 +27,7 @@ public class EntityDarkVex extends EntityMob
 	{
 		super(world);
 		this.isImmuneToFire = true;
-		this.setSize(2F, 3F);
+		this.setSize(1F, 2F);
         this.moveHelper = new EntityDarkVex.AIMoveControl(this);
         this.experienceValue = 12;
 	}

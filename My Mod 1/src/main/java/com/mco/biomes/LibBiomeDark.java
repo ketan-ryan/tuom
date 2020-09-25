@@ -3,7 +3,7 @@ package com.mco.biomes;
 import java.util.List;
 import java.util.Random;
 
-import library.biomes.LibBiome;
+import com.google.common.collect.Lists;
 import com.mco.dimensions.opal.WorldGenDarkTree;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
@@ -11,14 +11,15 @@ import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 import com.mco.main.TUOMBlocks;
+
+import library.biomes.LibBiome;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.biome.Biome.BiomeProperties;
-import net.minecraft.world.biome.Biome.FlowerEntry;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeManager.BiomeType;
@@ -26,13 +27,14 @@ import net.minecraftforge.common.BiomeManager.BiomeType;
 public class LibBiomeDark extends LibBiome
 {
 	protected static final WorldGenAbstractTree TREE = new WorldGenDarkTree(true);
+    protected List<Biome.SpawnListEntry> spawnableEntityList = Lists.<Biome.SpawnListEntry>newArrayList();
 
-	public LibBiomeDark(String registryName, BiomeProperties properties) 
+	public LibBiomeDark(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 		
 		this.topBlock = Blocks.GRASS.getDefaultState();
-		this.fillerBlock = TUOMBlocks.dark_stone.getDefaultState();
+		this.fillerBlock = TUOMBlocks.DARK_STONE.getDefaultState();
 
 		this.setGrassColor(0x36004F);
 		this.setFoliageColor(0x36004F);
@@ -40,11 +42,12 @@ public class LibBiomeDark extends LibBiome
 		
 		this.type = BiomeType.COOL;		
 		
-		this.addMonsterSpawn(EntityDarkVex.class, 1, 1, 1);
-		this.addMonsterSpawn(EntityCorruptedChicken.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedCow.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedPig.class, 1, 1, 3);
-		this.addMonsterSpawn(EntityCorruptedSheep.class, 1, 1, 3);
+		this.spawnableEntityList.add(new SpawnListEntry(EntityDarkVex.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedChicken.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedCow.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedPig.class, 15, 1, 3));
+		this.spawnableEntityList.add(new SpawnListEntry(EntityCorruptedSheep.class, 15, 1, 3));
+
 	}
 
 	@Override
@@ -80,7 +83,7 @@ public class LibBiomeDark extends LibBiome
     private void addFlowers()
     {
         flowers.clear();
-        addFlower(TUOMBlocks.dopal_crop.getDefaultState(), 20);
+        addFlower(TUOMBlocks.DOPAL_CROP.getDefaultState(), 20);
     }
     
     @Override
@@ -125,14 +128,14 @@ public class LibBiomeDark extends LibBiome
 				if (iblockstate3.getMaterial() == Material.AIR) 
 				{
 					j = -1;
-				} else if (iblockstate3.getBlock() == TUOMBlocks.dark_stone) 
+				} else if (iblockstate3.getBlock() == TUOMBlocks.DARK_STONE) 
 				{
 					if (j == -1) 
 					{
 						if (k <= 0)
 						{
 							iblockstate = Blocks.AIR.getDefaultState();
-							iblockstate2 = TUOMBlocks.dark_stone.getDefaultState();
+							iblockstate2 = TUOMBlocks.DARK_STONE.getDefaultState();
 						} else if (j2 >= i - 4 && j2 <= i + 1) 
 						{
 							iblockstate = this.topBlock;
@@ -145,8 +148,8 @@ public class LibBiomeDark extends LibBiome
 						} else if (j2 < i - 7 - k) 
 						{
 							iblockstate = Blocks.AIR.getDefaultState();
-							iblockstate2 = TUOMBlocks.dark_stone.getDefaultState();
-							chunkPrimerIn.setBlockState(i2, j2, l, TUOMBlocks.dark_stone.getDefaultState());
+							iblockstate2 = TUOMBlocks.DARK_STONE.getDefaultState();
+							chunkPrimerIn.setBlockState(i2, j2, l, TUOMBlocks.DARK_STONE.getDefaultState());
 						} else 
 						{
 							chunkPrimerIn.setBlockState(i2, j2, l, iblockstate2);

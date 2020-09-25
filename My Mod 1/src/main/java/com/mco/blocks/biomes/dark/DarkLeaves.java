@@ -25,11 +25,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class DarkLeaves extends BlockLeaves
 {
 
-	public DarkLeaves(String name) 
+	public DarkLeaves() 
 	{
 		TUOM.proxy.setGraphicsLevel(this,  true);
-		setUnlocalizedName(name);
-		setRegistryName(name);
 		setSoundType(SoundType.PLANT);
         setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, Boolean.valueOf(true)).withProperty(DECAYABLE, Boolean.valueOf(true)));
 	}
@@ -121,7 +119,7 @@ public class DarkLeaves extends BlockLeaves
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(TUOMBlocks.dark_sapling);
+        return Item.getItemFromBlock(TUOMBlocks.DARK_SAPLING);
     }
 
 	

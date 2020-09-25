@@ -23,11 +23,9 @@ import net.minecraft.world.World;
 
 public class FopalSword extends LibItemSword
 {
-
-	public FopalSword(String registryName, ToolMaterial material) 
+	public FopalSword(ToolMaterial material) 
 	{
-		super(registryName, material);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(material);
 	}
 
 	@Override
@@ -38,32 +36,9 @@ public class FopalSword extends LibItemSword
 	}
 	
 	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"f",
-				"f",
-				"s",
-				
-				'f', TUOMItems.fire_opal,
-				's', Items.STICK			
-				
-		);
-	}
-	
-	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
-		/*if(target != null) 
-		{
-			EntityLightningBolt lightning = new EntityLightningBolt(worldObj, target.posX, target.posY, target.posZ, true);
-			if(lightning != null)
-				worldObj.addWeatherEffect(lightning);
-		}
-//		*/
 		target.setFire(1);
-//		target.setVelocity(1,  1,  1);
 		
 		return super.hitEntity(stack, target, attacker);
 	}

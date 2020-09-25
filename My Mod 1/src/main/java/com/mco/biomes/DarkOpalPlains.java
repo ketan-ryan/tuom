@@ -2,10 +2,17 @@ package com.mco.biomes;
 
 import java.util.Random;
 
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
+import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 import com.mco.main.TUOMBlocks;
-import com.mco.main.TUOMBlocks;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,16 +21,23 @@ import net.minecraft.world.chunk.ChunkPrimer;
 
 public class DarkOpalPlains extends LibBiomeDark
 {
-	public DarkOpalPlains(String registryName, BiomeProperties properties) 
+	public DarkOpalPlains(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 		this.topBlock = Blocks.GRASS.getDefaultState();
-		this.fillerBlock = TUOMBlocks.dark_stone.getDefaultState();
+		this.fillerBlock = TUOMBlocks.DARK_STONE.getDefaultState();
 
 		this.setGrassColor(0x36004F);
 		this.setFoliageColor(0x36004F);
 		this.setSkyColor(0x36004F);
 		
+		this.addMonsterSpawn(EntityDarkVex.class, 15, 1, 1);
+		this.addMonsterSpawn(EntityCorruptedChicken.class, 15, 1, 3);
+		this.addCreatureSpawn(EntityCorruptedCow.class, 45, 3, 7);
+		this.addMonsterSpawn(EntityCorruptedPig.class, 15, 1, 3);
+		this.addMonsterSpawn(EntityCorruptedSheep.class, 15, 1, 3);
+		this.addCreatureSpawn(EntityCow.class, 15, 1, 1);
+		this.addMonsterSpawn(EntityZombie.class, 15, 2, 4);
 	}
 
 	public void genTerrainBlocks(final World world, final Random rand, final ChunkPrimer primer, final int x, final int z, final double noiseVal) 
@@ -71,14 +85,14 @@ public class DarkOpalPlains extends LibBiomeDark
 				if (iblockstate3.getMaterial() == Material.AIR) 
 				{
 					j = -1;
-				} else if (iblockstate3.getBlock() == TUOMBlocks.dark_stone) 
+				} else if (iblockstate3.getBlock() == TUOMBlocks.DARK_STONE) 
 				{
 					if (j == -1) 
 					{
 						if (k <= 0)
 						{
 							iblockstate = Blocks.AIR.getDefaultState();
-							iblockstate2 = TUOMBlocks.dark_stone.getDefaultState();
+							iblockstate2 = TUOMBlocks.DARK_STONE.getDefaultState();
 						} else if (j2 >= i - 4 && j2 <= i + 1) 
 						{
 							iblockstate = this.topBlock;
@@ -91,8 +105,8 @@ public class DarkOpalPlains extends LibBiomeDark
 						} else if (j2 < i - 7 - k) 
 						{
 							iblockstate = Blocks.AIR.getDefaultState();
-							iblockstate2 = TUOMBlocks.dark_stone.getDefaultState();
-							chunkPrimerIn.setBlockState(i2, j2, l, TUOMBlocks.dark_stone.getDefaultState());
+							iblockstate2 = TUOMBlocks.DARK_STONE.getDefaultState();
+							chunkPrimerIn.setBlockState(i2, j2, l, TUOMBlocks.DARK_STONE.getDefaultState());
 						} else 
 						{
 							chunkPrimerIn.setBlockState(i2, j2, l, iblockstate2);

@@ -14,11 +14,18 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
 public class EntityCorruptedChicken extends LibEntityMob<LibEntityMob>
 {
+    public float wingRotation;
+    public float destPos;
+    public float oFlapSpeed;
+    public float oFlap;
+    public float wingRotDelta = 1.0F;
+	
 	public EntityCorruptedChicken(World world) 
 	{
 		super(world);
@@ -36,6 +43,35 @@ public class EntityCorruptedChicken extends LibEntityMob<LibEntityMob>
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.50000000298023224D);
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.5);
 	}
+	
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+
+		 this.oFlap = this.wingRotation;
+	        this.oFlapSpeed = this.destPos;
+	        this.destPos = (float)((double)this.destPos + (double)(this.onGround ? -1 : 4) * 0.3D);
+	        this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
+
+	        if (!this.onGround && this.wingRotDelta < 1.0F)
+	        {
+	            this.wingRotDelta = 1.0F;
+	        }
+
+	        this.wingRotDelta = (float)((double)this.wingRotDelta * 0.9D);
+
+	        if (!this.onGround && this.motionY < 0.0D)
+	        {
+	            this.motionY *= 0.6D;
+	        }
+
+	        this.wingRotation += this.wingRotDelta * 2.0F;
+
+	}
+
+    public void fall(float distance, float damageMultiplier)
+    {
+    }
 	
 	protected SoundEvent getAmbientSound()
     {

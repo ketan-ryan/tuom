@@ -14,12 +14,12 @@ public class LibBlockMultisidedAndTileEntity extends LibBlockSimple {
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
-    public LibBlockMultisidedAndTileEntity(String registryName) {
-        super(registryName, -1, null);
+    public LibBlockMultisidedAndTileEntity() {
+        super(-1, null);
     }
 
-    public LibBlockMultisidedAndTileEntity(String registryName, int guiID, Class<? extends TileEntity> tileEntityClass) {
-        super(registryName, guiID, tileEntityClass);
+    public LibBlockMultisidedAndTileEntity(int guiID, Class<? extends TileEntity> tileEntityClass) {
+        super(guiID, tileEntityClass);
     }
 
     @Override

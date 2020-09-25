@@ -23,10 +23,9 @@ import net.minecraft.world.World;
 
 public class FopalHoe extends LibItemHoe 
 {
-
-	public FopalHoe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public FopalHoe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
+		super(attackDamage, attackSpeed, toolMaterial);
 		this.setCreativeTab(TUOM.tuom_tab);
 	}
 
@@ -35,21 +34,6 @@ public class FopalHoe extends LibItemHoe
 	{
 		tooltip.add(TextFormatting.RED + "Be careful when using this destructive Hoe -");
 		tooltip.add(TextFormatting.RED + "Places fire in a cross pattern around the tilled block.");
-	}
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"ff",
-				" s",
-				" s",
-				
-				'f', TUOMItems.fire_opal,
-				's', Items.STICK			
-				
-		);
 	}
 	
 	/**

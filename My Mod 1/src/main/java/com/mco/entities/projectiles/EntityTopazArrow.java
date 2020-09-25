@@ -18,7 +18,7 @@ public class EntityTopazArrow extends LibEntityArrow
 	@Override
 	public Item getItemProjectile() 
 	{
-		return TUOMItems.topaz_arrow;
+		return TUOMItems.TOPAZ_ARROW;
 	}
 
 	@Override

@@ -13,10 +13,9 @@ import net.minecraft.world.World;
 
 public class DarkFurnace extends LibBlockFurnace 
 {
-	public DarkFurnace(String registryName, Class<? extends TileEntity> tileEntityClass) 
+	public DarkFurnace(Class<? extends TileEntity> tileEntityClass) 
 	{
-		super(registryName, tileEntityClass);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(tileEntityClass);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setHardness((float) 3.5);
 		this.setSoundType(SoundType.STONE);

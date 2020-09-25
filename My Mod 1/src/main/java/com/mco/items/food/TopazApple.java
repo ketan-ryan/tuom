@@ -14,10 +14,9 @@ import net.minecraft.world.World;
 
 public class TopazApple extends LibItemFood 
 {
-
-	public TopazApple(String registryName, int amount, float saturation, boolean isWolfFood) 
+	public TopazApple(int amount, float saturation, boolean isWolfFood) 
 	{
-		super(registryName, amount, saturation, isWolfFood);
+		super(amount, saturation, isWolfFood);
 		this.setAlwaysEdible();
 	}
 
@@ -29,20 +28,4 @@ public class TopazApple extends LibItemFood
            par3EntityPlayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 600, 2));
         }
 	}     
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"ttt",
-				"tat",
-				"ttt",
-				
-				't', TUOMItems.item_topaz,
-				'a', Items.APPLE			
-				
-		);
-	}
-	
 }

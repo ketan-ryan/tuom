@@ -19,25 +19,9 @@ import net.minecraft.world.World;
 
 public class TopazHoe extends LibItemHoe 
 {
-
-	public TopazHoe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public TopazHoe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
-	}
-
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"tt",
-				" s",
-				" s",
-				
-				't', TUOMItems.item_topaz,
-				's', Items.STICK			
-				
-		);
+		super(attackDamage, attackSpeed, toolMaterial);
 	}
 }
 	

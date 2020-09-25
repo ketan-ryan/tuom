@@ -3,7 +3,6 @@ package library.entities.mobs.models;
 import library.entities.mobs.entities.LibEntityWolf;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
@@ -46,8 +45,6 @@ public class LibModelWolf extends ModelBase {
     ModelRenderer wolfMane;
 
     public LibModelWolf() {
-        float f = 0.0F;
-        float f1 = 13.5F;
         this.wolfHeadMain = new ModelRenderer(this, 0, 0);
         this.wolfHeadMain.addBox(-2.0F, -3.0F, -2.0F, 6, 6, 4, 0.0F);
         this.wolfHeadMain.setRotationPoint(-1.0F, 13.5F, -7.0F);

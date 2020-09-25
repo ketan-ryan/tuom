@@ -28,8 +28,8 @@ public abstract class LibItemBow extends LibItem {
     private SoundEvent launchSound = SoundEvents.ENTITY_ARROW_SHOOT;
     private float launchVolume = 1F;
 
-    public LibItemBow(String registryName) {
-        super(registryName);
+    public LibItemBow() {
+        super();
         this.maxStackSize = 1;
         this.setMaxDamage(384);
         this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter() {

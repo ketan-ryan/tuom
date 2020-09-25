@@ -33,16 +33,11 @@ public class LibItemSword extends ItemSword implements IRegistryObject, IJavaDoc
 
     //private final Item.ToolMaterial material;
 
-    public LibItemSword(String registryName, ToolMaterial material) {
+    public LibItemSword(ToolMaterial material) {
         super(material);
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.attackDamage += material.getAttackDamage();
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
-        Registry.register(this);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), true);
     }
 
     /**

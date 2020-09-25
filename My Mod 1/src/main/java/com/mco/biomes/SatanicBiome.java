@@ -5,9 +5,9 @@ import library.biomes.LibBiome;
 public class SatanicBiome extends LibBiome 
 {
 
-	public SatanicBiome(String registryName, BiomeProperties properties) 
+	public SatanicBiome(BiomeProperties properties) 
 	{
-		super(registryName, properties);
+		super(properties);
 
 		/*this.topBlock = TUOMBlocks.satanic_block;
 		this.fillerBlock = TUOMBlocks.satanic_block;*/

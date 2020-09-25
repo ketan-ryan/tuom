@@ -2,11 +2,10 @@ package com.mco.dimensions.opal;
 
 import java.util.Random;
 
-import com.mco.main.TUOMBiomes;
 import com.mco.blocks.biomes.dark.DarkLeaves;
 import com.mco.main.TUOMBiomes;
 import com.mco.main.TUOMBlocks;
-import net.minecraft.block.BlockLeaves;
+
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -18,8 +17,8 @@ import net.minecraftforge.common.IPlantable;
 
 public class WorldGenDarkTree extends WorldGenAbstractTree
 {
-	private IBlockState blockStateWood = TUOMBlocks.dark_log.getDefaultState();
-    private IBlockState blockStateLeaves = TUOMBlocks.dark_leaves.getDefaultState().withProperty(DarkLeaves.CHECK_DECAY, Boolean.valueOf(false));
+	private IBlockState blockStateWood = TUOMBlocks.DARK_LOG.getDefaultState();
+    private IBlockState blockStateLeaves = TUOMBlocks.DARK_LEAVES.getDefaultState().withProperty(DarkLeaves.CHECK_DECAY, Boolean.valueOf(false));
     /** The minimum height of a generated tree. */
     private final int minTreeHeight = 12;
 
@@ -42,7 +41,7 @@ public class WorldGenDarkTree extends WorldGenAbstractTree
         int minHeight = parRandom.nextInt(5) + minTreeHeight;
         
         // Check if tree fits in world
-        if (parBlockPos.getY() >= 1 && parBlockPos.getY() + minHeight + 1 <= parWorld.getHeight() && parWorld.getBiome(parBlockPos) != TUOMBiomes.dark_plains)
+        if (parBlockPos.getY() >= 1 && parBlockPos.getY() + minHeight + 1 <= parWorld.getHeight() && parWorld.getBiome(parBlockPos) != TUOMBiomes.DARK_PLAINS)
         {
             if (!isSuitableLocation(parWorld, parBlockPos, minHeight))
             {
@@ -143,7 +142,7 @@ public class WorldGenDarkTree extends WorldGenAbstractTree
             {
                 for (int checkZ = parBlockPos.getZ() - extraSpaceNeeded; checkZ <= parBlockPos.getZ() + extraSpaceNeeded && isSuitableLocation; ++checkZ)
                 {
-                    isSuitableLocation = isReplaceable(parWorld,blockPos.setPos(checkX, checkY, checkZ)) && parWorld.getBiome(parBlockPos) != TUOMBiomes.dark_plains; 
+                    isSuitableLocation = isReplaceable(parWorld,blockPos.setPos(checkX, checkY, checkZ)) && parWorld.getBiome(parBlockPos) != TUOMBiomes.DARK_PLAINS; 
                 }
             }
         }

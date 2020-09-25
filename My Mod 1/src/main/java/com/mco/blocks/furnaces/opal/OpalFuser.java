@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.mco.TUOM;
 import com.mco.main.TUOMBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
@@ -46,13 +47,13 @@ public class OpalFuser extends Block implements ITileEntityProvider
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
 	{
-		return Item.getItemFromBlock(TUOMBlocks.opal_fuser);
+		return Item.getItemFromBlock(TUOMBlocks.OPAL_FUSER);
 	}
 	
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) 
 	{
-		return new ItemStack(TUOMBlocks.opal_fuser);
+		return new ItemStack(TUOMBlocks.OPAL_FUSER);
 	}
 
 	@Override
@@ -98,9 +99,9 @@ public class OpalFuser extends Block implements ITileEntityProvider
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		
 		if(active)
-			worldIn.setBlockState(pos, TUOMBlocks.opal_fuser.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, true), 3);
+			worldIn.setBlockState(pos, TUOMBlocks.OPAL_FUSER.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, true), 3);
 		else
-			worldIn.setBlockState(pos, TUOMBlocks.opal_fuser.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, false), 3);
+			worldIn.setBlockState(pos, TUOMBlocks.OPAL_FUSER.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, false), 3);
 
 		if(tileentity != null)
 		{

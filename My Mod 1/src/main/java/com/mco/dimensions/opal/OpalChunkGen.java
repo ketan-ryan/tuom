@@ -6,11 +6,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
-
-import com.mco.dimensions.noise.OctaveNoiseSampler;
-import com.mco.dimensions.opal.mapgen.OpalMapGenCaves;
-import com.mco.dimensions.util.BiomeWeightTable;
-import com.mco.main.TUOMBiomes;
 import com.mco.dimensions.noise.OctaveNoiseSampler;
 import com.mco.dimensions.opal.mapgen.OpalMapGenCaves;
 import com.mco.dimensions.opal.mapgen.OpalMapGenRavine;
@@ -18,6 +13,7 @@ import com.mco.dimensions.util.BiomeWeightTable;
 import com.mco.dimensions.util.NoiseChunkPrimer;
 import com.mco.main.TUOMBiomes;
 import com.mco.main.TUOMBlocks;
+
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -55,7 +51,7 @@ public class OpalChunkGen implements IChunkGenerator
     private static final int BIOME_NOISE_OFFSET = BIOME_WEIGHT_RADIUS;
     private static final int BIOME_NOISE_SIZE = BUFFER_WIDTH + BIOME_WEIGHT_RADIUS * 2;
 
-    private static final IBlockState STONE = TUOMBlocks.dark_stone.getDefaultState();
+    private static final IBlockState STONE = TUOMBlocks.DARK_STONE.getDefaultState();
     
     private List<Biome.SpawnListEntry> mobs = Lists.newArrayList(new Biome.SpawnListEntry(EntityZombie.class, 100, 2, 4));
     
@@ -206,8 +202,6 @@ public class OpalChunkGen implements IChunkGenerator
                         float neighborHeightVariation = neighborBiome.getHeightVariation();
                         float neighborRidgeWeight = 1;
                         float neighborDensityScale = 1;
-                        //float neighborRidgeWeight = IMidnightBiome.getRidgeWeight(neighborBiome);
-                        //float neighborDensityScale = IMidnightBiome.getDensityScale(neighborBiome);
 
                         float biomeWeight = this.weightTable.get(neighborX, neighborZ) / (neighborBaseHeight + 2.0F);
                         if (neighborBiome.getBaseHeight() > originBiome.getBaseHeight()) 
@@ -297,7 +291,10 @@ public class OpalChunkGen implements IChunkGenerator
         
         int chunkStartXInWorld = parChunkX * 16;
         int chunkStartZInWorld = parChunkZ * 16;
+        
         BlockPos blockpos = new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld);
+        Biome biome = world.getBiome(blockpos.add(16, 0, 16));
+        
         random.setSeed(world.getSeed());
         long k = random.nextLong() / 2L * 2L + 1L;
         long l = random.nextLong() / 2L * 2L + 1L;
@@ -328,20 +325,22 @@ public class OpalChunkGen implements IChunkGenerator
             }
         }
 
-        TUOMBiomes.dark_forest.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
-        TUOMBiomes.dark_mountains.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
-        TUOMBiomes.dark_plains.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
+        TUOMBiomes.DARK_FOREST.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
+        TUOMBiomes.DARK_MOUNTAINS.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
+        TUOMBiomes.DARK_PLAINS.decorate(world, random, new BlockPos(chunkStartXInWorld, 0, chunkStartZInWorld));
 
-        /*
+        WorldEntitySpawner.performWorldGenSpawning(world, biome, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, this.random);
+/*        
+        
          * Spawn creatures
-         */
+         
         if (TerrainGen.populate(this, world, random, parChunkX, parChunkZ, villageHasGenerated, PopulateChunkEvent.Populate.EventType.CUSTOM))
         {            
-            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.dark_forest, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
-            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.dark_mountains, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
-            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.dark_plains, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
+            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_FOREST, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
+            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_MOUNTAINS, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
+            WorldEntitySpawner.performWorldGenSpawning(world, TUOMBiomes.DARK_PLAINS, chunkStartXInWorld + 8, chunkStartZInWorld + 8, 16, 16, random);
 
-        }
+        }*/
         
         ForgeEventFactory.onChunkPopulate(false, this, world, random, parChunkX, parChunkZ, villageHasGenerated);
 
@@ -357,7 +356,8 @@ public class OpalChunkGen implements IChunkGenerator
     @Override
     public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) 
     {
-        return this.world.getBiome(pos).getSpawnableList(creatureType);
+        Biome biome = world.getBiome(pos);
+        return biome.getSpawnableList(creatureType);
     }
 
     @Nullable

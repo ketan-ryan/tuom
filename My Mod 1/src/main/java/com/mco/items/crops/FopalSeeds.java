@@ -13,22 +13,8 @@ import net.minecraft.item.crafting.Ingredient;
 
 public class FopalSeeds extends LibItemSeeds 
 {
-	public FopalSeeds(String registryName, Block crops) 
+	public FopalSeeds(Block crops) 
 	{
-		super(registryName, crops);
-		this.setCreativeTab(TUOM.tuom_tab);
-	}
-
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"s",
-				"f",
-				
-				'f', TUOMItems.fire_opal,
-				's', Items.WHEAT_SEEDS
-				
-		);
+		super(crops);
 	}
 }

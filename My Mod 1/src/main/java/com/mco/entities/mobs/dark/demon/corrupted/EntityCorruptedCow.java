@@ -2,13 +2,12 @@ package com.mco.entities.mobs.dark.demon.corrupted;
 
 import javax.annotation.Nullable;
 
-import library.entities.LibEntityMob;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAITarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
@@ -18,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 
-public class EntityCorruptedCow extends LibEntityMob<LibEntityMob>
+public class EntityCorruptedCow extends EntityMob
 {
 	public EntityCorruptedCow(World world) 
 	{
@@ -39,6 +38,11 @@ public class EntityCorruptedCow extends LibEntityMob<LibEntityMob>
 		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5);
 	}
 
+	@Override
+	public void onLivingUpdate() {
+		super.onLivingUpdate();
+	}
+	
 	protected SoundEvent getAmbientSound()
     {
         return SoundEvents.ENTITY_COW_AMBIENT;

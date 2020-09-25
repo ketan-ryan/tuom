@@ -21,8 +21,8 @@ public class LibItemShovel extends LibItemTool {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH, Blocks.CONCRETE_POWDER);
 
-    public LibItemShovel(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) {
-        super(registryName, attackDamage, attackSpeed, toolMaterial, EFFECTIVE_ON);
+    public LibItemShovel(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) {
+        super(attackDamage, attackSpeed, toolMaterial, EFFECTIVE_ON);
     }
 
     /**

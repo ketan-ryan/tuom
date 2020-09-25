@@ -19,6 +19,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 public class EntityCorruptedPig extends LibEntityMob<LibEntityMob>
 {
+
 	public EntityCorruptedPig(World world) 
 	{
 		super(world);

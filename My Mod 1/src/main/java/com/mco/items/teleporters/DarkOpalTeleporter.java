@@ -4,12 +4,11 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.mco.generation.TUOMWorldGenerator;
+import com.mco.generation.TUOMStructureGen;
 import com.mco.main.TUOMBiomes;
+
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import com.mco.generation.TUOMWorldGenerator;
-import com.mco.main.TUOMBiomes;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Teleporter;
@@ -18,7 +17,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeOcean;
 import net.minecraft.world.biome.BiomeRiver;
-import net.minecraft.world.biome.BiomeSavanna;
 
 public class DarkOpalTeleporter extends Teleporter
 {
@@ -57,7 +55,7 @@ public class DarkOpalTeleporter extends Teleporter
 			for (int i = 0; i < 128; i++) 
 			{
 				BlockPos dPos = new BlockPos(pos.getX() + random.nextInt(range) - random.nextInt(range), 
-						TUOMWorldGenerator.getGroundFromAbove(entity.world, pos.getX() + random.nextInt(range) - random.nextInt(range), pos.getZ() +
+						TUOMStructureGen.getGroundFromAbove(entity.world, pos.getX() + random.nextInt(range) - random.nextInt(range), pos.getZ() +
 						random.nextInt(range) - random.nextInt(range)) + 4,	pos.getZ() + random.nextInt(range) - random.nextInt(range));
 				return dPos;
 			}
@@ -70,14 +68,14 @@ public class DarkOpalTeleporter extends Teleporter
 		BlockPos pos = new BlockPos(entity);
 		BlockPos safeCoords = findSafeCoords(200, pos, entity);
 
-		if (safeCoords != null && world.getBiome(pos) != TUOMBiomes.dark_mountains)
+		if (safeCoords != null && world.getBiome(pos) != TUOMBiomes.DARK_MOUNTAINS)
 		{
 			entity.setLocationAndAngles(safeCoords.getX(), safeCoords.getY(), safeCoords.getZ(), 90.0F, 0.0F);
 		} 
 		else 
 		{
 			safeCoords = findSafeCoords(400, pos, entity);
-			if (safeCoords != null && world.getBiome(pos) != TUOMBiomes.dark_mountains) 
+			if (safeCoords != null && world.getBiome(pos) != TUOMBiomes.DARK_MOUNTAINS) 
 			{
 				entity.setLocationAndAngles(safeCoords.getX(), safeCoords.getY(), safeCoords.getZ(), 90.0F,
 						0.0F);

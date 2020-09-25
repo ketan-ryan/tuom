@@ -1,37 +1,26 @@
 package com.mco.proxies;
 
-import com.mco.TUOM;
-import com.mco.blocks.biomes.dark.DarkLeaves;
-import com.mco.entities.lightning.dark.RenderDarkLightning;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
-import com.mco.entities.projectiles.RenderCustomFallingBlock;
-import com.mco.events.TUOMEventHandler;
-import com.mco.main.TUOMEntities;
-import com.mco.potions.TUOMPotions;
-
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
 
-import library.LibRegistry;
-import library.common.BakedModelLoader;
-import library.gui.LibFurnaceGUI;
-import library.gui.LibGUIHandler;
 import com.mco.TUOM;
+import com.mco.blocks.biomes.dark.DarkLeaves;
 import com.mco.entities.lightning.dark.EntityDarkLightning;
 import com.mco.entities.lightning.dark.RenderDarkLightning;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
 import com.mco.entities.mobs.dark.demon.bomb.RenderDarkBomb;
-import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 import com.mco.entities.projectiles.EntityCustomFallingBlock;
 import com.mco.entities.projectiles.RenderCustomFallingBlock;
-import com.mco.main.TUOMEntities;
+import com.mco.events.TUOMClientEventHandler;
+import com.mco.events.TUOMEventHandler;
+
+import library.common.BakedModelLoader;
+import library.gui.LibFurnaceGUI;
+import library.gui.LibGUIHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderVex;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
@@ -42,23 +31,19 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class ClientProxy extends CommonProxy 
+public class ClientProxy implements IProxy
 {
 	private static final Minecraft MINECRAFT = Minecraft.getMinecraft();
 	
     public static int sphereIdOutside;
     public static int sphereIdInside;
     
-    @Override
     public void preInit(FMLPreInitializationEvent event) 
-    {
-        super.preInit(event);
-
+    {        
         OBJLoader.INSTANCE.addDomain(TUOM.MODID);
         ModelLoaderRegistry.registerLoader(new BakedModelLoader());
-        TUOMEntities.registerEntityModels();
-        LibRegistry.registerEntityModels();
       
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, RenderDarkLightning.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityCustomFallingBlock.class, RenderCustomFallingBlock.FACTORY);
@@ -66,14 +51,18 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityDarkBomb.class, RenderDarkBomb::new);
      }
     
-    @Override
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new TUOMEventHandler());
+        MinecraftForge.EVENT_BUS.register(new TUOMClientEventHandler());
     }
     
     public static EntityPlayer getClientPlayer() {
     	return MINECRAFT.player;
+    }
+    
+    public static Minecraft getMC() {
+    	return MINECRAFT;
     }
     
     @Override
@@ -84,10 +73,9 @@ public class ClientProxy extends CommonProxy
     //GuiBossOverlay
     //GuiIngameForge.renderBossHealth
     
-    @Override
     public void registerGUI(Class<? extends TileEntity> tile, Class<? extends Container> container, String textureGUI) 
     {
-        super.registerGUI(tile, container, textureGUI);
+        LibGUIHandler.registerGUI(tile, container, textureGUI);
         LibGUIHandler.lookupTileToGUI.put(tile, LibFurnaceGUI.class);
     }
     
@@ -124,4 +112,9 @@ public class ClientProxy extends CommonProxy
         sphere.draw(0.5F, 48, 48);
         GlStateManager.glEndList();
     }
+
+	@Override
+	public Side getPhysicalSide() {
+		return Side.CLIENT;
+	}
 }

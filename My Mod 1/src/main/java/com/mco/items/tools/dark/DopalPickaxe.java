@@ -16,26 +16,9 @@ import net.minecraft.world.World;
 
 public class DopalPickaxe extends LibItemPickaxe 
 {
-
-	public DopalPickaxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public DopalPickaxe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage, attackSpeed, toolMaterial);
 		this.setScale(1.25F);
 	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"ddd",
-				" s ",
-				" s ",
-				
-				'd', TUOMItems.dark_opal,
-				's', Items.STICK			
-				
-		);
-	}
-
 }

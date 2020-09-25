@@ -17,8 +17,8 @@ import net.minecraft.world.World;
 
 public class LibItemHoe extends LibItemTool {
 
-    public LibItemHoe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) {
-        super(registryName, attackDamage, attackSpeed, toolMaterial);
+    public LibItemHoe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) {
+        super(attackDamage, attackSpeed, toolMaterial);
     }
 
 

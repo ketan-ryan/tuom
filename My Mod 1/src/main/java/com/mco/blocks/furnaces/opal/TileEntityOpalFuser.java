@@ -22,7 +22,6 @@ public class TileEntityOpalFuser extends TileEntity implements IInventory, ITick
 	private String customName;
 	
 	private int burnTime;
-	private int currentBurnTime;
 	private int cookTime;
 	private int totalCookTime;
 	
@@ -170,14 +169,7 @@ public class TileEntityOpalFuser extends TileEntity implements IInventory, ITick
 	
 	public void update()
 	{
-		boolean flag = isBurning();
-		boolean flag1 = false;
-		
-	//	if
-		
-		
-		
-		
+		isBurning();
 	}
 	
 	public int getCookTime(ItemStack input1, ItemStack input2)

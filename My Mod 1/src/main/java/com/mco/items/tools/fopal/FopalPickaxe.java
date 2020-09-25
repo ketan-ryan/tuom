@@ -14,11 +14,9 @@ import net.minecraft.world.World;
 
 public class FopalPickaxe extends LibItemPickaxe 
 {
-
-	public FopalPickaxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public FopalPickaxe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage, attackSpeed, toolMaterial);
 		this.setScale(1.25F);
 	}
 	
@@ -27,19 +25,4 @@ public class FopalPickaxe extends LibItemPickaxe
 	{
 		tooltip.add(TextFormatting.RED + "Auto smelts ores!");
 	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"fff",
-				" s ",
-				" s ",
-				
-				'f', TUOMItems.fire_opal,
-				's', Items.STICK			
-				
-		);
-	}
-
 }

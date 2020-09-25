@@ -6,26 +6,10 @@ import library.LibRegistry;
 import library.items.LibItemShovel;
 import net.minecraft.init.Items;
 
-public class GarnetShovel extends LibItemShovel {
-
-	public GarnetShovel(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial)
+public class GarnetShovel extends LibItemShovel 
+{
+	public GarnetShovel(float attackDamage, float attackSpeed, ToolMaterial toolMaterial)
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage, attackSpeed, toolMaterial);
 	}
-
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"g",
-				"s",
-				"s",
-				
-				'g', TUOMItems.item_garnet,
-				's', Items.STICK			
-				
-		);
-	}
-	
 }

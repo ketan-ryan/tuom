@@ -1,8 +1,24 @@
 package library.common;
 
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
+
+import javax.vecmath.Vector4f;
+
+import org.lwjgl.util.vector.Vector3f;
+
 import com.google.common.collect.ImmutableList;
+
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import net.minecraft.client.renderer.block.model.ItemTransformVec3f;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.EnumFacing;
@@ -10,11 +26,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
-import org.lwjgl.util.vector.Vector3f;
-
-import javax.vecmath.Vector4f;
-import java.util.*;
-import java.util.function.Function;
 
 public class SingleTextureItemBakedModel implements IBakedModel {
 
@@ -119,7 +130,7 @@ public class SingleTextureItemBakedModel implements IBakedModel {
 
     private static boolean isTransparent(int[] pixels, int uMax, int vMax, int u, int v)
     {
-        int test = (pixels[u + (vMax - 1 - v) * uMax] >> 24 & 0xFF);
+        //int test = (pixels[u + (vMax - 1 - v) * uMax] >> 24 & 0xFF);
         //System.out.println(test);
         return (pixels[u + (vMax - 1 - v) * uMax] >> 24 & 0xFF) == 0;
     }

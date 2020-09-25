@@ -25,14 +25,8 @@ public class LibItemFood extends ItemFood implements IRegistryObject, IJavaDocs 
     private boolean handheld = false;
     private float scale = 1.0f;
 
-    public LibItemFood(String registryName, int amount, float saturation, boolean isWolfFood) {
+    public LibItemFood(int amount, float saturation, boolean isWolfFood) {
         super(amount, saturation, isWolfFood);
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-		this.setCreativeTab(TUOM.tuom_tab);
-        Registry.register(this);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), false);
-
     }
 
     @Override

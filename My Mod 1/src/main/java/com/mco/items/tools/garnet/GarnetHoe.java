@@ -23,27 +23,10 @@ import net.minecraft.world.World;
 
 public class GarnetHoe extends LibItemHoe 
 {
-
-	public GarnetHoe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+	public GarnetHoe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage, attackSpeed, toolMaterial);
 	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"gg",
-				" s",
-				" s",
-				
-				'g', TUOMItems.item_garnet,
-				's', Items.STICK			
-				
-		);
-	}
-	
 }
 	
 

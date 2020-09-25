@@ -1,10 +1,10 @@
 package library.ai;
 
+import java.util.List;
+
 import library.entities.mobs.entities.LibEntityLlama;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.List;
 
 public class LibEntityAILlamaFollowCaravan extends EntityAIBase {
 
@@ -114,7 +114,6 @@ public class LibEntityAILlamaFollowCaravan extends EntityAIBase {
         if (this.llama.inCaravan()) {
             LibEntityLlama entityllama = this.llama.getCaravanHead();
             double d0 = this.llama.getDistance(entityllama);
-            float f = 2.0F;
             Vec3d vec3d = (new Vec3d(entityllama.posX - this.llama.posX, entityllama.posY - this.llama.posY, entityllama.posZ - this.llama.posZ)).normalize().scale(Math.max(d0 - 2.0D, 0.0D));
             this.llama.getNavigator().tryMoveToXYZ(this.llama.posX + vec3d.x, this.llama.posY + vec3d.y, this.llama.posZ + vec3d.z, this.speedModifier);
         }

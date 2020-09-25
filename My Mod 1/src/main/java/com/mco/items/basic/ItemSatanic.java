@@ -7,12 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSatanic extends LibItemSimple {
+public class ItemSatanic extends Item {
 
-	public ItemSatanic(String registryName) 
+	public ItemSatanic() 
 	{
-		super(registryName);
-		setCreativeTab(TUOM.tuom_tab);
+		super();
 	}
 
 	/**

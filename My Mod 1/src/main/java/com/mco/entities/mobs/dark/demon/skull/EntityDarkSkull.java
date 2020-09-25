@@ -1,13 +1,12 @@
 package com.mco.entities.mobs.dark.demon.skull;
 
-import com.mco.TUOM;
 import com.mco.main.TUOMDamageSources;
-import library.util.Actions;
-import com.mco.TUOM;
-import com.mco.main.TUOMDamageSources;
+import com.mco.potions.TUOMPotions;
+
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFireball;
-import net.minecraft.util.DamageSource;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -56,6 +55,12 @@ public class EntityDarkSkull extends EntityFireball
         return false;
     }
     
+    /**
+     * Handles what happens when the skull
+     * hits an entity. Damages and applies {@link TUOMPotions#DARK_POTION}
+     * 
+     * @param result what was collided with
+     */
 	@Override
 	protected void onImpact(RayTraceResult result) 
 	{
@@ -63,29 +68,25 @@ public class EntityDarkSkull extends EntityFireball
 		{
 			if (result.entityHit != null)
 			{
-				if (result.entityHit.attackEntityFrom(TUOMDamageSources.darkSkull, 15.0F) && !result.entityHit.isEntityAlive())
+				//If a target was hit, heal the demon
+				if (result.entityHit.attackEntityFrom(TUOMDamageSources.darkSkull, 15.0F) && result.entityHit.isEntityAlive())
 				{
 					if(shootingEntity != null)
-					{
 						this.shootingEntity.heal(10.0F);
+										
+					//If we hit a player, apply the potion effect
+					if(result.entityHit instanceof EntityPlayer) 
+					{
+						EntityPlayer player = (EntityPlayer)result.entityHit;
+						
+						if(player != null && !player.world.isRemote)
+							player.addPotionEffect(new PotionEffect(TUOMPotions.DARK_POTION, 200, 3, true, true));
 					}
-					result.entityHit.attackEntityFrom(DamageSource.MAGIC, 5.0F);
-					Actions.addPotionEffect((EntityLivingBase) result.entityHit, TUOM.darkPotion, 200, 5, true);
 				}
-			}
-			else
-			{
-			}
-
-			if (result.entityHit instanceof EntityLivingBase)
-			{
-				//	((EntityLivingBase)result.entityHit).addPotionEffect(new PotionEffect(ClientProxy.darkPotion.id, 40, 1));
-			}
+			}			
+			//Cause an explosion on impact
 	        this.world.newExplosion(this, this.posX, this.posY, this.posZ, 1.0F, false, net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.shootingEntity));
-
 		}
-
 		this.setDead();
 	}
-
 }

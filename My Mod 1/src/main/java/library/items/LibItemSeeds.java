@@ -24,14 +24,8 @@ public class LibItemSeeds extends ItemSeeds implements IRegistryObject, IJavaDoc
     private boolean handheld = false;
     private float scale = 1.0f;
 
-    public LibItemSeeds(String registryName, Block crops) {
+    public LibItemSeeds(Block crops) {
         super(crops, null);
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-        setCreativeTab(CreativeTabs.MISC);
-        Registry.register(this);
-        setSingleTexture(new ResourceLocation(LibRegistry.getModid(), "items/" + registryName), false);
-
     }
 
     @Override

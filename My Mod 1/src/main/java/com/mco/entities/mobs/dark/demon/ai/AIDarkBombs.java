@@ -3,15 +3,10 @@ package com.mco.entities.mobs.dark.demon.ai;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.bomb.EntityProjectileDarkBomb;
 import com.mco.main.TUOMSoundHandler;
-import library.util.Actions;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.bomb.EntityProjectileDarkBomb;
-import com.mco.main.TUOMDamageSources;
-import com.mco.main.TUOMSoundHandler;
+
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 
 public class AIDarkBombs extends AnimationAI
@@ -59,9 +54,9 @@ public class AIDarkBombs extends AnimationAI
 			demon.getLookHelper().setLookPositionWithEntity(attackTarget, 30, 30);
 		}
 		
-		if(demon.getAnimationTick() == 20)
+		if(demon.getAnimationTick() == 20 && !demon.world.isRemote)
 		{
-			demon.world.playSound(demon.posX, demon.posY, demon.posZ, TUOMSoundHandler.darkOpalBombLaunch, SoundCategory.MASTER, 5, 1, false);
+			demon.world.playSound(demon.posX, demon.posY, demon.posZ, TUOMSoundHandler.DARK_OPAL_BOMB_LAUNCH, SoundCategory.MASTER, 5, 1, false);
 			for (int i = 0; i < 360; i += 60) 
 			{
 				EntityProjectileDarkBomb bomb = new EntityProjectileDarkBomb(demon.world);

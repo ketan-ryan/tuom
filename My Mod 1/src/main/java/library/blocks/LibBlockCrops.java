@@ -18,11 +18,8 @@ import java.util.Random;
 
 public abstract class LibBlockCrops extends BlockCrops implements IRegistryObject {
 
-    public LibBlockCrops(String registryName) {
+    public LibBlockCrops() {
         super();
-        setUnlocalizedName(LibRegistry.getModid() + "." + registryName);
-        setRegistryName(registryName);
-        Registry.register(this);
     }
 
     /**

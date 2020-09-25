@@ -13,10 +13,9 @@ import net.minecraft.world.World;
 
 public class LopalApple extends LibItemFood 
 {
-
-	public LopalApple(String registryName, int amount, float saturation, boolean isWolfFood) 
+	public LopalApple(int amount, float saturation, boolean isWolfFood) 
 	{
-		super(registryName, amount, saturation, isWolfFood);
+		super(amount, saturation, isWolfFood);
 		this.setAlwaysEdible();
 	}
 
@@ -28,20 +27,4 @@ public class LopalApple extends LibItemFood
            par3EntityPlayer.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 600, 2));
         }
 	}     
-	
-	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"lll",
-				"lal",
-				"lll",
-				
-				'l', TUOMItems.light_opal,
-				'a', Items.APPLE			
-				
-		);
-	}
-	
 }

@@ -6,27 +6,11 @@ import com.mco.TUOM;
 import com.mco.main.TUOMItems;
 import net.minecraft.init.Items;
 
-public class TopazAxe extends LibItemAxe {
-
-	public TopazAxe(String registryName, float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
+public class TopazAxe extends LibItemAxe 
+{
+	public TopazAxe(float attackDamage, float attackSpeed, ToolMaterial toolMaterial) 
 	{
-		super(registryName, attackDamage + 2, attackSpeed, toolMaterial);
-		this.setCreativeTab(TUOM.tuom_tab);
+		super(attackDamage + 2, attackSpeed, toolMaterial);
 		this.setScale(1.25F);
 	}
-	
-	@Override
-	public void initRecipe() {
-		LibRegistry.addShapedRecipe(this, 1, 
-				
-				"tt",
-				"ts",
-				" s",
-				
-				't', TUOMItems.item_topaz,
-				's', Items.STICK			
-				
-		);
-	}
-
 }

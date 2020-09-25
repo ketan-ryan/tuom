@@ -6,9 +6,9 @@ import net.minecraft.item.Item;
 
 public class TopazCrop extends LibBlockCrops 
 {
-	public TopazCrop(String registryName) 
+	public TopazCrop() 
 	{
-		super(registryName);
+		super();
 	}
 
 	@Override
@@ -20,13 +20,13 @@ public class TopazCrop extends LibBlockCrops
 	@Override
 	protected Item getSeed() 
 	{
-		return TUOMItems.topaz_seeds;
+		return TUOMItems.TOPAZ_SEEDS;
 	}
 
 	@Override
 	protected Item getCrop() 
 	{
-		return TUOMItems.topaz_shard;
+		return TUOMItems.TOPAZ_SHARD;
 	}
 
 }
