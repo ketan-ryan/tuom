@@ -43,7 +43,6 @@ public class RenderDarkSkull extends Render<EntityDarkSkull>
         float f = this.getRenderYaw(entity.prevRotationYaw, entity.rotationYaw, partialTicks);
         float f1 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
         GlStateManager.translate((float)x, (float)y, (float)z);
-        float f2 = 0.0625F;
         GlStateManager.enableRescaleNormal();
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         GlStateManager.enableAlpha();

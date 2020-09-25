@@ -3,6 +3,7 @@ package com.mco.entities.mobs.dark.demon.layers;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.ModelDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -35,7 +36,6 @@ public class LayerDemonAura implements LayerRenderer<EntityDarkOpalDemon>
             GlStateManager.scale(1.25F, 1.25F, 1.25F);
             GlStateManager.matrixMode(5888);
             GlStateManager.enableBlend();
-            float f3 = 0.5F;
             GlStateManager.color(0.5F, 0.5F, 0.5F, 1.0F);
             GlStateManager.disableLighting();
             GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);

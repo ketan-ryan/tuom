@@ -36,9 +36,6 @@ public class RenderProjectileDarkBomb extends Render<EntityProjectileDarkBomb>
         float f1 = 1F;//textureatlassprite.getMaxU();
         float f2 = 0F;//textureatlassprite.getMinV();
         float f3 = 1F;//textureatlassprite.getMaxV();
-        float f4 = 1.0F;
-        float f5 = 0.5F;
-        float f6 = 0.25F;
         GlStateManager.rotate(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate((float)(this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * -this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
 

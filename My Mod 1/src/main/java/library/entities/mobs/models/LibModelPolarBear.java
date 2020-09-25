@@ -4,7 +4,6 @@ import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,7 +25,6 @@ public class LibModelPolarBear extends ModelQuadruped {
         this.body.setTextureOffset(0, 19).addBox(-5.0F, -13.0F, -7.0F, 14, 14, 11, 0.0F);
         this.body.setTextureOffset(39, 0).addBox(-4.0F, -25.0F, -7.0F, 12, 12, 10, 0.0F);
         this.body.setRotationPoint(-2.0F, 9.0F, 12.0F);
-        int i = 10;
         this.leg1 = new ModelRenderer(this, 50, 22);
         this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, 10, 8, 0.0F);
         this.leg1.setRotationPoint(-3.5F, 14.0F, 6.0F);
@@ -58,7 +56,6 @@ public class LibModelPolarBear extends ModelQuadruped {
         this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 
         if (this.isChild) {
-            float f = 2.0F;
             this.childYOffset = 16.0F;
             this.childZOffset = 4.0F;
             GlStateManager.pushMatrix();
@@ -93,7 +90,6 @@ public class LibModelPolarBear extends ModelQuadruped {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-        float f = ageInTicks - (float) entityIn.ticksExisted;
         float f1 = 0F;//((EntityPolarBear) entityIn).getStandingAnimationScale(f);
         f1 = f1 * f1;
         float f2 = 1.0F - f1;

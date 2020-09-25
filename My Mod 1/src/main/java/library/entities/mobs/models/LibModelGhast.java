@@ -1,5 +1,7 @@
 package library.entities.mobs.models;
 
+import java.util.Random;
+
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -7,15 +9,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Random;
-
 @SideOnly(Side.CLIENT)
 public class LibModelGhast extends LibModelBase {
     ModelRenderer body;
     ModelRenderer[] tentacles = new ModelRenderer[9];
 
     public LibModelGhast() {
-        int i = -16;
         this.body = new ModelRenderer(this, 0, 0);
         this.body.addBox(-8.0F, -8.0F, -8.0F, 16, 16, 16);
         this.body.rotationPointY += 8.0F;

@@ -7,7 +7,6 @@ import java.util.Random;
 import com.mco.TUOM;
 import com.mco.biomes.DarkOpalPlains;
 import com.mco.dimensions.TUOMWorldGen;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
 
 import net.minecraft.block.Block;
@@ -105,7 +104,6 @@ public class TUOMStructureGen extends WorldGenerator implements IWorldGenerator
 			
 			for(Entry<BlockPos, String> entry : map.entrySet())
 			{
-				EntityDarkOpalDemon demon;
 				BlockPos dataPos = entry.getKey();
 				
 				if("dark demon chest".equals(entry.getValue()))

@@ -21,16 +21,6 @@ public class TUOMBiomes
 {
     private static final List<Biome> SEED_BIOMES = new ArrayList<>();
 	
-	@ObjectHolder("dark_opal_forest")
-	public static final Biome DARK_FOREST = null;
-	@ObjectHolder("dark_opal_mountains")
-	public static final Biome DARK_MOUNTAINS = null;
-	@ObjectHolder("dark_opal_plains")
-	public static final Biome DARK_PLAINS = null;
-	
-	@ObjectHolder("satanic")
-	public static final Biome SATANIC = null;
-	
 	private static final Biome.BiomeProperties SATANIC_PROPERTIES = new Biome.BiomeProperties("Satan's Realm")
 																				.setBaseHeight(0.0F)
 																				.setHeightVariation(0.0F)
@@ -61,12 +51,18 @@ public class TUOMBiomes
 																				.setSnowEnabled()
 																				.setWaterColor(0x9200D6);
 	
+	public static final Biome DARK_FOREST = new DarkOpalBiome(DARK_FOREST_PROPERTIES);
+	public static final Biome DARK_MOUNTAINS = new DarkOpalMountains(DARK_MOUNTAIN_PROPERTIES);
+	public static final Biome DARK_PLAINS = new DarkOpalPlains(DARK_PLAINS_PROPERTIES);
+	
+	public static final Biome SATANIC = new SatanicBiome(SATANIC_PROPERTIES);
+	
     public static void registerBiomes(IForgeRegistry<Biome> registry) 
     {
-    	registerBiome(registry, "satanic", new SatanicBiome(SATANIC_PROPERTIES), Type.COLD, Type.PLAINS, Type.WET);
-    	registerBiome(registry, "dark_opal_forest", new DarkOpalBiome( DARK_FOREST_PROPERTIES), Type.SPOOKY, Type.DENSE, Type.WET);
-    	registerBiome(registry, "dark_opal_mountains", new DarkOpalMountains(DARK_MOUNTAIN_PROPERTIES), Type.SPOOKY, Type.DENSE, Type.WET);
-    	registerBiome(registry, "dark_opal_plains", new DarkOpalPlains(DARK_PLAINS_PROPERTIES), Type.SPOOKY, Type.PLAINS, Type.WET);
+    	registerBiome(registry, "satanic", SATANIC, Type.COLD, Type.PLAINS, Type.WET);
+    	registerBiome(registry, "dark_opal_forest", DARK_FOREST, Type.SPOOKY, Type.DENSE, Type.WET);
+    	registerBiome(registry, "dark_opal_mountains", DARK_MOUNTAINS, Type.SPOOKY, Type.DENSE, Type.WET);
+    	registerBiome(registry, "dark_opal_plains", DARK_PLAINS, Type.SPOOKY, Type.PLAINS, Type.WET);
     }
     
     public static <T extends Biome> void registerBiome(IForgeRegistry<Biome> registry, String name, T biome, BiomeDictionary.Type... types) 

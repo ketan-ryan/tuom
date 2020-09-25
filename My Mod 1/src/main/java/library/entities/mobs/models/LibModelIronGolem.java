@@ -3,7 +3,6 @@ package library.entities.mobs.models;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,8 +42,6 @@ public class LibModelIronGolem extends LibModelBase {
     }
 
     public LibModelIronGolem(float p_i46362_1_, float p_i46362_2_) {
-        int i = 128;
-        int j = 128;
         this.ironGolemHead = (new ModelRenderer(this)).setTextureSize(128, 128);
         this.ironGolemHead.setRotationPoint(0.0F, 0.0F + p_i46362_2_, -2.0F);
         this.ironGolemHead.setTextureOffset(0, 0).addBox(-4.0F, -12.0F, -5.5F, 8, 10, 8, p_i46362_1_);
@@ -103,7 +100,6 @@ public class LibModelIronGolem extends LibModelBase {
      */
     @Override
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-        EntityLivingBase entityirongolem = (EntityLivingBase) entitylivingbaseIn;
         int i = 0;//entityirongolem.getAttackTimer();
 
         if (i > 0) {

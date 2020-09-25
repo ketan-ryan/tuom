@@ -6,10 +6,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLightningBolt;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
@@ -88,10 +86,6 @@ public class RenderDarkLightning extends Render<EntityDarkLightning>
                         d3 += (double)(random1.nextInt(31) - 15);
                     }
 
-                    float f = 0.5F;
-                    float f1 = 0.45F;
-                    float f2 = 0.45F;
-                    float f3 = 0.5F;
                     double d6 = 0.1D + (double)k1 * 0.2D;
 
                     if (j == 0)

@@ -87,7 +87,6 @@ public class LibModelOcelot extends LibModelBase {
         this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 
         if (this.isChild) {
-            float f = 2.0F;
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.75F, 0.75F, 0.75F);
             GlStateManager.translate(0.0F, 10.0F * scale, 4.0F * scale);

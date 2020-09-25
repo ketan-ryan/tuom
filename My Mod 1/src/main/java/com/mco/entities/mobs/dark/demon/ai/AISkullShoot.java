@@ -3,8 +3,8 @@ package com.mco.entities.mobs.dark.demon.ai;
 import java.util.Random;
 
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.skull.EntityDarkSkull;
+
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.minecraft.entity.EntityLivingBase;
@@ -61,7 +61,6 @@ public class AISkullShoot extends AnimationAI<EntityDarkOpalDemon>
 
 		if((tick >= 20 && tick <= 24) && attackTarget != null)
 		{
-			double d1 = 4.0D;
 	        Vec3d vec3d = demon.getLook(1.0F);
 	        double d2 = attackTarget.posX - (demon.posX + vec3d.x);
 	        double d3 = attackTarget.getEntityBoundingBox().minY + (double)(attackTarget.height / 2.0F) - (0.5D + demon.posY + (double)(demon.height / 2.0F));

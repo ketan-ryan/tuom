@@ -48,7 +48,6 @@ public class ModelDarkVex extends ModelBiped
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-        EntityDarkVex entityDarkVex = (EntityDarkVex)entityIn;
 
         this.bipedRightLeg.rotateAngleX += ((float)Math.PI / 5F);
         this.rightWing.rotationPointZ = 2.0F;

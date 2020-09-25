@@ -1,14 +1,12 @@
 package library.util;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class UtilMath {
 
     public static Vec3d getAim(Entity entitySource, Entity entityTarget, double speed) {
-        double distFromMe = 0.5D;
         //Vec3d vec3d = entitySource.getLook(1.0F);
         double vecX = entityTarget.posX - (entitySource.posX/* + vec3d.x * distFromMe*/);
         double vecY = entityTarget.getEntityBoundingBox().minY + (double)(entityTarget.height / 2.0F) - (0.5D + entitySource.posY + (double)(entitySource.height / 2.0F));
@@ -20,10 +18,8 @@ public class UtilMath {
     }
 
     public static Vec3d getPosition(Entity entitySource, Entity entityTarget, double distFromSelf) {
-        double distFromMe = 0.5D;
         //Vec3d vec3d = entitySource.getLook(1.0F);
         double vecX = entityTarget.posX - (entitySource.posX/* + vec3d.x * distFromMe*/);
-        double vecY = entityTarget.getEntityBoundingBox().minY + (double)(entityTarget.height / 2.0F) - (0.5D + entitySource.posY + (double)(entitySource.height / 2.0F));
         double vecZ = entityTarget.posZ - (entitySource.posZ/* + vec3d.z * distFromMe*/);
 
         double dist = entitySource.getDistance(entityTarget);

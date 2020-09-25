@@ -171,8 +171,7 @@ public class LibEntityAIDigTowardsTarget extends EntityAIBase
     	//System.out.println("continue!");
     	if (posCurMining == null) return false;
         BlockPos pos = new BlockPos(posCurMining.getX(), posCurMining.getY(), posCurMining.getZ());
-        IBlockState state = entity.world.getBlockState(pos);
-    	if (!entity.world.isAirBlock(pos)) {
+        if (!entity.world.isAirBlock(pos)) {
     		return true;
     	} else {
 			setMiningBlock(null, null);

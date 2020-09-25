@@ -1,11 +1,13 @@
 package library.entities.mobs.entities;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
+
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Maps;
+
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -149,7 +151,6 @@ public class LibEntitySheep extends LibEntityGenericPassive implements net.minec
     private static float[] createSheepColor(EnumDyeColor p_192020_0_)
     {
         float[] afloat = p_192020_0_.getColorComponentValues();
-        float f = 0.75F;
         return new float[] {afloat[0] * 0.75F, afloat[1] * 0.75F, afloat[2] * 0.75F};
     }
 

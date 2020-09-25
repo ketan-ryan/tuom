@@ -1,12 +1,9 @@
 package library.entities.mobs.models;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -123,7 +120,6 @@ public class LibModelRabbit extends LibModelBase
 
         if (this.isChild)
         {
-            float f = 1.5F;
             GlStateManager.pushMatrix();
             GlStateManager.scale(0.56666666F, 0.56666666F, 0.56666666F);
             GlStateManager.translate(0.0F, 22.0F * scale, 2.0F * scale);
@@ -173,7 +169,6 @@ public class LibModelRabbit extends LibModelBase
      */
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        float f = ageInTicks - (float)entityIn.ticksExisted;
         //EntityRabbit entityrabbit = (EntityRabbit)entityIn;
         this.rabbitNose.rotateAngleX = headPitch * 0.017453292F;
         this.rabbitHead.rotateAngleX = headPitch * 0.017453292F;

@@ -2,13 +2,12 @@ package com.mco.entities.mobs.dark.demon.ai;
 
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityDarkVex;
+
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AIMinion extends AnimationAI
 {
@@ -79,21 +78,21 @@ public class AIMinion extends AnimationAI
 			demon.world.spawnEntity(frontLeft);
 			demon.world.spawnEntity(frontRight);
 
-			shakeNearbyPlayerCameras(32);			
+			if(!demon.world.isRemote)
+				this.shakeNearbyPlayerCameras(32);			
 		}	
 	}
 	
-	@SideOnly(Side.CLIENT)
 	public void shakeNearbyPlayerCameras(double distance)
 	{
-	    if (!demon.world.loadedEntityList.isEmpty())
+	    if (!demon.world.loadedEntityList.isEmpty() && !demon.world.isRemote)
 	    {
 	            for (int l1 = 0; l1 < demon.world.loadedEntityList.size(); ++l1)
 	            {
 	                Entity entity = (Entity)demon.world.loadedEntityList.get(l1);
 
 	                if (entity != null && entity.dimension == demon.dimension && entity.isEntityAlive() && entity instanceof 
-	                		EntityLivingBase && !(entity instanceof EntityDarkOpalDemon) && entity.getDistance(demon) < distance){
+	                		EntityLivingBase && !(entity instanceof EntityDarkOpalDemon) && entity.getDistance(demon) < distance && !entity.world.isRemote){
 	                    try
 	                    {
 	                        ReflectionHelper.findField(entity.getClass(), new String[] { "hurt_timer" }).setInt(entity, 0);

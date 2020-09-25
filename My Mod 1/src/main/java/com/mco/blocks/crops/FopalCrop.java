@@ -2,14 +2,11 @@ package com.mco.blocks.crops;
 
 import java.util.Random;
 
-import library.LibRegistry;
-import library.blocks.LibBlockCrops;
-import com.mco.TUOM;
 import com.mco.main.TUOMItems;
-import net.minecraft.block.BlockDirt;
+
+import library.blocks.LibBlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -37,8 +34,6 @@ public class FopalCrop extends LibBlockCrops
         {
             BlockPos blockpos = pos.add(rand.nextInt(3) - 1, rand.nextInt(5) - 3, rand.nextInt(3) - 1);
             IBlockState iblockstate = worldIn.getBlockState(blockpos);
-            IBlockState iblockstate1 = worldIn.getBlockState(blockpos.up());
-            
             if (!(iblockstate.getBlock() == Blocks.FIRE && worldIn.getLightFromNeighbors(blockpos.up()) >= 4))
             {
                 growthRate = 1200;

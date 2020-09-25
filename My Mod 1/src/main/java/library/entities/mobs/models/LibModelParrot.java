@@ -168,7 +168,6 @@ public class LibModelParrot extends LibModelBase {
             }
 
             if (entityparrot.isSitting()) {
-                float f = 1.9F;
                 this.head.rotationPointY = 17.59F;
                 this.tail.rotateAngleX = 1.5388988F;
                 this.tail.rotationPointY = 22.97F;

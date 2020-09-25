@@ -54,8 +54,6 @@ public class LibModelSpider extends LibModelBase {
     public ModelRenderer spiderLeg8;
 
     public LibModelSpider() {
-        float f = 0.0F;
-        int i = 15;
         this.spiderHead = new ModelRenderer(this, 32, 4);
         this.spiderHead.addBox(-4.0F, -4.0F, -8.0F, 8, 8, 8, 0.0F);
         this.spiderHead.setRotationPoint(0.0F, 15.0F, -3.0F);
@@ -119,7 +117,6 @@ public class LibModelSpider extends LibModelBase {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
         this.spiderHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.spiderHead.rotateAngleX = headPitch * 0.017453292F;
-        float f = ((float) Math.PI / 4F);
         this.spiderLeg1.rotateAngleZ = -((float) Math.PI / 4F);
         this.spiderLeg2.rotateAngleZ = ((float) Math.PI / 4F);
         this.spiderLeg3.rotateAngleZ = -0.58119464F;
@@ -128,8 +125,6 @@ public class LibModelSpider extends LibModelBase {
         this.spiderLeg6.rotateAngleZ = 0.58119464F;
         this.spiderLeg7.rotateAngleZ = -((float) Math.PI / 4F);
         this.spiderLeg8.rotateAngleZ = ((float) Math.PI / 4F);
-        float f1 = -0.0F;
-        float f2 = 0.3926991F;
         this.spiderLeg1.rotateAngleY = ((float) Math.PI / 4F);
         this.spiderLeg2.rotateAngleY = -((float) Math.PI / 4F);
         this.spiderLeg3.rotateAngleY = 0.3926991F;
