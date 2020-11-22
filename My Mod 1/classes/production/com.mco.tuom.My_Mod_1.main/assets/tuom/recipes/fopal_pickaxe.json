@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "F": {
+      "item": "tuom:fire_opal"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tuom:fopal_pickaxe",
+    "count": 1
+  }
+}

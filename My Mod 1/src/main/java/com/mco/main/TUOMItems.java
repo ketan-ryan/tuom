@@ -63,6 +63,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
+import scala.util.parsing.json.JSON;
 
 /**
  * DECLARE ITEMS =================================================
@@ -373,7 +374,9 @@ public class TUOMItems {
 	@SubscribeEvent
 	public static void registerRenders(ModelRegistryEvent event) throws IOException 
 	{
-		JSONGenerator.generateJsonItem(items);
+		if(!JSONGenerator.getInstance().inJar())
+			JSONGenerator.generateJsonItem(items);
+
 		for(Item item : items) {
 			registerRender(item);
 		}

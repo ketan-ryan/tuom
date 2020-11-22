@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G G",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "tuom:item_garnet"
+    }
+  },
+  "result": {
+    "item": "tuom:garnet_chestplate",
+    "count": 1
+  }
+}

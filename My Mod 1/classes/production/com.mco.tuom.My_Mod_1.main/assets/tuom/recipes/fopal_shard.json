@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+        {
+            "item": "tuom:fire_opal"
+        }
+    ],
+    "result": {
+        "item": "tuom:fopal_shard",
+    	"count": 4
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "T T",
+    "TTT",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "tuom:item_topaz"
+    }
+  },
+  "result": {
+    "item": "tuom:topaz_chestplate",
+    "count": 1
+  }
+}

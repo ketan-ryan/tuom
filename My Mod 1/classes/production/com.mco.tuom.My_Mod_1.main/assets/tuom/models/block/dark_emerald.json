@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "tuom:blocks/dark_emerald"
+	}
+}

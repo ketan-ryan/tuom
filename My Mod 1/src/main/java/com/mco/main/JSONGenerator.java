@@ -5,7 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.net.JarURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -15,18 +22,33 @@ import net.minecraft.item.Item;
  * Why spend 1 hour doing something when you could spend 5 automating it?
  * This class automatically generates a new JSON model for any simple item/block
  */
-public class JSONGenerator {
-
+public class JSONGenerator
+{
 	private static OutputStreamWriter itemJson, blockJson, blockStateJson;
-	private static final String directory = "C:/Users/kyure/git/tuom/My Mod 1/src/main/resources/assets/tuom/";
-	
+	private static final String directory = "../src/main/resources/assets/tuom/";
+
+	private static JSONGenerator instance;
+
+	public static JSONGenerator getInstance()
+	{
+		if(instance == null)
+			instance = new JSONGenerator();
+		return instance;
+	}
+
+	public boolean inJar()
+	{
+		String protocol = this.getClass().getResource("").getProtocol();
+		return Objects.equals(protocol, "jar");
+	}
+
 	private static final ArrayList<Item> ITEM_BLACKLIST = new ArrayList<Item>() {
 		{
 			add(TUOMItems.TOPAZ_BOW);
 			add(TUOMItems.DARK_STAFF);
 		}
 	};
-	
+
 	private static final ArrayList<Block> BLOCK_BLACKLIST = new ArrayList<Block>() {
 		{
 			add(TUOMBlocks.DARK_LEAVES);
@@ -44,35 +66,35 @@ public class JSONGenerator {
 
 	public static void generateJsonItem(ArrayList<Item> items) throws IOException
 	{
-		for(Item item : items) 
+		for(Item item : items)
 		{
 			File file = new File(directory + "models/item/" + item.getUnlocalizedName().substring(5) + ".json");
-			
+
 			if(!ITEM_BLACKLIST.contains(item) && !file.exists())
 				createItemFile(item);
 		}
 	}
-	
+
 	public static void generateJsonBlock(ArrayList<Block> blocks) throws IOException
 	{
 		for(Block block : blocks)
 		{
-			File file = new File(directory + "models/block" + block.getUnlocalizedName().substring(5) + ".json");
-			File blockstate = new File(directory + "blockstates" + block.getUnlocalizedName().substring(5) + ".json");
-			
+			File file = new File(directory + "models/block" + block.getUnlocalizedName().substring(5) + ".json").getCanonicalFile();
+			File blockstate = new File(directory + "blockstates" + block.getUnlocalizedName().substring(5) + ".json").getCanonicalFile();
+
 			if(!BLOCK_BLACKLIST.contains(block) && !file.exists())
 				createBlockFile(block);
-			
+
 			if(!BLOCK_BLACKLIST.contains(block) && !blockstate.exists())
 				createBlockState(block);
 		}
 	}
-	
-	private static void createItemFile(Item item) throws FileNotFoundException
+
+	private static void createItemFile(Item item) throws IOException, FileNotFoundException
 	{
 		String name = item.getUnlocalizedName().substring(5);
+		itemJson = new FileWriter(directory + "models/item/" + name + ".json");
 		try {
-			itemJson = new FileWriter(directory + "models/item/" + name + ".json");			
 			itemJson.write("{\n");
 			itemJson.write("	\"parent\": \"item/generated\",\n");
 			itemJson.write("	\"textures\": {\n");
@@ -80,7 +102,7 @@ public class JSONGenerator {
 			itemJson.write("	}\n");
 			itemJson.write("}");
 		}
-		catch(IOException e) {
+		catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		finally {
@@ -90,15 +112,15 @@ public class JSONGenerator {
 			}
 			catch(IOException e) {
 				e.printStackTrace();
-			}	
+			}
 		}
 	}
-	
-	private static void createBlockFile(Block block) throws FileNotFoundException
+
+	private static void createBlockFile(Block block) throws IOException
 	{
 		String name = block.getUnlocalizedName().substring(5);
+		blockJson = new FileWriter(directory + "models/block/" + name + ".json");
 		try {
-			blockJson = new FileWriter(directory + "models/block/" + name + ".json");			
 			blockJson.write("{\n");
 			blockJson.write("	\"parent\": \"block/cube_all\",\n");
 			blockJson.write("	\"textures\": {\n");
@@ -106,7 +128,7 @@ public class JSONGenerator {
 			blockJson.write("	}\n");
 			blockJson.write("}");
 		}
-		catch(IOException e) {
+		catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		finally {
@@ -116,15 +138,16 @@ public class JSONGenerator {
 			}
 			catch(IOException e) {
 				e.printStackTrace();
-			}	
+			}
 		}
 	}
-	
-	private static void createBlockState(Block block) throws FileNotFoundException
+
+	private static void createBlockState(Block block) throws IOException
 	{
 		String name = block.getUnlocalizedName().substring(5);
+		blockStateJson = new FileWriter(directory + "blockstates/" + name + ".json");
+
 		try {
-			blockStateJson = new FileWriter(directory + "blockstates/" + name + ".json");
 			blockStateJson.write("{\n");
 			blockStateJson.write("	\"forge_marker\": 1,\n");
 			blockStateJson.write("	\"defaults\": {\n");
@@ -143,7 +166,7 @@ public class JSONGenerator {
 			blockStateJson.write("	}\n");
 			blockStateJson.write("}\n");
 		}
-		catch(IOException e) {
+		catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		finally {
@@ -153,7 +176,7 @@ public class JSONGenerator {
 			}
 			catch(IOException e) {
 				e.printStackTrace();
-			}			
+			}
 		}
 	}
 }

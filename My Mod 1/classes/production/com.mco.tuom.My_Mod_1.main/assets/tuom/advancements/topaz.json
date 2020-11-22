@@ -1,0 +1,54 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Truly Topaz",
+            "color": "aqua",
+            "bold": false,
+            "italic": false,
+            "underlined": false,
+            "strikethrough": false,
+            "obfuscated": false
+        },
+        "description": {
+            "text": "Pick up a Topaz"
+        },
+        "icon": {
+            "item": "tuom:topaz_ore"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "topaz": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tuom:item_topaz"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tuom:topaz_sword",
+            "tuom:topaz_pickaxe",
+            "tuom:topaz_axe",
+            "tuom:topaz_shovel",
+            "tuom:topaz_hoe",
+            "tuom:topaz_helmet",
+            "tuom:topaz_chestplate",
+            "tuom:topaz_leggings",
+            "tuom:topaz_boots",
+            "tuom:topaz_apple",
+            "tuom:topaz_shard",
+            "tuom:item_topaz",
+            "tuom:topaz_seeds"
+        ]
+    },
+    "parent": "tuom:root"
+}

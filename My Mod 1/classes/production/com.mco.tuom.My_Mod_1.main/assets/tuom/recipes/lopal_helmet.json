@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "tuom:light_opal"
+    }
+  },
+  "result": {
+    "item": "tuom:lopal_helmet",
+    "count": 1
+  }
+}

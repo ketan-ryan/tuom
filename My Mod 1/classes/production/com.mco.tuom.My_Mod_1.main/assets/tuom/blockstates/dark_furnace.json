@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube",
+    "textures": {
+      "particle": "tuom:blocks/dark_furnace/dark_furnace_back",
+      "down": "tuom:blocks/dark_furnace/dark_furnace_bottom",
+      "up": "tuom:blocks/dark_furnace/dark_furnace_top",
+      "east": "tuom:blocks/dark_furnace/dark_furnace_left",
+      "west": "tuom:blocks/dark_furnace/dark_furnace_right",
+      "north": "tuom:blocks/dark_furnace/dark_furnace_front",
+      "south": "tuom:blocks/dark_furnace/dark_furnace_back"
+    }
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90},
+      "up": {"x": -90},
+      "down": {"x": 90}
+    }
+  }
+}

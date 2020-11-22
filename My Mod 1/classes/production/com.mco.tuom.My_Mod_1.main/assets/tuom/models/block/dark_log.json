@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "tuom:blocks/dark_log_top",
+        "side": "tuom:blocks/dark_log"
+    }
+}

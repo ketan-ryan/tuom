@@ -183,7 +183,8 @@ public class TUOMBlocks
 	@SubscribeEvent
 	public static void registerRenders(ModelRegistryEvent event) throws IOException
 	{
-		JSONGenerator.generateJsonBlock(blocks);
+		if(!JSONGenerator.getInstance().inJar())
+			JSONGenerator.generateJsonBlock(blocks);
 		
 		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
 		{

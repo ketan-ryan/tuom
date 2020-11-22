@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LL",
+    "LS",
+    " S"
+  ],
+  "key": {
+    "L": {
+      "item": "tuom:light_opal"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tuom:lopal_axe",
+    "count": 1
+  }
+}

@@ -1,0 +1,49 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Into the Light",
+            "color": "yellow"
+        },
+        "description": {
+            "text": "Pick up a Light Opal"
+        },
+        "icon": {
+            "item": "tuom:lopal_ore"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "light_opal": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "tuom:light_opal"
+                    }
+                ]
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+            "tuom:lopal_sword",
+            "tuom:lopal_pickaxe",
+            "tuom:lopal_axe",
+            "tuom:lopal_shovel",
+            "tuom:lopal_hoe",
+            "tuom:lopal_helmet",
+            "tuom:lopal_chestplate",
+            "tuom:lopal_leggings",
+            "tuom:lopal_boots",
+            "tuom:lopal_apple",
+            "tuom:lopal_shard",
+            "tuom:lopal_seeds",
+            "tuom:light_opal"
+        ]
+    },
+    "parent": "tuom:root"
+}

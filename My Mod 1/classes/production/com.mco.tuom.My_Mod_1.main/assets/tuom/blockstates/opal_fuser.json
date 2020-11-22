@@ -1,0 +1,13 @@
+{
+	"variants":
+	{
+		"active=false,facing=north": { "model": "tuom:opal_fuser" },
+        "active=false,facing=east": { "model": "tuom:opal_fuser", "y": 90 },
+        "active=false,facing=south": { "model": "tuom:opal_fuser", "y": 180 },
+        "active=false,facing=west": { "model": "tuom:opal_fuser", "y": 270 },
+        "active=true,facing=north": { "model": "tuom:lit_opal_fuser" },
+        "active=true,facing=east": { "model": "tuom:lit_opal_fuser", "y": 90 },
+        "active=true,facing=south": { "model": "tuom:lit_opal_fuser", "y": 180 },
+        "active=true,facing=west": { "model": "tuom:lit_opal_fuser", "y":270  }
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+        {
+            "item": "tuom:dark_opal"
+        }
+    ],
+    "result": {
+        "item": "tuom:dopal_shard",
+    	"count": 4
+    }
+  }
+}
