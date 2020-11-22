@@ -46,6 +46,10 @@ public class JSONGenerator
 		{
 			add(TUOMItems.TOPAZ_BOW);
 			add(TUOMItems.DARK_STAFF);
+			add(TUOMItems.DOPAL_SWORD);
+			add(TUOMItems.FOPAL_SWORD);
+			add(TUOMItems.LOPAL_SWORD);
+			add(TUOMItems.TOPAZ_SWORD);
 		}
 	};
 
