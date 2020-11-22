@@ -1,6 +1,9 @@
 package com.mco.entities.mobs.dark.demon;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import com.google.common.collect.ImmutableList;
@@ -72,64 +75,74 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	private static final SoundEvent HURT_SOUND = TUOMSoundHandler.DARK_OPAL_HURT;
 	/** Sound that plays on entity death */
 	private static final SoundEvent DEATH_SOUND = TUOMSoundHandler.DARK_OPAL_DEATH;
-	
+
 	/** The current animation */
 	private Animation animation = NO_ANIMATION;
 	/** What tick the current anim is on */
 	private int animationTick;
-	
+
 	/** Jump animation */
-	public static final Animation ANIMATION_JUMP = Animation.create(120);            
+	public static final Animation ANIMATION_JUMP = Animation.create(120);
 	/** Skull shoot animation */
-	public static final Animation ANIMATION_SKULL = Animation.create(100);      
+	public static final Animation ANIMATION_SKULL = Animation.create(100);
 	/** Lifedrain animation */
-	public static final Animation ANIMATION_LIFEDRAIN = Animation.create(35);      
+	public static final Animation ANIMATION_LIFEDRAIN = Animation.create(35);
 	/** Shield animation (Not yet implemented) */
 	public static final Animation ANIMATION_SHIELD = Animation.create(60);
 	/** Lightning animation (Not yet implemented) */
 	public static final Animation ANIMATION_LIGHTNING = Animation.create(100);
 	/** Death animation */
-	public static final Animation ANIMATION_DEATH = Animation.create(300);          
+	public static final Animation ANIMATION_DEATH = Animation.create(300);
 	/** Vex summon animation */
-	public static final Animation ANIMATION_MINION = Animation.create(60);         
+	public static final Animation ANIMATION_MINION = Animation.create(60);
 	/** Punch animation */
-	public static final Animation ANIMATION_PUNCH = Animation.create(120);      
+	public static final Animation ANIMATION_PUNCH = Animation.create(120);
 	/** Bomb animation */
 	public static final Animation ANIMATION_BOMBS = Animation.create(60);
-	
+
 	/** Array of all animations */
-	private static final Animation[] ANIMATIONS = {ANIMATION_JUMP, ANIMATION_SKULL, ANIMATION_LIFEDRAIN, ANIMATION_SHIELD, ANIMATION_LIGHTNING, 
+	private static final Animation[] ANIMATIONS = {ANIMATION_JUMP, ANIMATION_SKULL, ANIMATION_LIFEDRAIN, ANIMATION_SHIELD, ANIMATION_LIGHTNING,
 			ANIMATION_DEATH, ANIMATION_MINION, ANIMATION_PUNCH, ANIMATION_BOMBS};
 
-	/** List of vanilla mobs to search for and replace during death animation */
-	private static final ImmutableList<Class<? extends EntityLiving>> MOBS = ImmutableList.of(EntityChicken.class, EntityPig.class,
-			EntityCow.class, EntitySheep.class, EntityVillager.class);
-	/** List of mobs to replace vanilla with during death animation */
-	private static final ImmutableList<Class<? extends EntityLiving>> CORRUPTED = ImmutableList.of(EntityCorruptedChicken.class, EntityCorruptedPig.class, 
-			EntityCorruptedCow.class, EntityCorruptedSheep.class, EntityIllusionIllager.class);
-	
+//	/** List of vanilla mobs to search for and replace during death animation */
+//	private static final ImmutableList<Class<? extends EntityLiving>> MOBS = ImmutableList.of(EntityChicken.class, EntityPig.class,
+//			EntityCow.class, EntitySheep.class, EntityVillager.class);
+//	/** List of mobs to replace vanilla with during death animation */
+//	private static final ImmutableList<Class<? extends EntityLiving>> CORRUPTED = ImmutableList.of(EntityCorruptedChicken.class, EntityCorruptedPig.class,
+//			EntityCorruptedCow.class, EntityCorruptedSheep.class, EntityIllusionIllager.class);
+
+	private static final Map<Class<? extends EntityLiving>, Class<? extends EntityLiving>> CLASS_MAP =
+			new HashMap<Class<? extends  EntityLiving>, Class<? extends EntityLiving>>(){{
+				put(EntityChicken.class, EntityCorruptedChicken.class);
+				put(EntityPig.class, EntityCorruptedPig.class);
+				put(EntityCow.class, EntityCorruptedCow.class);
+				put(EntitySheep.class, EntityCorruptedSheep.class);
+				put(EntityVillager.class, EntityIllusionIllager.class);
+			}};
+
+
 	/** How far the target is from demon */
 	public float targetDistance;
 	/** Angle between target and demon */
-    public float targetAngle;
-	
-    //Unused
+	public float targetAngle;
+
+	//Unused
 	//protected ResourceLocation lootTable = LootTableList.ENTITIES_WOLF;
-	
-    /** Bossbar */
-    private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, 
-    		BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-    
-    /** Current {@link AnimationAI} */
+
+	/** Bossbar */
+	private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE,
+			BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+
+	/** Current {@link AnimationAI} */
 	public AnimationAI currentAnim;
 
 	/** Local random variable */
 	public static Random rand = new Random();
-	
+
 	/** Local var to keep track of death ticks */
 	private int deathTicks;
 	/** Local var to keep track of overlay alpha */
-	private float alpha = 0;	
+	private float alpha = 0;
 	/** Whether demon is below half health */
 	private boolean armored = false;
 
@@ -137,13 +150,13 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	 * Initializes AI tasks for demon
 	 * including special animations
 	 * as well as size experience etc
-	 * 
+	 *
 	 * @param worldIn world object every entity needs
 	 */
-	public EntityDarkOpalDemon(World worldIn) 
+	public EntityDarkOpalDemon(World worldIn)
 	{
 		super(worldIn);
-		
+
 		tasks.addTask(1, new AIJump(this, ANIMATION_JUMP));
 		tasks.addTask(1, new AISkullShoot(this, ANIMATION_SKULL));
 		tasks.addTask(1, new AIBlindingPunches(this, ANIMATION_PUNCH));
@@ -151,15 +164,15 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		tasks.addTask(1, new AILifedrain(this, ANIMATION_LIFEDRAIN));
 		tasks.addTask(1, new AIDarkBombs(this, ANIMATION_BOMBS));
 		tasks.addTask(1, new AIMinion(this, ANIMATION_MINION));
-		
+
 		tasks.addTask(0, new EntityAIWander(this, 1.5D));
 		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 32F));
 		tasks.addTask(2, new EntityAILookIdle(this));
 		targetTasks.addTask(3, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-		
-        //this.lootTable = null;
-        
+		this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+
+		//this.lootTable = null;
+
 		this.setSize(4F, 9F);
 		this.isImmuneToFire = true;
 		this.experienceValue = 50;
@@ -167,7 +180,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		this.enableFadeOutDeath(200);
 		this.experienceValue = 150;
 	}
-	
+
 	/**
 	 * Counts as undead
 	 */
@@ -176,7 +189,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	{
 		return true;
 	}
-	
+
 	/**
 	 * Don't want the boss despawning
 	 */
@@ -184,7 +197,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	{
 		return false;
 	}
-	
+
 	/**
 	 * Is a boss mob
 	 */
@@ -192,7 +205,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	{
 		return false;
 	}
-	
+
 	/**
 	 * Sets up health, speed, follow range, and armor
 	 */
@@ -204,7 +217,7 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(60D);
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8);
 	}
-	
+
 	/**
 	 * Handles most of the actual logic
 	 */
@@ -212,99 +225,99 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	{
 		super.onLivingUpdate();
 		//Updates bossbar
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-        
-        //If animation finishes, set to null
-        if (getAnimation() != NO_ANIMATION) 
-        {
-            animationTick++;
-            if (world.isRemote && animationTick >= animation.getDuration()) 
-            {
-                setAnimation(NO_ANIMATION);
-            }
-        }
-        
-        //If has a target, set distance and angle
-        if (getAttackTarget() != null) 
-        {
-            targetDistance = getDistance(getAttackTarget());
-            targetAngle = (float) getAngleBetweenEntities(this, getAttackTarget());
-        }    
-        
-        //If below half hp, gains armor
-        if(this.getHealth() <= this.getMaxHealth() / 2.0F)
-        {
-	        if(getAttackTarget() != null && currentAnim == null && getAnimation() == NO_ANIMATION && getAnimation() != ANIMATION_DEATH && !isArmored())
-	        {
-	        	AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_SHIELD);
-	        }
-	        armored = true;
-        }
-        
-        //Randomly select an animation to play without overriding itself
-        if(getAttackTarget() != null && currentAnim == null && getAnimation() == NO_ANIMATION && getAnimation() != ANIMATION_DEATH)
-        {
-        	switch(new Random().nextInt(6))
-        	{
-        		case 0:
-        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_JUMP);
-        			break;
-        		case 1:
-        			//Only shoot skull if far away
-        			if(getAttackTarget() != null && this.getDistance(getAttackTarget()) > 16)
-	        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_SKULL);
-        			break;
-        		case 2:
-        			AnimationHandler.INSTANCE.sendAnimationMessage(this,  ANIMATION_PUNCH);
-        			break;
-        		case 3:
-        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_LIFEDRAIN);
-        			break;
-        		case 4:
-        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_BOMBS);
-        			break;
-        		case 5: 
-        			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_MINION);
-        			break;
-        		default: 
-        			break;
-        	}
-        }
-        
-        //Handles particles of jump animation        
-        if(getAnimation() == ANIMATION_JUMP)
-        {
-        	//Launch
-        	if(getAnimationTick() == 25) 
-        	{
-        		for(int i = 0; i < 200; i++) 
-        		{
-	        		this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, 
-	                		this.posY + (i / 50), this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0,
-	                		1D, 0);
-        		}
-        	}
-        	
-        	//Land
-        	else if(getAnimationTick() == 86) 
-        	{
-	        	for(int i = 0; i < 720; i++) 
+		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+
+		//If animation finishes, set to null
+		if (getAnimation() != NO_ANIMATION)
+		{
+			animationTick++;
+			if (world.isRemote && animationTick >= animation.getDuration())
+			{
+				setAnimation(NO_ANIMATION);
+			}
+		}
+
+		//If has a target, set distance and angle
+		if (getAttackTarget() != null)
+		{
+			targetDistance = getDistance(getAttackTarget());
+			targetAngle = (float) getAngleBetweenEntities(this, getAttackTarget());
+		}
+
+		//If below half hp, gains armor
+		if(this.getHealth() <= this.getMaxHealth() / 2.0F)
+		{
+			if(getAttackTarget() != null && currentAnim == null && getAnimation() == NO_ANIMATION && getAnimation() != ANIMATION_DEATH && !isArmored())
+			{
+				AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_SHIELD);
+			}
+			armored = true;
+		}
+
+		//Randomly select an animation to play without overriding itself
+		if(getAttackTarget() != null && currentAnim == null && getAnimation() == NO_ANIMATION && getAnimation() != ANIMATION_DEATH)
+		{
+			switch(new Random().nextInt(6))
+			{
+				case 0:
+					AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_JUMP);
+					break;
+				case 1:
+					//Only shoot skull if far away
+					if(getAttackTarget() != null && this.getDistance(getAttackTarget()) > 16)
+						AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_SKULL);
+					break;
+				case 2:
+					AnimationHandler.INSTANCE.sendAnimationMessage(this,  ANIMATION_PUNCH);
+					break;
+				case 3:
+					AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_LIFEDRAIN);
+					break;
+				case 4:
+					AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_BOMBS);
+					break;
+				case 5:
+					AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_MINION);
+					break;
+				default:
+					break;
+			}
+		}
+
+		//Handles particles of jump animation
+		if(getAnimation() == ANIMATION_JUMP)
+		{
+			//Launch
+			if(getAnimationTick() == 25)
+			{
+				for(int i = 0; i < 200; i++)
 				{
-	                this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, 
-	                		this.posY - 1, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, Math.sin((float)Math.toRadians(i)),
-	                		0.0D, Math.cos((float)Math.toRadians(i)));
-				}	
-        	}
-        }
-        
-        //Handles particles of punch teleport 
-        if(getAnimation() == ANIMATION_PUNCH)
-        {
-        	if(getAnimationTick() == 1 || getAnimationTick() == 29 || getAnimationTick() == 35 || getAnimationTick() == 41 || getAnimationTick() == 47) 
-        		spawnParticle(1000, EnumParticleTypes.DRAGON_BREATH, (int) (this.rand.nextDouble() * (double)this.height), 0, 0, 0);   	
-    	}
+					this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width,
+							this.posY + (i / 50), this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0,
+							1D, 0);
+				}
+			}
+
+			//Land
+			else if(getAnimationTick() == 86)
+			{
+				for(int i = 0; i < 720; i++)
+				{
+					this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width,
+							this.posY - 1, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, Math.sin((float)Math.toRadians(i)),
+							0.0D, Math.cos((float)Math.toRadians(i)));
+				}
+			}
+		}
+
+		//Handles particles of punch teleport
+		if(getAnimation() == ANIMATION_PUNCH)
+		{
+			if(getAnimationTick() == 1 || getAnimationTick() == 29 || getAnimationTick() == 35 || getAnimationTick() == 41 || getAnimationTick() == 47)
+				spawnParticle(1000, EnumParticleTypes.DRAGON_BREATH, (int) (this.rand.nextDouble() * (double)this.height), 0, 0, 0);
+		}
 	}
-	
+
 	/**
 	 * @param forMax How many times the for loop iterates
 	 * @param particle Particle to spawn
@@ -315,122 +328,122 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	 * */
 	private void spawnParticle(int forMax, EnumParticleTypes particle, int yMod, float xMot, float yMot, float zMot)
 	{
-		for(int i = 0; i < forMax; i++) 
+		for(int i = 0; i < forMax; i++)
 		{
-            this.world.spawnParticle(particle, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, 
-            		this.posY + yMod, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, xMot,
-            		0.0D, zMot);
-		}	
+			this.world.spawnParticle(particle, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width,
+					this.posY + yMod, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, xMot,
+					0.0D, zMot);
+		}
 	}
-	
+
 	/**
-	 * Nullifies fall damage 
+	 * Nullifies fall damage
 	 */
 	public void fall(float distance, float damageMultiplier){}
-	
+
 	/**
 	 * Helper method to get angle between entities
 	 */
-	public double getAngleBetweenEntities(Entity first, Entity second) 
+	public double getAngleBetweenEntities(Entity first, Entity second)
 	{
-        return Math.atan2(second.posZ - first.posZ, second.posX - first.posX) * (180 / Math.PI) + 90;
-    }
-		
+		return Math.atan2(second.posZ - first.posZ, second.posX - first.posX) * (180 / Math.PI) + 90;
+	}
+
 	/**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
-    public void writeEntityToNBT(NBTTagCompound compound)
-    {
-        super.writeEntityToNBT(compound);
-    }
+	 * (abstract) Protected helper method to write subclass entity data to NBT.
+	 */
+	public void writeEntityToNBT(NBTTagCompound compound)
+	{
+		super.writeEntityToNBT(compound);
+	}
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readEntityFromNBT(NBTTagCompound compound)
-    {
-        super.readEntityFromNBT(compound);
-        
-        if (this.hasCustomName())
-        {
-            this.bossInfo.setName(this.getDisplayName());
-        }
-    }
-    
-    /**
-     * Returns whether the demon is armored with its boss armor or not by checking whether its health is below half of
-     * its maximum.
-     */
-    public boolean isArmored()
-    {
-    	return this.armored;
-    }
-    
-    /**
-     * Sets the demon's armored status
-     * @param b whether or not the demon is armored
-     */
-    public void setArmored(boolean b)
-    {
-    	this.armored = b;
-    }
+	/**
+	 * (abstract) Protected helper method to read subclass entity data from NBT.
+	 */
+	public void readEntityFromNBT(NBTTagCompound compound)
+	{
+		super.readEntityFromNBT(compound);
 
-    /**
-     * Sets the custom name tag for this entity
-     */
-    public void setCustomNameTag(String name)
-    {
-        super.setCustomNameTag(name);
-        this.bossInfo.setName(this.getDisplayName());
-    }
-	
-    /**
-     * Add the given player to the list of players tracking this entity. For instance, a player may track a boss in
-     * order to view its associated boss bar.
-     */
-    public void addTrackingPlayer(EntityPlayerMP player)
-    {
-        super.addTrackingPlayer(player);
-        this.bossInfo.addPlayer(player);
-    }
+		if (this.hasCustomName())
+		{
+			this.bossInfo.setName(this.getDisplayName());
+		}
+	}
 
-    /**
-     * Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for
-     * more information on tracking.
-     */
-    public void removeTrackingPlayer(EntityPlayerMP player)
-    {
-        super.removeTrackingPlayer(player);
-        this.bossInfo.removePlayer(player);
-    }
-    
-    /**
-     * Gets the demon's idle sound
-     * 
-     * @return the entity's idle sound
-     */
+	/**
+	 * Returns whether the demon is armored with its boss armor or not by checking whether its health is below half of
+	 * its maximum.
+	 */
+	public boolean isArmored()
+	{
+		return this.armored;
+	}
+
+	/**
+	 * Sets the demon's armored status
+	 * @param b whether or not the demon is armored
+	 */
+	public void setArmored(boolean b)
+	{
+		this.armored = b;
+	}
+
+	/**
+	 * Sets the custom name tag for this entity
+	 */
+	public void setCustomNameTag(String name)
+	{
+		super.setCustomNameTag(name);
+		this.bossInfo.setName(this.getDisplayName());
+	}
+
+	/**
+	 * Add the given player to the list of players tracking this entity. For instance, a player may track a boss in
+	 * order to view its associated boss bar.
+	 */
+	public void addTrackingPlayer(EntityPlayerMP player)
+	{
+		super.addTrackingPlayer(player);
+		this.bossInfo.addPlayer(player);
+	}
+
+	/**
+	 * Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for
+	 * more information on tracking.
+	 */
+	public void removeTrackingPlayer(EntityPlayerMP player)
+	{
+		super.removeTrackingPlayer(player);
+		this.bossInfo.removePlayer(player);
+	}
+
+	/**
+	 * Gets the demon's idle sound
+	 *
+	 * @return the entity's idle sound
+	 */
 	@Override
 	protected SoundEvent getAmbientSound()
 	{
 		return IDLE_SOUND;
 	}
-	
-    /**
-     * Gets the demon's hurt sound
-     * 
-     * @return the entity's hurt sound
-     */
+
+	/**
+	 * Gets the demon's hurt sound
+	 *
+	 * @return the entity's hurt sound
+	 */
 	@Override
 	protected SoundEvent getHurtSound(DamageSource damage)
 	{
 		return HURT_SOUND;
 	}
-	
-    /**
-     * Gets the demon's death sound
-     * 
-     * @return the entity's death sound
-     */
+
+	/**
+	 * Gets the demon's death sound
+	 *
+	 * @return the entity's death sound
+	 */
 	@Override
 	protected SoundEvent getDeathSound()
 	{
@@ -456,278 +469,305 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 	}
 
 	/**
-	 * Equips the demon with an item puts a message in chat 
+	 * Equips the demon with an item puts a message in chat
 	 */
 	@Override
 	public void onFirstSpawn()
 	{
 		super.onFirstSpawn();
 
-		Actions.playSound(this, SPAWN_SOUND, 5F, 1F);		
+		Actions.playSound(this, SPAWN_SOUND, 5F, 1F);
 		this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TUOMItems.DARK_STAFF));
 		EntityPlayer player = Actions.getClosestPlayer(this);
 		Actions.chatAtPlayer(player, TextFormatting.DARK_PURPLE + "You've made a grave mistake...");
 	}
-	
+
 	/**
 	 * Prevents demon from taking arrow damage when armored
-	 * 
+	 *
 	 * @param source the damgage source demon is attacked by
 	 * @param amount how much damage is being taken
 	 */
 	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount) 
+	public boolean attackEntityFrom(DamageSource source, float amount)
 	{
 		if(isArmored()) {
 			Entity entity = source.getImmediateSource();
 
-            if (entity instanceof EntityArrow)
-            {
-                return false;
-            }
+			if (entity instanceof EntityArrow)
+			{
+				return false;
+			}
 		}
 		if(source.equals(DamageSource.WITHER))
 			return false;
 		return super.attackEntityFrom(source, amount);
 	}
-	
+
 	/**
 	 * Drops dark staff on death
 	 * TODO: replace with loot tables
-	 * 
-	 * @param source the cause of death
+	 *
+	 * @param cause the cause of death
 	 */
 	@Override
 	public void onDeath(DamageSource cause)
 	{
 		super.onDeath(cause);
-		
+
 		if(!world.isRemote)
-			dropItem(TUOMItems.DARK_STAFF, 1);		
+			dropItem(TUOMItems.DARK_STAFF, 1);
 	}
 
 	/**
 	 * Getter for animation tick
-	 * 
+	 *
 	 * @return the animation tick
 	 */
 	@Override
-	public int getAnimationTick() 
+	public int getAnimationTick()
 	{
 		return animationTick;
 	}
 
 	/**
 	 * Sets the animation tick
-	 * 
+	 *
 	 * @param tick the tick to set
 	 */
 	@Override
-	public void setAnimationTick(int tick) 
+	public void setAnimationTick(int tick)
 	{
 		animationTick = tick;
 	}
 
 	/**
 	 * Returns the current animation
-	 * 
+	 *
 	 * @return current animation
 	 */
 	@Override
-	public Animation getAnimation() 
+	public Animation getAnimation()
 	{
 		return this.animation;
 	}
 
 	/**
 	 * Sets the current animation
-	 * 
+	 *
 	 * @param animation the animation to set
 	 */
 	@Override
-	public void setAnimation(Animation animation) 
+	public void setAnimation(Animation animation)
 	{
 		//if no animation is playing, the tick should be 0
-		if (animation == NO_ANIMATION) 
-            setAnimationTick(0);
-		
-        this.animation = animation;
+		if (animation == NO_ANIMATION)
+			setAnimationTick(0);
+
+		this.animation = animation;
 	}
 
 	/**
 	 * Returns an array of all possible animations
-	 * 
+	 *
 	 * @return array of all animations
 	 */
 	@Override
-	public Animation[] getAnimations() 
+	public Animation[] getAnimations()
 	{
 		return ANIMATIONS;
 	}
 
 	/**
 	 * Returns the death animation
-	 * 
+	 *
 	 * @return the specific death animation
 	 */
 	public Animation getDeathAnimation() {
 		return ANIMATION_DEATH;
 	}
-	
+
 	/**
-	 * Handles death update. 
-	 * Chat printout, particles, sounds, time changing, 
-	*/
-    protected void onDeathUpdate() 
-    {
-        onDeathAIUpdate();
-        deathTicks++;
+	 * Handles death update.
+	 * Chat printout, particles, sounds, time changing,
+	 */
+	protected void onDeathUpdate()
+	{
+		onDeathAIUpdate();
+		deathTicks++;
 
-        if(getAnimation() == NO_ANIMATION && currentAnim == null)
-        	AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
-        
-        //Death Message
-        EntityPlayer player = Actions.getClosestPlayer(this);
-        if(deathTicks == 1)
-        	Actions.chatAtPlayer(player, TextFormatting.DARK_PURPLE + "You haven't seen the last of me...");
+		if(getAnimation() == NO_ANIMATION && currentAnim == null)
+			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
 
-        //Main explosion
-        if(deathTicks >= 75) {
-	        for (int n = 0; n < 20; n++) 
-	        {
-	            double d2 = rand.nextGaussian() * 0.02D;
-	            double d0 = rand.nextGaussian() * 0.02D;
-	            double d1 = rand.nextGaussian() * 0.02D;
-	            world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d2, d0, d1);
-	        }
-        }
-        
-        //Replaces regular mobs with their corrupted variants, or husks
-        if(deathTicks == 200)
-        {
-        	//Get all entities within 30 blocks of the demon
-            List<EntityLivingBase> list = this.world.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class, 
-            		this.getEntityBoundingBox().grow(30.0D, 30.0D, 30.0D));
-            //SFX
-        	Actions.playSound(this, TUOMSoundHandler.DARK_OPAL_WHOOSH, 1, 5);
+		//Death Message
+		EntityPlayer player = Actions.getClosestPlayer(this);
+		if(deathTicks == 1)
+			Actions.chatAtPlayer(player, TextFormatting.DARK_PURPLE + "You haven't seen the last of me...");
 
-        	//Iterate through every entity in the list
-            for(EntityLivingBase entity : list)
-            {
-            	//Get the position of every entity in the list
-            	BlockPos location = new BlockPos(entity.getPosition());
+		//Main explosion
+		if(deathTicks >= 75) {
+			for (int n = 0; n < 20; n++)
+			{
+				double d2 = rand.nextGaussian() * 0.02D;
+				double d0 = rand.nextGaussian() * 0.02D;
+				double d1 = rand.nextGaussian() * 0.02D;
+				world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, posX + (double) (rand.nextFloat() * width * 2.0F) - (double) width, posY + (double) (rand.nextFloat() * height), posZ + (double) (rand.nextFloat() * width * 2.0F) - (double) width, d2, d0, d1);
+			}
+		}
 
-            	//Go through our predetermined list 
-            	for (int i = 0; i < MOBS.size(); i++) 
-            	{
-            		try 
-            		{
-            			//If our classes match
-						if(entity.getClass() == MOBS.get(i)) 
+		//Replaces regular mobs with their corrupted variants, or husks
+		if(deathTicks == 200)
+		{
+			//Get all entities within 30 blocks of the demon
+			List<EntityLivingBase> list = this.world.<EntityLivingBase>getEntitiesWithinAABB(EntityLivingBase.class,
+					this.getEntityBoundingBox().grow(30.0D, 30.0D, 30.0D));
+			//SFX
+			Actions.playSound(this, TUOMSoundHandler.DARK_OPAL_WHOOSH, 1, 5);
+
+			//Iterate through every entity in the list
+			for(EntityLivingBase entity : list)
+			{
+				//Get the position of every entity in the list
+				BlockPos location = new BlockPos(entity.getPosition());
+				boolean flag = false;
+				for(Map.Entry<Class<? extends EntityLiving>, Class<? extends EntityLiving>> entry : CLASS_MAP.entrySet())
+				{
+					try {
+						if(entity.getClass() == entry.getKey())
 						{
-							//Create a new Corrupted mob from the corresponding spot in the list with the world constructor
-							EntityLiving corrupted = CORRUPTED.get(i).getConstructor(World.class).newInstance(world);
+							//Create a new Corrupted mob from the value pair
+							EntityLiving corrupted = entry.getValue().getConstructor(World.class).newInstance(world);
 							//spawn the corrupted entity
 							this.spawnEntity(corrupted, location);
 							//Remove the vanilla entity
 							entity.setDead();
+							flag = true;
+							break;
 						}
-	
-						//If the entity doesn't match any from the list and isn't a player, mob, or boss, spawn a husk
-						else if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityMob) && entity.isNonBoss()) 
-							this.spawnEntity(new EntityHusk(world), location);
-						
-					//Catch a bunch of reflection exceptions
-            		} catch(Exception e) {
-            				e.printStackTrace();
-            			}
-					} 
-				}
-        	setDead();           
-        }            
 
-        if(Conditions.secondsGoneBy(world, 1)) 
-        {
-        	//Time updating
-        	if(world.getWorldTime() < 23000 && TUOMConfig.darkDay)
-        	{
-        		long discrepancy = 23000 - world.getWorldTime();
-        		world.provider.setWorldTime(world.getWorldTime() + discrepancy / 5);
-        	}
-        	
-        	//Sends out rings and plays sound
-	        for(int y = 0; y < 10; y ++) 
-	        {
-	        	alpha += 0.15F;
-	        	if(y < 9)
-	        		Actions.playSound(this, TUOMSoundHandler.DARK_OPAL_WHOOSH, 5, 1);
-	        	
-	        	for(int i = 0; i < 360; i++) 
+					} catch(NoSuchMethodException | InstantiationException |
+							IllegalAccessException | InvocationTargetException e) {
+						e.printStackTrace();
+					}
+				}
+
+				if(!flag) {
+					//If the entity doesn't match any from the list and isn't a player, mob, or boss, spawn a husk
+					if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityMob) && entity.isNonBoss())
+						this.spawnEntity(new EntityHusk(world), location);
+				}
+
+				//Go through our predetermined list
+//            	for (int i = 0; i < MOBS.size(); i++)
+//            	{
+//            		try
+//            		{
+//            			//If our classes match
+//						if(entity.getClass() == MOBS.get(i))
+//						{
+//							//Create a new Corrupted mob from the corresponding spot in the list with the world constructor
+//							EntityLiving corrupted = CORRUPTED.get(i).getConstructor(World.class).newInstance(world);
+//							//spawn the corrupted entity
+//							this.spawnEntity(corrupted, location);
+//							//Remove the vanilla entity
+//							entity.setDead();
+//						}
+//
+//						//If the entity doesn't match any from the list and isn't a player, mob, or boss, spawn a husk
+//						else if(!(entity instanceof EntityPlayer) && !(entity instanceof EntityMob) && entity.isNonBoss())
+//							this.spawnEntity(new EntityHusk(world), location);
+//
+//					//Catch a bunch of reflection exceptions
+//            		} catch(Exception e) {
+//            				e.printStackTrace();
+//            			}
+//					}
+			}
+			setDead();
+		}
+
+		if(Conditions.secondsGoneBy(world, 1))
+		{
+			//Time updating
+			if(world.getWorldTime() < 23000 && TUOMConfig.darkDay)
+			{
+				long discrepancy = 23000 - world.getWorldTime();
+				world.provider.setWorldTime(world.getWorldTime() + discrepancy / 5);
+			}
+
+			//Sends out rings and plays sound
+			for(int y = 0; y < 10; y ++)
+			{
+				alpha += 0.15F;
+				if(y < 9)
+					Actions.playSound(this, TUOMSoundHandler.DARK_OPAL_WHOOSH, 5, 1);
+
+				for(int i = 0; i < 360; i++)
 				{
-	                this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * ((double)this.width - y/2), 
-	                		this.posY + y, this.posZ + (this.rand.nextDouble() - 0.5D) * ((double)this.width - y/2), 
-	                		2 * Math.sin((float)Math.toRadians(i)), 0.0D, 2 * Math.cos((float)Math.toRadians(i)));
+					this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * ((double)this.width - y/2),
+							this.posY + y, this.posZ + (this.rand.nextDouble() - 0.5D) * ((double)this.width - y/2),
+							2 * Math.sin((float)Math.toRadians(i)), 0.0D, 2 * Math.cos((float)Math.toRadians(i)));
 				}
-	        }
-        }
-    }
+			}
+		}
+	}
 
-    /**
-     * Sets given entity's spawn location and spawns 
-     * it after a side check
-     * 
-     * @param entity the entity to spawn
-     * @param pos the position where the entity should spawn
-     */
-    private void spawnEntity(EntityLiving entity, BlockPos pos) 
-    {
-    	entity.setPosition(pos.getX(), pos.getY(), pos.getZ());
-    	
-    	if(!world.isRemote)
-    		world.spawnEntity(entity);
-    }
-    
-    /**
-     * Triggers death animation
-     */
-    protected void onDeathAIUpdate() 
-    {
-    	if(getAnimation() != ANIMATION_DEATH)
-    		AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
-    }
-	
-    /**
-     * Getter method for overlay alpha
-     * 
-     * @return the overlay's alpha
-     */
-    public float getDarknessAlpha()
-    {
-    	return alpha;
-    }
-    
-    /**
-     * Getter method for death ticks
-     * 
-     * @return death ticks
-     */
-    public int getDeathTicks()
-    {
-    	return deathTicks;
-    }
-    
-    /**
-     * Necessary override for range attack
-     * 
-     * @param target the demon's target
-     * @param distanceFactor whether distance affects accuracy
-     */
+	/**
+	 * Sets given entity's spawn location and spawns
+	 * it after a side check
+	 *
+	 * @param entity the entity to spawn
+	 * @param pos the position where the entity should spawn
+	 */
+	private void spawnEntity(EntityLiving entity, BlockPos pos)
+	{
+		entity.setPosition(pos.getX(), pos.getY(), pos.getZ());
+
+		if(!world.isRemote)
+			world.spawnEntity(entity);
+	}
+
+	/**
+	 * Triggers death animation
+	 */
+	protected void onDeathAIUpdate()
+	{
+		if(getAnimation() != ANIMATION_DEATH)
+			AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_DEATH);
+	}
+
+	/**
+	 * Getter method for overlay alpha
+	 *
+	 * @return the overlay's alpha
+	 */
+	public float getDarknessAlpha()
+	{
+		return alpha;
+	}
+
+	/**
+	 * Getter method for death ticks
+	 *
+	 * @return death ticks
+	 */
+	public int getDeathTicks()
+	{
+		return deathTicks;
+	}
+
+	/**
+	 * Necessary override for range attack
+	 *
+	 * @param target the demon's target
+	 * @param distanceFactor whether distance affects accuracy
+	 */
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {}
 
 	/**
 	 * Necessary override for ranged attack
-	 * 
+	 *
 	 * @param swingingArms true or false
 	 */
 	@Override
