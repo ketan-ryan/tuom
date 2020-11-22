@@ -49,7 +49,6 @@ public class TUOMEntities {
 																.name("dark_ship")
 																//range, update frequency, should send velocity updates
 																.tracker(64, 3, true)
-																.egg(0x4e0072, 0x000000)
 																.build();
 	
 	private static final EntityEntry TOPAZ_ARROW = EntityEntryBuilder.create()
