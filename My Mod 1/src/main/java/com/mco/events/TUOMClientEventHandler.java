@@ -26,21 +26,21 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(modid = TUOM.MODID, value = Side.CLIENT)
-public class TUOMClientEventHandler 
+public class TUOMClientEventHandler
 {
 	/** Minecraft Instance */
 	private static Minecraft mc = Minecraft.getMinecraft();
 	/** Dark Opal Demon Instance*/
 	private static EntityDarkOpalDemon demon;
-	
+
 	/** Darkness screen overlay */
 	private static final ResourceLocation DARK_DEATH_OVERLAY = new ResourceLocation("tuom:textures/entities/dark.png");
 	/** Dark Opal Demon bossbar texture */
 	private static final ResourceLocation DARK_BAR = new ResourceLocation(TUOM.MODID, "textures/bossbars/dopal_bossbar_512.png");
-	
+
 	/**
 	 * Handles death overlay for Dark Opal Demon - finds one nearby then applies the overlay if it's in the death anim 
-	 * 
+	 *
 	 * @param event the RenderGameOverlay event
 	 */
 	@SubscribeEvent
@@ -48,8 +48,8 @@ public class TUOMClientEventHandler
 	{
 		EntityPlayer player = ClientProxy.getClientPlayer();
 		float i = 1;
-		List<EntityDarkOpalDemon> list = player.world.<EntityDarkOpalDemon>getEntitiesWithinAABB(EntityDarkOpalDemon.class, 
-        		player.getEntityBoundingBox().grow(30));
+		List<EntityDarkOpalDemon> list = player.world.<EntityDarkOpalDemon>getEntitiesWithinAABB(EntityDarkOpalDemon.class,
+				player.getEntityBoundingBox().grow(30));
 		for(EntityDarkOpalDemon demon : list)
 		{
 			if(demon != null && demon.getDeathTicks() > 1 && demon.getDeathTicks() < 200)
@@ -66,21 +66,21 @@ public class TUOMClientEventHandler
 				mc.getTextureManager().bindTexture(DARK_DEATH_OVERLAY);
 				ScaledResolution res = event.getResolution();
 				//Draw the overlay
-				Gui.drawModalRectWithCustomSizedTexture(0,  0,  0,  0, res.getScaledWidth(), res.getScaledHeight(), 
+				Gui.drawModalRectWithCustomSizedTexture(0,  0,  0,  0, res.getScaledWidth(), res.getScaledHeight(),
 						res.getScaledWidth(), res.getScaledHeight());
 			}
 		}
 	}
-	
+
 	/**
 	 * Handles the custom bossbar for the Dark Opal Demon
 	 * Thanks to Xwancool for the texture!
 	 * This method was originally written by the Betweenlands devs.
-	 * 
+	 *
 	 * @param event the bossinfo render event
 	 */
 	@SubscribeEvent
-	public static void onRenderOverlay(RenderGameOverlayEvent.BossInfo event) 
+	public static void onRenderOverlay(RenderGameOverlayEvent.BossInfo event)
 	{
 		Entity boss = null;
 		//Get instance of Minecraft and check all loaded entities
@@ -91,17 +91,17 @@ public class TUOMClientEventHandler
 					boss = entity;
 			}
 		}
-		if(boss != null && boss instanceof EntityDarkOpalDemon) 
+		if(boss != null && boss instanceof EntityDarkOpalDemon)
 		{
 			BossInfoClient info = event.getBossInfo();
 			float percent = info.getPercent();
 			ITextComponent name = info.getName();
 			//We only want to cancel the event if it's a DoD
 			//The cast should ensure it works if translated
-			if(((EntityDarkOpalDemon)boss).getName().equals(name.getUnformattedText())) 
+			if(((EntityDarkOpalDemon)boss).getName().equals(name.getUnformattedText()))
 			{
 				event.setCanceled(true);
-				
+
 				//Set up values from config
 				int texWidth = TUOMConfig.bossbarWidth;
 				int texHeight = TUOMConfig.bossbarHeight/2;
@@ -109,14 +109,14 @@ public class TUOMClientEventHandler
 				double renderWidth = TUOMConfig.bossbarRenderWidth;
 				double renderHeight = (double)texHeight / (double)texWidth * renderWidth;
 				double renderHealth  = (renderWidth - 16.0F / texWidth * renderWidth - (renderWidth - 16.0F / texWidth * renderWidth) * percent);
-	
+
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 				GlStateManager.enableBlend();
 				GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 				mc.getTextureManager().bindTexture(DARK_BAR);
 				//Old rendering code
 				GlStateManager.enableBlend();
-	
+
 				GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 				GlStateManager.pushMatrix();
 				GlStateManager.translate(event.getResolution().getScaledWidth() / 2 - renderWidth / 2.0D, event.getY() - 2, 0);
@@ -131,7 +131,7 @@ public class TUOMClientEventHandler
 				GlStateManager.glTexCoord2f(1, 0);
 				GL11.glVertex2d(renderWidth, 0);
 				//Foreground
-				if (percent > 0) 
+				if (percent > 0)
 				{
 					GlStateManager.glTexCoord2f(0, 0.5F);
 					GL11.glVertex2d(0, 0);
@@ -150,5 +150,5 @@ public class TUOMClientEventHandler
 				mc.fontRenderer.drawStringWithShadow(name.getFormattedText(), event.getResolution().getScaledWidth() / 2  - strWidth / 2, event.getY() + TUOMConfig.textOffset, 0x8800ff);
 			}
 		}
-	}	
+	}
 }
