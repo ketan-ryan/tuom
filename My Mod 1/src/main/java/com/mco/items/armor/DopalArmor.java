@@ -52,9 +52,9 @@ public class DopalArmor extends LibItemArmor
 					{
 						fullSet = true;
 
-						if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
+						if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) )
 						{
-							player.motionY += 0.02;
+							player.motionY += 0.03;
 							player.motionX *= 1.01;
 							player.motionZ *= 1.01;
 						}
