@@ -2,18 +2,19 @@ package com.mco.items.armor;
 
 import com.mco.TUOM;
 import com.mco.main.TUOMItems;
-
 import library.items.LibItemArmor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 
 public class DopalArmor extends LibItemArmor
-{		
+{
+	private static boolean fullSet = false;
+
 	public DopalArmor(ArmorMaterial materialIn, EntityEquipmentSlot equipmentSlotIn) 
 	{
 		super(materialIn, equipmentSlotIn);
@@ -45,20 +46,28 @@ public class DopalArmor extends LibItemArmor
 			Item item = player.getHeldItemOffhand().getItem();
 			if(item != null)
 			{
-				if(item == TUOMItems.DARK_STAFF) 
+				if(TUOMItems.DARK_STAFF.equals(item))
 				{
-					if(armorPieces >= 4) 
+					if(armorPieces == 4)
 					{
-						if(Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed()) 
+						fullSet = true;
+
+						if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
 						{
-							player.motionY += 0.04;
+							player.motionY += 0.02;
 							player.motionX *= 1.01;
 							player.motionZ *= 1.01;
-							player.isAirBorne = true;
 						}
 					}
 				}
+				else
+					fullSet = false;
 			}
 		}	
+	}
+
+	public static boolean hasFullSet()
+	{
+		return fullSet;
 	}
 }

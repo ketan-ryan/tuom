@@ -2,18 +2,19 @@ package com.mco.events;
 
 import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
+import com.mco.items.armor.DopalArmor;
 import com.mco.main.TUOMDamageSources;
 import com.mco.main.TUOMItems;
 import com.mco.potions.TUOMPotions;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.BlockEvent.HarvestDropsEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -29,24 +30,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class TUOMEventHandler 
 {	
 	/**
-	 * Nullifies fall damage if wearing full dark opal set and has dark staff equipped in offhand
-	 */
-/*	@SubscribeEvent
-	public void cancelFallDamage(LivingFallEvent event) 
-	{
-		if(event.getEntity() instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer)event.getEntity();
-			if(DopalArmor.getHasFullSet())
-				event.setCanceled(true);
-		}
-	}
-	*/
-	/**
 	 * Autosmelting for fire opal pickaxe 
 	 * Damages pickaxe by an extra 4 uses
 	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
+	@SuppressWarnings("deprecated")
 	public static void onEvent(HarvestDropsEvent event)
 	{
 		if(event.getHarvester() != null)
@@ -139,13 +127,15 @@ public class TUOMEventHandler
 	}
 	
 	/**
-	 * When armored, any damge the {@link EntityDarkOpalDemon}
+	 * When armored, any damage the {@link EntityDarkOpalDemon}
 	 * takes will be reduced by 50%
+	 *
+	 * Cancels fall damage if player is wearing full dark opal
 	 * 
 	 * @param event the LivingDamageEvent to cancel
 	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public static void onDarkShield(LivingDamageEvent event)
+	public static void onDarkShield(LivingHurtEvent event)
 	{
 		//We only want this to apply to the demon
 		if(event.getEntity() instanceof EntityDarkOpalDemon)
@@ -155,6 +145,12 @@ public class TUOMEventHandler
 			//If armored, halve damge
 			if(demon.isArmored())
 				event.setAmount(event.getAmount() * .50F);			
+		}
+		else if(event.getEntity() instanceof EntityPlayer)
+		{
+			if(DopalArmor.hasFullSet() && event.getSource() == DamageSource.FALL) {
+				event.setCanceled(true);
+			}
 		}
 	}
 

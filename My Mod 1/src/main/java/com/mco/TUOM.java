@@ -1,13 +1,9 @@
 package com.mco;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.mco.dimensions.TUOMWorldGen;
 import com.mco.main.TUOMItems;
 import com.mco.potions.TUOMPotions;
 import com.mco.proxies.IProxy;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -20,6 +16,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * MOD INFO =================================================
@@ -75,6 +73,8 @@ public class TUOM {
 	{
 		LOGGER.debug("preInit");
 		proxy.logPhysicalSide(TUOM_LOG);
+
+	//	PacketHandler.registerMessages("tuom");
 		
 		// Creative Tabs
 		tuom_tab = new CreativeTabs("tuom_tab") 
@@ -98,8 +98,8 @@ public class TUOM {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) 
-	{		
-        MinecraftForge.EVENT_BUS.register(new TUOMPotions());
+	{
+		MinecraftForge.EVENT_BUS.register(new TUOMPotions());
 
     	DARK_CHEST_DEMON = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_demon"));
     	DARK_CHEST_LAVA = LootTableList.register(new ResourceLocation(MODID, "chests/dark_tower_lava"));
@@ -111,5 +111,4 @@ public class TUOM {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) 
 	{}
-
 }

@@ -1,14 +1,9 @@
 package com.mco.events;
 
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.main.TUOMConfig;
 import com.mco.proxies.ClientProxy;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.BossInfoClient;
 import net.minecraft.client.gui.Gui;
@@ -24,6 +19,9 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = TUOM.MODID, value = Side.CLIENT)
 public class TUOMClientEventHandler

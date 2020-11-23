@@ -1,21 +1,9 @@
 package com.mco.proxies;
 
-import org.lwjgl.util.glu.GLU;
-import org.lwjgl.util.glu.Sphere;
-
 import com.mco.TUOM;
 import com.mco.blocks.biomes.dark.DarkLeaves;
-import com.mco.entities.lightning.dark.EntityDarkLightning;
-import com.mco.entities.lightning.dark.RenderDarkLightning;
-import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.RenderDarkOpalDemon;
-import com.mco.entities.mobs.dark.demon.bomb.EntityDarkBomb;
-import com.mco.entities.mobs.dark.demon.bomb.RenderDarkBomb;
-import com.mco.entities.projectiles.EntityCustomFallingBlock;
-import com.mco.entities.projectiles.RenderCustomFallingBlock;
 import com.mco.events.TUOMClientEventHandler;
 import com.mco.events.TUOMEventHandler;
-
 import library.common.BakedModelLoader;
 import library.gui.LibFurnaceGUI;
 import library.gui.LibGUIHandler;
@@ -28,10 +16,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.glu.Sphere;
 
 public class ClientProxy implements IProxy
 {
@@ -44,11 +33,6 @@ public class ClientProxy implements IProxy
     {        
         OBJLoader.INSTANCE.addDomain(TUOM.MODID);
         ModelLoaderRegistry.registerLoader(new BakedModelLoader());
-      
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkLightning.class, RenderDarkLightning.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityCustomFallingBlock.class, RenderCustomFallingBlock.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkOpalDemon.class, RenderDarkOpalDemon::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityDarkBomb.class, RenderDarkBomb::new);
      }
     
     public void init(FMLInitializationEvent event)
