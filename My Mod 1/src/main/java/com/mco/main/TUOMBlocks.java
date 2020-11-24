@@ -1,27 +1,12 @@
 package com.mco.main;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.mco.TUOM;
-import com.mco.blocks.biomes.dark.DarkLeaves;
-import com.mco.blocks.biomes.dark.DarkLog;
-import com.mco.blocks.biomes.dark.DarkObsidian;
-import com.mco.blocks.biomes.dark.DarkPlanks;
-import com.mco.blocks.biomes.dark.DarkSapling;
+import com.mco.blocks.biomes.dark.*;
 import com.mco.blocks.crops.DopalCrop;
 import com.mco.blocks.crops.FopalCrop;
 import com.mco.blocks.crops.LopalCrop;
 import com.mco.blocks.crops.TopazCrop;
-import com.mco.blocks.furnaces.dark.DarkFurnace;
-import com.mco.blocks.furnaces.dark.DarkFurnaceTileEntity;
-import com.mco.blocks.ores.DopalOre;
-import com.mco.blocks.ores.FopalOre;
-import com.mco.blocks.ores.GarnetOre;
-import com.mco.blocks.ores.LopalOre;
-import com.mco.blocks.ores.TUOMOre;
-import com.mco.blocks.ores.TopazOre;
-
+import com.mco.blocks.ores.*;
 import library.LibRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -37,6 +22,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * DECLARE BLOCKS =================================================
@@ -147,7 +135,7 @@ public class TUOMBlocks
 		registerBlock(registry, "dopal_crop", new DopalCrop());
 		registerBlock(registry, "lopal_crop", new LopalCrop());
 		
-		registerBlock(registry, "dark_furnace", new DarkFurnace(DarkFurnaceTileEntity.class).setCreativeTab(TUOM.tuom_tab));
+	//	registerBlock(registry, "dark_furnace", new DarkFurnace(DarkFurnaceTileEntity.class).setCreativeTab(TUOM.tuom_tab));
 	//	GameRegistry.registerTileEntity(DarkFurnaceTileEntity.class, new ResourceLocation("tuom:blocks/dark_furnace/dark_furnace_gui.png"));
 	//	LibRegistry.registerGUI(DarkFurnaceTileEntity.class, DarkFurnaceContainer.class, "blocks/dark_furnace/dark_furnace_gui.png");
 
