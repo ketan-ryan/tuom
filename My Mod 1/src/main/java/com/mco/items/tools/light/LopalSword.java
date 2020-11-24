@@ -40,7 +40,7 @@ public class LopalSword extends LibItemSword
 			BlockPos blockHit = lookVec.getBlockPos();
 			//Actions.summonLightningAtPosition(worldIn, lookVec.getBlockPos(), 0);
 			EntityLightningBolt entityDarkLightning = new EntityLightningBolt(worldIn, blockHit.getX(), blockHit.getY(), blockHit.getZ(), false);
-			worldIn.spawnEntity(entityDarkLightning);
+			worldIn.addWeatherEffect(entityDarkLightning);
 			playerIn.getHeldItem(handIn).damageItem(10, playerIn);
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
