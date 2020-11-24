@@ -71,6 +71,7 @@ public class AIBlindingPunches extends AnimationAI<EntityDarkOpalDemon>
 				this.teleportToEntity(demon, attackTarget);
 				attackTarget.attackEntityFrom(TUOMDamageSources.darkPunch, 7 * TUOMConfig.darkDamage);
 				Actions.addPotionEffect(attackTarget, MobEffects.SLOWNESS, 120, 20, false);
+				Actions.addPotionEffect(attackTarget, MobEffects.BLINDNESS, 140, 0, false);
 			}
 			
 			if(demon.getAnimationTick() == 29 || demon.getAnimationTick() == 35 || demon.getAnimationTick() == 41) {
