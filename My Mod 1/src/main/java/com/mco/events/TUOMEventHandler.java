@@ -81,7 +81,7 @@ public class TUOMEventHandler
 			else 
 			{	
 				e.getEntityLiving().attackEntityFrom(TUOMDamageSources.darkDamage, .3F);
-				e.getEntityLiving().hurtResistantTime = 7;
+				//e.getEntityLiving().hurtResistantTime = 12;
 			}
 		}
 		

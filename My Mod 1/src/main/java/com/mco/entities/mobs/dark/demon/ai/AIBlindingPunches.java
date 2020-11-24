@@ -1,17 +1,16 @@
 package com.mco.entities.mobs.dark.demon.ai;
 
-import java.util.Random;
-
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.main.TUOMConfig;
 import com.mco.main.TUOMDamageSources;
-
 import library.util.Actions;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+
+import java.util.Random;
 
 public class AIBlindingPunches extends AnimationAI<EntityDarkOpalDemon>
 {
@@ -92,6 +91,7 @@ public class AIBlindingPunches extends AnimationAI<EntityDarkOpalDemon>
 			
 			//Resistance so the player doesn't get one-shot from uppercut
 			if(demon.getAnimationTick() == 100 && demon.getDistance(attackTarget) < 10) {
+				teleportToEntity(attackTarget, demon);
 				attackTarget.attackEntityFrom(TUOMDamageSources.darkPunch, 10 * TUOMConfig.darkDamage);
 				attackTarget.knockBack(demon, 3, 1, 1);
 				Actions.addPotionEffect(attackTarget, MobEffects.RESISTANCE, 30, 100, false);
