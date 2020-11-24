@@ -1,19 +1,10 @@
 package com.mco.items.tools.light;
 
-import java.util.List;
-
-import com.mco.TUOM;
-import com.mco.entities.lightning.dark.EntityDarkLightning;
-import com.mco.main.TUOMItems;
-import library.LibRegistry;
 import library.items.LibItemSword;
 import library.util.Actions;
-import com.mco.TUOM;
-import com.mco.entities.lightning.dark.EntityDarkLightning;
-import com.mco.main.TUOMItems;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
@@ -21,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class LopalSword extends LibItemSword
 {
@@ -46,7 +39,7 @@ public class LopalSword extends LibItemSword
 		{
 			BlockPos blockHit = lookVec.getBlockPos();
 			//Actions.summonLightningAtPosition(worldIn, lookVec.getBlockPos(), 0);
-			EntityDarkLightning entityDarkLightning = new EntityDarkLightning(worldIn, blockHit.getX(), blockHit.getY(), blockHit.getZ(), false);
+			EntityLightningBolt entityDarkLightning = new EntityLightningBolt(worldIn, blockHit.getX(), blockHit.getY(), blockHit.getZ(), false);
 			worldIn.spawnEntity(entityDarkLightning);
 			playerIn.getHeldItem(handIn).damageItem(10, playerIn);
 		}
