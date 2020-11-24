@@ -1,19 +1,6 @@
 package com.mco.entities.mobs.dark.demon;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import com.google.common.collect.ImmutableList;
-import com.mco.entities.mobs.dark.demon.ai.AIBlindingPunches;
-import com.mco.entities.mobs.dark.demon.ai.AIDarkBombs;
-import com.mco.entities.mobs.dark.demon.ai.AIJump;
-import com.mco.entities.mobs.dark.demon.ai.AILifedrain;
-import com.mco.entities.mobs.dark.demon.ai.AIMinion;
-import com.mco.entities.mobs.dark.demon.ai.AIShield;
-import com.mco.entities.mobs.dark.demon.ai.AISkullShoot;
+import com.mco.entities.mobs.dark.demon.ai.*;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedChicken;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedCow;
 import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedPig;
@@ -21,7 +8,6 @@ import com.mco.entities.mobs.dark.demon.corrupted.EntityCorruptedSheep;
 import com.mco.main.TUOMConfig;
 import com.mco.main.TUOMItems;
 import com.mco.main.TUOMSoundHandler;
-
 import library.entities.LibEntityMob;
 import library.util.Actions;
 import library.util.Conditions;
@@ -29,28 +15,17 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.entity.monster.EntityIllusionIllager;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -64,6 +39,12 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements IMob, IAnimatedEntity, IRangedAttackMob
 {
@@ -227,6 +208,16 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		//Updates bossbar
 		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 
+		if(posY < 0)
+		{
+			if(getAttackTarget() != null)
+				setPosition(getAttackTarget().posX, getAttackTarget().posY, getAttackTarget().posZ);
+			else {
+				BlockPos pos = new BlockPos(posX, 64, posZ);
+				setPosition(findBlock(pos).getX(), findBlock(pos).getY(), findBlock(pos).getZ());
+			}
+		}
+
 		//If animation finishes, set to null
 		if (getAnimation() != NO_ANIMATION)
 		{
@@ -316,6 +307,14 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 			if(getAnimationTick() == 1 || getAnimationTick() == 29 || getAnimationTick() == 35 || getAnimationTick() == 41 || getAnimationTick() == 47)
 				spawnParticle(1000, EnumParticleTypes.DRAGON_BREATH, (int) (this.rand.nextDouble() * (double)this.height), 0, 0, 0);
 		}
+	}
+
+	private BlockPos findBlock(BlockPos pos)
+	{
+		if(Blocks.AIR.getDefaultState().equals(world.getBlockState(pos)))
+			return pos;
+		else
+			return findBlock(pos.up());
 	}
 
 	/**
