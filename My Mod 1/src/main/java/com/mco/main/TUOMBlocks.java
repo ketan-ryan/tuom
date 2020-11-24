@@ -174,10 +174,12 @@ public class TUOMBlocks
 		if(!JSONGenerator.getInstance().inJar())
 			JSONGenerator.generateJsonBlock(blocks);
 		
-		for(int i = 0; i < DarkPlanks.EnumType.values().length; i++)
-		{
-			registerRender(DARK_PLANKS, i, "planks_" + DarkPlanks.EnumType.values()[i].getName());
-		}
+//		for(int i = 0; i < 1;
+//			//	DarkPlanks.EnumType.values().length;
+//			i++)
+//		{
+//			registerRender(DARK_PLANKS, i, "planks_" + DarkPlanks.EnumType.values()[i].getName());
+//		}
 		
 		for(Block block: blocks)
 		{

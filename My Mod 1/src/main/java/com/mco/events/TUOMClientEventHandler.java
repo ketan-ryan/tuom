@@ -44,7 +44,7 @@ public class TUOMClientEventHandler
 	public static void clientTick(TickEvent.ClientTickEvent event)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		if(mc.gameSettings.keyBindJump.isKeyDown() && DopalArmor.hasFullSet() && !mc.player.isCreative())
+		if(mc.gameSettings.keyBindJump.isKeyDown() && DopalArmor.hasFullSet() && !mc.player.isCreative() )
 		{
 			ClientProxy.getClientPlayer().motionY += 0.1;
 			ClientProxy.getClientPlayer().motionX *= 1.01;
