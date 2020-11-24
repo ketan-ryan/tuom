@@ -208,10 +208,13 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		//Updates bossbar
 		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 
+		//Sometimes the noclip from the jump makes him fall through the floor
 		if(posY < 0)
 		{
+			//If we have an attack target, surprise
 			if(getAttackTarget() != null)
 				setPosition(getAttackTarget().posX, getAttackTarget().posY, getAttackTarget().posZ);
+			//Otherwise find safe block to teleport to
 			else {
 				BlockPos pos = new BlockPos(posX, 64, posZ);
 				setPosition(findBlock(pos).getX(), findBlock(pos).getY(), findBlock(pos).getZ());
@@ -309,6 +312,11 @@ public class EntityDarkOpalDemon extends LibEntityMob<LibEntityMob> implements I
 		}
 	}
 
+	/**
+	 * Finds a safe non-void block to teleport to
+	 * @param pos the position to check
+	 * @return a safe position to teleport
+	 */
 	private BlockPos findBlock(BlockPos pos)
 	{
 		if(Blocks.AIR.getDefaultState().equals(world.getBlockState(pos)))
