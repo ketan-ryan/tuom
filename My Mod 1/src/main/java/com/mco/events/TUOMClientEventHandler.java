@@ -2,6 +2,7 @@ package com.mco.events;
 
 import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
+import com.mco.items.armor.DopalArmor;
 import com.mco.main.TUOMConfig;
 import com.mco.proxies.ClientProxy;
 import net.minecraft.client.Minecraft;
@@ -18,6 +19,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.lwjgl.opengl.GL11;
 
@@ -28,13 +30,26 @@ public class TUOMClientEventHandler
 {
 	/** Minecraft Instance */
 	private static Minecraft mc = Minecraft.getMinecraft();
-	/** Dark Opal Demon Instance*/
-	private static EntityDarkOpalDemon demon;
 
 	/** Darkness screen overlay */
 	private static final ResourceLocation DARK_DEATH_OVERLAY = new ResourceLocation("tuom:textures/entities/dark.png");
 	/** Dark Opal Demon bossbar texture */
 	private static final ResourceLocation DARK_BAR = new ResourceLocation(TUOM.MODID, "textures/bossbars/dopal_bossbar_512.png");
+
+	/**
+	 * Handles flight when dark armor equipped
+	 * @param event the ClientTickEvent to listen to
+	 */
+	@SubscribeEvent
+	public static void clientTick(TickEvent.ClientTickEvent event)
+	{
+		if(Minecraft.getMinecraft().gameSettings.keyBindJump.isKeyDown() && DopalArmor.hasFullSet())
+		{
+			ClientProxy.getClientPlayer().motionY += 0.1;
+			ClientProxy.getClientPlayer().motionX *= 1.01;
+			ClientProxy.getClientPlayer().motionZ *= 1.01;
+		}
+	}
 
 	/**
 	 * Handles death overlay for Dark Opal Demon - finds one nearby then applies the overlay if it's in the death anim 
@@ -149,4 +164,5 @@ public class TUOMClientEventHandler
 			}
 		}
 	}
+
 }

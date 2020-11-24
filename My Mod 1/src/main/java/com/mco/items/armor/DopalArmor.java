@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
 
 public class DopalArmor extends LibItemArmor
 {
@@ -46,20 +45,8 @@ public class DopalArmor extends LibItemArmor
 			Item item = player.getHeldItemOffhand().getItem();
 			if(item != null)
 			{
-				if(TUOMItems.DARK_STAFF.equals(item))
-				{
-					if(armorPieces == 4)
-					{
+				if(TUOMItems.DARK_STAFF.equals(item) && armorPieces == 4)
 						fullSet = true;
-
-						if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) )
-						{
-							player.motionY += 0.03;
-							player.motionX *= 1.01;
-							player.motionZ *= 1.01;
-						}
-					}
-				}
 				else
 					fullSet = false;
 			}
