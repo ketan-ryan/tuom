@@ -1,17 +1,9 @@
 package com.mco.main;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import com.mco.TUOM;
 import com.mco.items.archery.TopazArrow;
 import com.mco.items.archery.TopazBow;
-import com.mco.items.armor.DopalArmor;
-import com.mco.items.armor.FopalArmor;
-import com.mco.items.armor.GarnetArmor;
-import com.mco.items.armor.LopalArmor;
-import com.mco.items.armor.SatanicArmor;
-import com.mco.items.armor.TopazArmor;
+import com.mco.items.armor.*;
 import com.mco.items.basic.ItemSatanic;
 import com.mco.items.crops.DopalSeeds;
 import com.mco.items.crops.FopalSeeds;
@@ -23,30 +15,17 @@ import com.mco.items.food.LopalApple;
 import com.mco.items.food.TopazApple;
 import com.mco.items.projectiles.FopalGrenade;
 import com.mco.items.teleporters.DarkOpalTeleporterStaff;
-import com.mco.items.tools.dark.DarkStaff;
-import com.mco.items.tools.dark.DopalAxe;
-import com.mco.items.tools.dark.DopalHoe;
-import com.mco.items.tools.dark.DopalPickaxe;
-import com.mco.items.tools.dark.DopalShovel;
-import com.mco.items.tools.fopal.FopalAxe;
-import com.mco.items.tools.fopal.FopalHoe;
-import com.mco.items.tools.fopal.FopalPickaxe;
-import com.mco.items.tools.fopal.FopalShovel;
-import com.mco.items.tools.fopal.FopalSword;
+import com.mco.items.tools.dark.*;
+import com.mco.items.tools.fopal.*;
 import com.mco.items.tools.garnet.GarnetAxe;
 import com.mco.items.tools.garnet.GarnetHoe;
 import com.mco.items.tools.garnet.GarnetPickaxe;
 import com.mco.items.tools.garnet.GarnetShovel;
-import com.mco.items.tools.light.LopalAxe;
-import com.mco.items.tools.light.LopalHoe;
-import com.mco.items.tools.light.LopalPickaxe;
-import com.mco.items.tools.light.LopalShovel;
-import com.mco.items.tools.light.LopalSword;
+import com.mco.items.tools.light.*;
 import com.mco.items.tools.topaz.TopazAxe;
 import com.mco.items.tools.topaz.TopazHoe;
 import com.mco.items.tools.topaz.TopazPickaxe;
 import com.mco.items.tools.topaz.TopazShovel;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
@@ -63,7 +42,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
-import scala.util.parsing.json.JSON;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * DECLARE ITEMS =================================================
@@ -97,11 +78,11 @@ public class TUOMItems {
 	public static final Item ITEM_GARNET = null;
 	@ObjectHolder("item_topaz")
 	public static final Item ITEM_TOPAZ = null;
-	@ObjectHolder("item_fopal")
+	@ObjectHolder("fire_opal")
 	public static final Item FIRE_OPAL = null;
-	@ObjectHolder("item_dopal")
+	@ObjectHolder("dark_opal")
 	public static final Item DARK_OPAL = null;
-	@ObjectHolder("item_;opal")
+	@ObjectHolder("light_opal")
 	public static final Item LIGHT_OPAL = null;
 	@ObjectHolder("item_satanic")
 	public static final Item ITEM_SATANIC = null;

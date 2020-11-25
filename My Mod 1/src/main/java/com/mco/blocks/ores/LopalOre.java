@@ -1,26 +1,25 @@
 package com.mco.blocks.ores;
 
-import com.mco.TUOM;
 import com.mco.main.TUOMItems;
-import library.LibRegistry;
-import library.blocks.LibBlockOre;
+import net.minecraft.block.BlockOre;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 
-public class LopalOre extends LibBlockOre 
+import java.util.Random;
+
+public class LopalOre extends BlockOre
 {
 
 	public LopalOre(String harvestTool, int harvestLevel) 
 	{
-		super(harvestTool, harvestLevel);
+ 		setHarvestLevel(harvestTool, harvestLevel);
 		this.setHardness(10F);
 		this.setLightLevel(.5F);
 		this.setResistance(20F);
 	}
 
 	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.LIGHT_OPAL, 1, 10, this);
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return TUOMItems.LIGHT_OPAL;
 	}
-
-	
 }

@@ -1,23 +1,24 @@
 package com.mco.blocks.ores;
 
 import com.mco.main.TUOMItems;
+import net.minecraft.block.BlockOre;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 
-import library.LibRegistry;
-import library.blocks.LibBlockOre;
+import java.util.Random;
 
-public class DopalOre extends LibBlockOre 
+public class DopalOre extends BlockOre
 {
 	public DopalOre(String harvestTool, int harvestLevel) 
 	{
-		super(harvestTool, harvestLevel);
+		setHarvestLevel(harvestTool, harvestLevel);
 		this.setHardness(10F);
 		this.setLightLevel(.5F);
 		this.setResistance(20F);
 	}
 
 	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.DARK_OPAL, 1, 10, this);
-	}	
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return TUOMItems.DARK_OPAL;
+	}
 }

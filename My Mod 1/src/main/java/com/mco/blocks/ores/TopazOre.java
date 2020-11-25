@@ -1,24 +1,24 @@
 package com.mco.blocks.ores;
 
-import com.mco.TUOM;
-import library.LibRegistry;
-import library.blocks.LibBlockOre;
-import com.mco.TUOM;
 import com.mco.main.TUOMItems;
+import net.minecraft.block.BlockOre;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 
-public class TopazOre extends LibBlockOre 
+import java.util.Random;
+
+public class TopazOre extends BlockOre
 {
 	public TopazOre(String harvestTool, int harvestLevel) 
 	{
-		super(harvestTool, harvestLevel);
+		setHarvestLevel(harvestTool, harvestLevel);
 		this.setHardness(10F);
 		this.setLightLevel(.5F);
 		this.setResistance(20F);
 	}
 
 	@Override
-	public void initRecipe() 
-	{
-		LibRegistry.addSmeltingRecipe(TUOMItems.ITEM_TOPAZ, 1, 10, this);
-	}	
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return TUOMItems.ITEM_TOPAZ;
+	}
 }
