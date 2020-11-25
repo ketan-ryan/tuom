@@ -4,6 +4,7 @@ import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
 import com.mco.items.armor.DopalArmor;
 import com.mco.main.TUOMConfig;
+import com.mco.main.TUOMItems;
 import com.mco.proxies.ClientProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.BossInfoClient;
@@ -14,6 +15,9 @@ import net.minecraft.client.renderer.GlStateManager.DestFactor;
 import net.minecraft.client.renderer.GlStateManager.SourceFactor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -36,6 +40,9 @@ public class TUOMClientEventHandler
 	/** Dark Opal Demon bossbar texture */
 	private static final ResourceLocation DARK_BAR = new ResourceLocation(TUOM.MODID, "textures/bossbars/dopal_bossbar_512.png");
 
+	private static boolean fullSet = false;
+	private static int armorPieces = 0;
+
 	/**
 	 * Handles flight when dark armor equipped
 	 * @param event the ClientTickEvent to listen to
@@ -43,13 +50,35 @@ public class TUOMClientEventHandler
 	@SubscribeEvent
 	public static void clientTick(TickEvent.ClientTickEvent event)
 	{
-		Minecraft mc = Minecraft.getMinecraft();
-		if(mc.gameSettings.keyBindJump.isKeyDown() && DopalArmor.hasFullSet() && !mc.player.isCreative() )
-		{
-			ClientProxy.getClientPlayer().motionY += 0.1;
-			ClientProxy.getClientPlayer().motionX *= 1.01;
-			ClientProxy.getClientPlayer().motionZ *= 1.01;
+		NonNullList<ItemStack> armor;
+		if(mc.player != null) {
+			armor = mc.player.inventory.armorInventory;
+
+			for (ItemStack itemArmor : armor) {
+				if (itemArmor != null && itemArmor.getItem() instanceof DopalArmor) {
+					armorPieces += 1;
+				}
+			}
+
+			Item item = mc.player.getHeldItemOffhand().getItem();
+			if (item != null) {
+				if (TUOMItems.DARK_STAFF.equals(item) && armorPieces == 4)
+					fullSet = true;
+				else
+					fullSet = false;
+			}
+
+			if (mc.gameSettings.keyBindJump.isKeyDown() && !mc.player.isSpectator() && !mc.player.isCreative() && fullSet) {
+				ClientProxy.getClientPlayer().motionY += 0.1;
+				ClientProxy.getClientPlayer().motionX *= 1.01;
+				ClientProxy.getClientPlayer().motionZ *= 1.01;
+			}
 		}
+		armorPieces = 0;
+	}
+
+	public static boolean hasFullSet() {
+		return fullSet;
 	}
 
 	/**

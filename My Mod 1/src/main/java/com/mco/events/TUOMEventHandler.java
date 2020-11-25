@@ -2,7 +2,6 @@ package com.mco.events;
 
 import com.mco.TUOM;
 import com.mco.entities.mobs.dark.demon.EntityDarkOpalDemon;
-import com.mco.items.armor.DopalArmor;
 import com.mco.main.TUOMDamageSources;
 import com.mco.main.TUOMItems;
 import com.mco.potions.TUOMPotions;
@@ -107,9 +106,11 @@ public class TUOMEventHandler
 			if(demon.isArmored())
 				event.setAmount(event.getAmount() * .50F);			
 		}
+
 		else if(event.getEntity() instanceof EntityPlayer)
 		{
-			if(DopalArmor.hasFullSet() && event.getSource() == DamageSource.FALL) {
+			if(TUOMClientEventHandler.hasFullSet() && event.getSource() == DamageSource.FALL) {
+				System.out.println(TUOMClientEventHandler.hasFullSet());
 				event.setAmount(0);
 				event.setCanceled(true);
 			}
