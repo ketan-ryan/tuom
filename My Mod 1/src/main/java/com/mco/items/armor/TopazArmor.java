@@ -43,8 +43,8 @@ public class TopazArmor extends LibItemArmor {
 				}
 			}
 
-			if(armorPieces >= 4)
-				freezeNearby(player, world, player.getPosition(), 0);
+		//	if(armorPieces >= 4)
+			//	freezeNearby(player, world, player.getPosition(), 0);
 		}
 	}
 
