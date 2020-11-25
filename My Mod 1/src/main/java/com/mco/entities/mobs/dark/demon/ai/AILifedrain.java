@@ -49,7 +49,7 @@ public class AILifedrain extends AnimationAI
 	{
 		super.updateTask();	
 
-		if(demon.getDistance(attackTarget) < 32 && attackTarget != null) 
+		if(attackTarget != null && demon.getDistance(attackTarget) < 32)
 		{
 			attackTarget.hurtResistantTime = 7;
 			attackTarget.attackEntityFrom(TUOMDamageSources.darkLifedrain, 0.2F * TUOMConfig.darkDamage);
