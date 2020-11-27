@@ -1,21 +1,11 @@
 package com.mco.main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.net.JarURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Objects;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author TheMCO
@@ -46,10 +36,6 @@ public class JSONGenerator
 		{
 			add(TUOMItems.TOPAZ_BOW);
 			add(TUOMItems.DARK_STAFF);
-			add(TUOMItems.DOPAL_SWORD);
-			add(TUOMItems.FOPAL_SWORD);
-			add(TUOMItems.LOPAL_SWORD);
-			add(TUOMItems.TOPAZ_SWORD);
 		}
 	};
 

@@ -1,5 +1,5 @@
 container.opal_fuser.name=Opal Fuser
-// ITEMS
+# ITEMS
 item.item_topaz.name=Topaz
 item.item_garnet.name=Garnet
 item.fire_opal.name=Fire Opal
@@ -93,7 +93,7 @@ item.dark_orb.name=Dark Orb
 item.obsidian_stick.name=Obsidian Stick
 item.dark_teleporter.name=Dark Teleporter Staff
 
-// BLOCKS
+# BLOCKS
 tile.topaz_ore.name=Topaz Ore
 tile.fopal_ore.name=Fire Opal Ore
 tile.dopal_ore.name=Dark Opal Ore
@@ -128,7 +128,7 @@ tile.dark_log.name=Dark Log
 tile.dark_leaves.name=Dark Leaves
 tile.dark_sapling.name=Dark Sapling
 
-// ENTITIES
+# ENTITIES
 entity.dark_ship.name=Dark Ship
 entity.dark_demon.name=Dark Opal Demon
 
@@ -141,17 +141,20 @@ entity.dark_vex.name=Dark Vex
 entity.topaz_arrow.name=Topaz Arrow
 entity.dark_bomb.name=Dark Bomb
 
-// CREATIVE TABS
+# CREATIVE TABS
 itemGroup.tuom_tab=The Ultimate Ore Tab
 itemGroup.dim_tab=TUOM Dimensions
 
-// DEATH MESSAGES
+# DEATH MESSAGES
 death.attack.darkPunch=%1$s's soul was knocked out of them
 death.attack.darkSkull=%1$s looked Death in the eye and lost
 death.attack.darkDamage=%1$s succumbed to the power of the Dark Opal Demon
 death.attack.darkLaser=%1$s felt the true power of the Dark Opal Demon
 death.attack.darkLifedrain=The Dark Opal Demon sucked the life out of %1$s
 
-// GENERATORS
+# GENERATORS
 generator.opal=Opal
-generator.opal.info=Take on the Opal Demons... if you dare.  
+generator.opal.info=Take on the Opal Demons... if you dare.
+
+# EFFECTS
+effect.darkPotion=Darkness Affliction
